@@ -16,6 +16,7 @@
 		903126C5254AC511006ECB27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 903126C3254AC511006ECB27 /* LaunchScreen.storyboard */; };
 		903126D0254AC512006ECB27 /* MobileVirusDefenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903126CF254AC512006ECB27 /* MobileVirusDefenderTests.swift */; };
 		903126DB254AC512006ECB27 /* MobileVirusDefenderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903126DA254AC512006ECB27 /* MobileVirusDefenderUITests.swift */; };
+		903126E9254AD94A006ECB27 /* GroundTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 903126E8254AD94A006ECB27 /* GroundTileSet.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		903126D6254AC512006ECB27 /* MobileVirusDefenderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileVirusDefenderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		903126DA254AC512006ECB27 /* MobileVirusDefenderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileVirusDefenderUITests.swift; sourceTree = "<group>"; };
 		903126DC254AC512006ECB27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		903126E8254AD94A006ECB27 /* GroundTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GroundTileSet.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				903126C1254AC511006ECB27 /* Assets.xcassets */,
 				903126C3254AC511006ECB27 /* LaunchScreen.storyboard */,
 				903126C6254AC511006ECB27 /* Info.plist */,
+				903126E8254AD94A006ECB27 /* GroundTileSet.sks */,
 			);
 			path = MobileVirusDefender;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				903126B7254AC510006ECB27 /* GameScene.sks in Resources */,
 				903126C2254AC511006ECB27 /* Assets.xcassets in Resources */,
 				903126C5254AC511006ECB27 /* LaunchScreen.storyboard in Resources */,
+				903126E9254AD94A006ECB27 /* GroundTileSet.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
