@@ -10,14 +10,22 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
+    weak var viewController: GameViewController?
     
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
     private var lastUpdateTime : TimeInterval = 0
     
-    override func sceneDidLoad() {
-
+    var leftJoystick : Joystick = {
+            var joystick = Joystick()
+            return joystick
+        }()
+    
+    override func didMove(to view: SKView) {
+        leftJoystick.position = CGPoint(x: 0, y: 0)
+        addChild(leftJoystick)
+        
     }
     
     
@@ -62,7 +70,7 @@ class GameScene: SKScene {
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
         
-        print(dt)
+        print(leftJoystick.Direction)
         
         self.lastUpdateTime = currentTime
     }
