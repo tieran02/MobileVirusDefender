@@ -17,6 +17,8 @@
 		903126D0254AC512006ECB27 /* MobileVirusDefenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903126CF254AC512006ECB27 /* MobileVirusDefenderTests.swift */; };
 		903126DB254AC512006ECB27 /* MobileVirusDefenderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903126DA254AC512006ECB27 /* MobileVirusDefenderUITests.swift */; };
 		903126E9254AD94A006ECB27 /* GroundTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 903126E8254AD94A006ECB27 /* GroundTileSet.sks */; };
+		90CADB3B25502C75002315F8 /* JoystickUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CADB3A25502C75002315F8 /* JoystickUI.swift */; };
+		90CADB4025502C95002315F8 /* JoystickUI.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CADB3F25502C95002315F8 /* JoystickUI.xib */; };
 		90FCD27F25501F7800E1A166 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FCD27E25501F7800E1A166 /* Joystick.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +56,8 @@
 		903126DA254AC512006ECB27 /* MobileVirusDefenderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileVirusDefenderUITests.swift; sourceTree = "<group>"; };
 		903126DC254AC512006ECB27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		903126E8254AD94A006ECB27 /* GroundTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GroundTileSet.sks; sourceTree = "<group>"; };
+		90CADB3A25502C75002315F8 /* JoystickUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickUI.swift; sourceTree = "<group>"; };
+		90CADB3F25502C95002315F8 /* JoystickUI.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JoystickUI.xib; sourceTree = "<group>"; };
 		90FCD27E25501F7800E1A166 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				90FCD27E25501F7800E1A166 /* Joystick.swift */,
+				90CADB3A25502C75002315F8 /* JoystickUI.swift */,
+				90CADB3F25502C95002315F8 /* JoystickUI.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -251,6 +257,7 @@
 			files = (
 				903126C0254AC510006ECB27 /* Main.storyboard in Resources */,
 				903126B7254AC510006ECB27 /* GameScene.sks in Resources */,
+				90CADB4025502C95002315F8 /* JoystickUI.xib in Resources */,
 				903126C2254AC511006ECB27 /* Assets.xcassets in Resources */,
 				903126C5254AC511006ECB27 /* LaunchScreen.storyboard in Resources */,
 				903126E9254AD94A006ECB27 /* GroundTileSet.sks in Resources */,
@@ -282,6 +289,7 @@
 				90FCD27F25501F7800E1A166 /* Joystick.swift in Sources */,
 				903126BD254AC510006ECB27 /* GameViewController.swift in Sources */,
 				903126B5254AC510006ECB27 /* AppDelegate.swift in Sources */,
+				90CADB3B25502C75002315F8 /* JoystickUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
