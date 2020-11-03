@@ -29,6 +29,10 @@
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="LeftJoystick" destination="KMn-ZJ-4M3" id="emd-5x-7tR"/>
+                        <outlet property="RightJoystick" destination="NSd-cS-mg9" id="COP-dc-tvQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>

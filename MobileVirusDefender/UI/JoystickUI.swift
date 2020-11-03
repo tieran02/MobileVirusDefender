@@ -105,7 +105,6 @@ class JoystickUI: UIView {
                 }
                 
                 _direction = CGVector(dx: (CenterPad.center.x - origin.x) / radius, dy: (origin.y - CenterPad.center.y) / radius)
-                print(Direction)
             }
         }
         

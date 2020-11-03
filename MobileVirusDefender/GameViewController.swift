@@ -13,6 +13,9 @@ import GameplayKit
 class GameViewController: UIViewController {
     var currentGame: GameScene?
     
+    @IBOutlet weak var LeftJoystick: JoystickUI!
+    @IBOutlet weak var RightJoystick: JoystickUI!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +29,7 @@ class GameViewController: UIViewController {
                 // Copy gameplay related content over to the scene
                 sceneNode.entities = scene.entities
                 sceneNode.graphs = scene.graphs
+                sceneNode.viewController = self
                 
                 // Set the scale mode to scale to fit the window
                 sceneNode.scaleMode = .resizeFill
@@ -38,9 +42,6 @@ class GameViewController: UIViewController {
                     
                     view.showsFPS = true
                     view.showsNodeCount = true
-                    
-                    currentGame = scene as? GameScene
-                    currentGame?.viewController = self
                 }
             }
         }

@@ -15,17 +15,14 @@ class GameScene: SKScene {
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
+    var sceneCamera : SKCameraNode?
+    
     private var lastUpdateTime : TimeInterval = 0
     
-    var leftJoystick : Joystick = {
-            var joystick = Joystick()
-            return joystick
-        }()
-    
-    override func didMove(to view: SKView) {
-        leftJoystick.position = CGPoint(x: 0, y: 0)
-        //addChild(leftJoystick)
-        
+
+    override func didMove(to view: SKView)
+    {
+        sceneCamera = childNode(withName: "SKCameraNode") as? SKCameraNode
     }
     
     
@@ -70,6 +67,16 @@ class GameScene: SKScene {
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
         
+        let leftDirection = viewController?.LeftJoystick.Direction
+        if(sceneCamera != nil && leftDirection != nil)
+        {
+            let speed: CGFloat = 2000.0
+            let currentPos = sceneCamera!.position;
+            sceneCamera!.position = CGPoint(x: currentPos.x + (leftDirection!.dx * speed * CGFloat(dt)),
+                                       y: currentPos.y + (leftDirection!.dy * speed * CGFloat(dt)))
+            
+            print(sceneCamera!.position)
+        }
         //print(leftJoystick.Direction)
         
         self.lastUpdateTime = currentTime
