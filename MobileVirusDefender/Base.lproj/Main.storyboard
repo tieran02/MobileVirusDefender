@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KMn-ZJ-4M3" customClass="JoystickUI" customModule="MobileVirusDefender" customModuleProvider="target">
-                                <rect key="frame" x="48" y="614" width="176" height="176"/>
+                                <rect key="frame" x="468" y="329" width="176" height="176"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                         </subviews>

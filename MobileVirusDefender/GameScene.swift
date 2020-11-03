@@ -70,7 +70,7 @@ class GameScene: SKScene {
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
         
-        print(leftJoystick.Direction)
+        //print(leftJoystick.Direction)
         
         self.lastUpdateTime = currentTime
     }

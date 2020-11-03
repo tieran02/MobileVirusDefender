@@ -23,14 +23,18 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OuterPad" translatesAutoresizingMaskIntoConstraints="NO" id="ZnA-tC-J3V">
                     <rect key="frame" x="0.0" y="0.0" width="256" height="256"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CenterPad" translatesAutoresizingMaskIntoConstraints="NO" id="axG-C7-AyK">
+                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CenterPad" translatesAutoresizingMaskIntoConstraints="NO" id="axG-C7-AyK">
                     <rect key="frame" x="80" y="80" width="96" height="96"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="KEI-mE-POZ" appends="YES" id="nft-Kt-TYr"/>
+                    </connections>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="OdZ-YF-int"/>
             <accessibility key="accessibilityConfiguration">
                 <accessibilityTraits key="traits" image="YES"/>
             </accessibility>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="ZnA-tC-J3V" firstAttribute="width" secondItem="l83-1K-diL" secondAttribute="width" id="GWX-Bw-aba"/>
                 <constraint firstItem="axG-C7-AyK" firstAttribute="centerX" secondItem="l83-1K-diL" secondAttribute="centerX" id="NGI-OO-ERn"/>
@@ -44,6 +48,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-407.24637681159425" y="-531.02678571428567"/>
         </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="KEI-mE-POZ">
+            <scrollTypes key="allowedScrollTypesMask" discrete="YES"/>
+            <connections>
+                <action selector="handlePan:" destination="-1" id="uhp-PY-1cO"/>
+            </connections>
+        </panGestureRecognizer>
     </objects>
     <resources>
         <image name="CenterPad" width="96" height="96"/>
