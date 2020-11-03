@@ -25,9 +25,6 @@
                 </imageView>
                 <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CenterPad" translatesAutoresizingMaskIntoConstraints="NO" id="axG-C7-AyK">
                     <rect key="frame" x="80" y="80" width="96" height="96"/>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="KEI-mE-POZ" appends="YES" id="nft-Kt-TYr"/>
-                    </connections>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="OdZ-YF-int"/>
@@ -48,12 +45,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-407.24637681159425" y="-531.02678571428567"/>
         </view>
-        <panGestureRecognizer minimumNumberOfTouches="1" id="KEI-mE-POZ">
-            <scrollTypes key="allowedScrollTypesMask" discrete="YES"/>
-            <connections>
-                <action selector="handlePan:" destination="-1" id="uhp-PY-1cO"/>
-            </connections>
-        </panGestureRecognizer>
     </objects>
     <resources>
         <image name="CenterPad" width="96" height="96"/>

@@ -63,75 +63,59 @@ class JoystickUI: UIView {
         origin = CenterPad.frame.origin
     }
     
-
-    @IBAction func handlePan(_ gesture: UIPanGestureRecognizer) {
-        
-        /*
-         // 1
-         let translation = gesture.translation(in: CenterPad)
-
-         // 2
-         guard let gestureView = gesture.view else {
-         return
-         }
-
-         gestureView.center = CGPoint(
-         x: gestureView.center.x + translation.x,
-         y: gestureView.center.y + translation.y
-         )
-
-         let localPosition : CGP gesture.location(in: CenterPad)
-         
-         // 3
-         gesture.setTranslation(.zero, in: CenterPad)
-         */
-        // 1
-
-        guard let gestureView = gesture.view else {
-        return
-        }
-        
-        var locationOfBeganTap: CGPoint = CGPoint()
-
-        if gesture.state == UIGestureRecognizer.State.began
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        if(!IsTracking)
         {
-            currentPos = CenterPad.center
+            for touch in touches {
+                let touchPoint : CGPoint = touch.location(in: self)
+
+                if(CenterPad.frame.contains(touchPoint))
+                {
+                    IsTracking = true
+                }
+            }
+            
         }
-        else if gesture.state == UIGestureRecognizer.State.ended
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        if IsTracking
         {
-            gestureView.center = origin
-            currentPos = CGPoint(x: origin.x - OuterPad.frame.width/2, y: origin.y - OuterPad.frame.height/2)
-            return
+            for touch in touches
+            {
+                let touchPoint : CGPoint = touch.location(in: self)
+                
+                
+                let radius = OuterPad.frame.width/2
+                let dist : CGFloat = distance(touchPoint, origin)
+                
+                if(dist <= radius)
+                {
+                    CenterPad.center = touchPoint
+                }
+                else
+                {
+                    //let originToObject = CGPoint(x: touchPoint.x * (radius/dist),y: touchPoint.y * (radius/dist))
+                    //CenterPad.center = minus(originToObject, origin)
+                    let boundedPos = CGPoint(x: origin.x + (touchPoint.x - origin.x) / dist * radius,
+                                             y: origin.y + (touchPoint.y - origin.y) / dist * radius)
+                    CenterPad.center = boundedPos
+                }
+                
+                _direction = CGVector(dx: (CenterPad.center.x - origin.x) / radius, dy: (origin.y - CenterPad.center.y) / radius)
+                print(Direction)
+            }
         }
-
-        let translation = gesture.translation(in: CenterPad)
-        currentPos = CGPoint(x: currentPos.x + translation.x, y: currentPos.y + translation.y)
-
-
-        let radius = OuterPad.frame.width/2
-        let dist : CGFloat = distance(currentPos, origin)
-
-        
-        gestureView.center = CGPoint(
-        x: gestureView.center.x + translation.x,
-        y: gestureView.center.y + translation.y
-        )
-        gesture.setTranslation(.zero, in: CenterPad)
-
-        _direction = CGVector(dx: currentPos.x / radius, dy: currentPos.y / radius)
-
-        print("distance \(dist)  currentPos:\(currentPos)  origin:\(origin)  dir:\(_direction)")
-
-        //gestureView.center = tempPoint
         
     }
     
-    
-    func minus(_ a:CGPoint, _ b:CGPoint ) -> CGPoint
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        let xDist = a.x - b.x
-        let yDist = a.y - b.y
-        return CGPoint(x: xDist, y: yDist)
+        IsTracking = false
+        CenterPad.center = origin
+        _direction = CGVector(dx: 0, dy: 0)
     }
     
     func distance(_ a: CGPoint, _ b: CGPoint) -> CGFloat {
