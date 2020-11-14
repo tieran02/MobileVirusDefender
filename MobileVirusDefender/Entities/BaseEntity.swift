@@ -10,13 +10,17 @@ import SpriteKit
 
 class BaseEntity : SKSpriteNode
 {
-    var Position : CGPoint { get{ return self.position } }
+    let PlayerMask : UInt32 =  0x1 << 1
+    let PlayerProjectile : UInt32 = 0x1 << 2
+    
     var Velocity : CGVector { get{ return self.physicsBody!.velocity } }
     
     let MaxHealth : Float
     
     private var _currentHealth : Float;
     var CurrentHealth : Float { get{ return _currentHealth } }
+    
+    var Speed : CGFloat = 1
     
     init(texture:SKTexture, maxHealth : Float)
     {
@@ -44,9 +48,20 @@ class BaseEntity : SKSpriteNode
     {
         _currentHealth = min(CurrentHealth + amount, MaxHealth)
     }
+
     
-    func SetVelocity(velocity: CGVector)
+    func MoveInDirection(direction : CGVector, tileSize : CGFloat)
     {
-        self.physicsBody!.velocity = velocity;
+        SetVelocity(velocity: direction * Speed, tileSize: tileSize)
+    }
+    
+    func SetVelocity(velocity: CGVector, tileSize : CGFloat)
+    {
+        self.physicsBody!.velocity = velocity * tileSize;
+    }
+    
+    func Update(deltaTime : Float, scene : GameScene)
+    {
+        
     }
 }
