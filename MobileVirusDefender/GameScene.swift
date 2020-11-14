@@ -16,6 +16,7 @@ class GameScene: SKScene {
     var graphs = [String : GKGraph]()
     
     var sceneCamera : SKCameraNode?
+    let Player : PlayerEntity = PlayerEntity()
     
     private var lastUpdateTime : TimeInterval = 0
     
@@ -23,6 +24,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView)
     {
         sceneCamera = childNode(withName: "SKCameraNode") as? SKCameraNode
+        addChild(Player)
     }
     
     
@@ -70,10 +72,17 @@ class GameScene: SKScene {
         let leftDirection = viewController?.LeftJoystick.Direction
         if(sceneCamera != nil && leftDirection != nil)
         {
-            let speed: CGFloat = 2000.0
+            let tileSize: CGFloat = 256;
+            let speed: CGFloat = tileSize * 200
             let currentPos = sceneCamera!.position;
-            sceneCamera!.position = CGPoint(x: currentPos.x + (leftDirection!.dx * speed * CGFloat(dt)),
-                                       y: currentPos.y + (leftDirection!.dy * speed * CGFloat(dt)))
+            //sceneCamera!.position = CGPoint(x: currentPos.x + (leftDirection!.dx * speed * CGFloat(dt)), y: currentPos.y + (leftDirection!.dy * speed * CGFloat(dt)))
+            
+            let velocity = CGVector(dx: leftDirection!.dx * speed * CGFloat(dt),
+                                    dy: leftDirection!.dy * speed * CGFloat(dt))
+            
+            Player.SetVelocity(velocity: velocity)
+            sceneCamera?.position = Player.Position
+            
             
             print(sceneCamera!.position)
         }
