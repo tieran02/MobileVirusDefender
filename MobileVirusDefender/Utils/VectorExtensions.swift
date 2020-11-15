@@ -24,6 +24,10 @@ public extension CGVector
         let len = length()
         return len>0 ? self / len : CGVector.zero
     }
+    
+    public func distanceTo(_ vector: CGVector) -> CGFloat {
+        return (self - vector).length()
+      }
 }
 
 public func + (left: CGVector, right: CGVector) -> CGVector {
