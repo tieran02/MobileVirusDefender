@@ -16,8 +16,9 @@ class ProjectileEntity : BaseEntity
         _lifeTime = lifeTime;
         super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 100)
         Speed = 10
-        physicsBody?.categoryBitMask = PhysicsMask.PlayerProjectile.rawValue;
+        physicsBody?.categoryBitMask = PhysicsMask.PlayerProjectile.rawValue
         physicsBody?.collisionBitMask = PhysicsMask.Envioment.rawValue
+        physicsBody?.contactTestBitMask = PhysicsMask.Envioment.rawValue
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,6 +44,10 @@ class ProjectileEntity : BaseEntity
     func Ready() -> Bool
     {
         return (self.parent == nil)
+    }
+    
+    override func collisionBegan(with: SKPhysicsBody) {
+        self.removeFromParent()
     }
     
 }

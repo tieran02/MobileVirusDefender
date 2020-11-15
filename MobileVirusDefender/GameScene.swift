@@ -6,10 +6,11 @@
 //  Copyright © 2020 Tieran. All rights reserved.
 //
 
+import Foundation
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     weak var viewController: GameViewController?
     
     var entities = [GKEntity]()
@@ -26,6 +27,23 @@ class GameScene: SKScene {
         sceneCamera = childNode(withName: "SKCameraNode") as? SKCameraNode
         addChild(Player)
         AddTileMapColliders()
+        
+        physicsWorld.contactDelegate = self
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact)
+    {
+        // Handle the collitions in each nodes class
+       
+        if let entity = contact.bodyA.node as? BaseEntity
+        {
+            entity.collisionBegan(with: contact.bodyB)
+        }
+       
+        if let entity = contact.bodyB.node as? BaseEntity
+        {
+            entity.collisionBegan(with: contact.bodyA)
+        }
     }
     
     
@@ -101,6 +119,7 @@ class GameScene: SKScene {
                     tileNode.physicsBody = SKPhysicsBody.init(rectangleOf: tileSize, center: CGPoint(x: tileSize.width / 2.0, y: tileSize.height / 2.0))
                     tileNode.physicsBody?.isDynamic = false
                     tileNode.physicsBody?.collisionBitMask = PhysicsMask.All.rawValue
+                    tileNode.physicsBody?.contactTestBitMask = PhysicsMask.All.rawValue
                     tileNode.physicsBody?.categoryBitMask = PhysicsMask.Envioment.rawValue
                     tileMap.addChild(tileNode)
                 }

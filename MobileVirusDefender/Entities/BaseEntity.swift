@@ -61,4 +61,9 @@ class BaseEntity : SKSpriteNode
     {
         
     }
+    
+    func collisionBegan(with: SKPhysicsBody)
+    {
+        
+    }
 }
