@@ -10,7 +10,7 @@ import Foundation
 
 struct TileMapSettings
 {
-    static let TileSize = 256
+    static let TileSize : Int = 256
 }
 
 struct PhysicsMask: OptionSet {

@@ -7,8 +7,19 @@
 //
 import SpriteKit
 
+public extension CGPoint
+{
+    public init(vector: CGVector) {
+        self.init(x: vector.dx, y: vector.dy)
+    }
+}
+
 public extension CGVector
 {
+    public init(point: CGPoint) {
+        self.init(dx: point.x, dy: point.y)
+    }
+    
     func length() -> CGFloat
     {
         return sqrt(dx*dx + dy*dy)

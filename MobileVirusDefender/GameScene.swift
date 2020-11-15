@@ -17,8 +17,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var graphs = [String : GKGraph]()
     
     var sceneCamera : SKCameraNode?
-    var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:32 * TileMapSettings.TileSize,y:32 * TileMapSettings.TileSize))
-    var Enemy : EnemyEntity = EnemyEntity(position: CGPoint(x:35 * TileMapSettings.TileSize,y:35 * TileMapSettings.TileSize))
+    var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:0 * TileMapSettings.TileSize,y:0 * TileMapSettings.TileSize))
+    var Enemy : EnemyEntity = EnemyEntity(position: CGPoint(x:5 * TileMapSettings.TileSize,y:5 * TileMapSettings.TileSize))
     
     var pathfinding : PathFinding?
     
@@ -104,6 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(sceneCamera != nil)
         {
             Player.Update(deltaTime: Float(dt), scene: self)
+            Enemy.Update(deltaTime: Float(dt), scene: self)
             sceneCamera?.position = Player.position
         }
         //print(leftJoystick.Direction)

@@ -10,19 +10,21 @@ import SpriteKit
 
 class Node : Hashable
 {
-    let position : CGVector
+    let X : Int
+    let Y : Int
     var parent : Node?
     
-    var G : Float //G cost is the distance between the current node and start
-    var H : Float //H is tge heuristic - estimated distance from current node to the end node
+    var G : Int //G cost is the distance between the current node and start
+    var H : Int //H is tge heuristic - estimated distance from current node to the end node
     
-    var F : Float {get{return G + H}}
+    var F : Int {get{return G + H}}
     
     var walkable : Bool
     
     init(x: Int, y: Int)
     {
-        position = CGVector(dx: x, dy: y)
+        X = x
+        Y = y
         
         G = 0
         H = 0
@@ -30,12 +32,12 @@ class Node : Hashable
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(position.dx)
-        hasher.combine(position.dy)
+        hasher.combine(X)
+        hasher.combine(Y)
     }
     
     static func == (lhs: Node, rhs: Node) -> Bool {
-        lhs.position == rhs.position
+        lhs.X == rhs.X && lhs.Y == rhs.Y
     }
 }
 
@@ -69,12 +71,40 @@ class PathFinding
         }
     }
     
+    func ToWorldPosition(node : Node) -> CGPoint
+    {
+        let TileSize = TileMapSettings.TileSize
+        let nodeWorldPoint = CGPoint(x: (node.X * TileSize) - Int(TileMap.mapSize.width/2), y: (node.Y * TileSize) - Int(TileMap.mapSize.width/2))
+        
+        return nodeWorldPoint
+    }
+    
+    func ToWorldPosition(x : Int, y:Int) -> CGPoint
+    {
+        let TileSize = TileMapSettings.TileSize
+        let nodeWorldPoint = CGPoint(x: (x * TileSize) - Int(TileMap.mapSize.width/2), y: (y * TileSize) - Int(TileMap.mapSize.width/2))
+        
+        return nodeWorldPoint
+    }
+    
+    func FindPath(startPosition : CGPoint, endPosition : CGPoint) -> [Node]
+    {
+        let startNode = GetNode(position: startPosition)
+        let endNode = GetNode(position: endPosition)
+        
+        if(startNode != nil && endNode != nil)
+        {
+            return FindPath(start: startNode!, end: endNode!)
+        }
+        return []
+    }
+    
     func FindPath(start : Node, end: Node) -> [Node]
     {
         var openSet : Set<Node> = []
         var closedSet : Set<Node> = []
         
-        let startNode = Node(x:Int(start.position.dx), y: Int(start.position.dy));
+        let startNode = Node(x:Int(start.X), y: Int(start.Y));
         openSet.insert(startNode)
         
         while !openSet.isEmpty
@@ -109,16 +139,16 @@ class PathFinding
                 }
                 
                 //create F, G and H values
-                child.G = Distance(start: currentNode, end: child)
+                child.G = currentNode.G + Distance(start: currentNode, end: child)
                 child.H = Distance(start: currentNode, end: end)
                 
                 if(openSet.contains(child))
                 {
-                    if(child.G > openSet.first(where: {$0.position == child.position})!.G)
+                    if(child.G > openSet.first(where: {$0.X == child.X && $0.Y == child.Y})!.G)
                     {
                         continue
                     }
-                    
+                    openSet.remove(child)
                 }
                 
                 openSet.insert(child)
@@ -129,8 +159,12 @@ class PathFinding
     
     func GetNode(position : CGPoint) -> Node?
     {
-        let x : Int = Int(floor(position.x / CGFloat(TileMapSettings.TileSize)))
-        let y : Int = Int(floor(position.y / CGFloat(TileMapSettings.TileSize)))
+        let tileSize = CGFloat(TileMapSettings.TileSize)
+        let mapWidth2 = (TileMap.mapSize.width) * 0.5
+        let mapHeight2 = (TileMap.mapSize.height) * 0.5
+        
+        let x : Int = Int(floor((position.x + mapWidth2) / tileSize))
+        let y : Int = Int(floor((position.y + mapHeight2) / tileSize))
         
         if(x >= 0 && x < TileMap.numberOfColumns-1 && y >= 0 && y < TileMap.numberOfRows-1){
             return nodes[x][y]
@@ -140,10 +174,10 @@ class PathFinding
     
     private func getAdjacentNodes(node : Node) -> Set<Node>
     {
-        let minX : Int = max(Int(node.position.dx) - 1, 0)
-        let maxX : Int = min(Int(node.position.dx) + 1, TileMap.numberOfColumns-1)
-        let minY : Int = max(Int(node.position.dy) - 1, 0)
-        let maxY : Int = min(Int(node.position.dy) + 1, TileMap.numberOfRows-1)
+        let minX : Int = max(Int(node.X) - 1, 0)
+        let maxX : Int = min(Int(node.X) + 1, TileMap.numberOfColumns-1)
+        let minY : Int = max(Int(node.Y) - 1, 0)
+        let maxY : Int = min(Int(node.Y) + 1, TileMap.numberOfRows-1)
         
         var adjacentNodes : Set<Node> = []
         
@@ -163,9 +197,11 @@ class PathFinding
         return adjacentNodes
     }
     
-    private func Distance(start : Node, end:Node) -> Float
+    private func Distance(start : Node, end:Node) -> Int
     {
-        return Float(start.position.distanceTo(end.position))
+        let dstX : Int = Int(abs(start.X - end.X))
+        let dstY : Int = Int(abs(start.Y - end.Y))
+        return 2 * (dstY + dstX)
     }
     
 }

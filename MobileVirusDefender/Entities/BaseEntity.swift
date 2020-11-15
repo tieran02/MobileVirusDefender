@@ -62,6 +62,19 @@ class BaseEntity : SKSpriteNode
         self.physicsBody!.velocity = velocity * CGFloat(TileMapSettings.TileSize);
     }
     
+    func MoveTo(target : CGPoint)
+    {
+        //Get direction to target
+        let targetVector = CGVector(point: target)
+        let selfVector = CGVector(point: self.position)
+        let direction = (targetVector - selfVector).normalized()
+        let distance = selfVector.distanceTo(targetVector)
+        
+        if(distance > 10){
+            MoveInDirection(direction: direction)
+        }
+    }
+    
     func Update(deltaTime : Float, scene : GameScene)
     {
         

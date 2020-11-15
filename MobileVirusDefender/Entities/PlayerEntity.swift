@@ -46,6 +46,7 @@ class PlayerEntity : BaseEntity
         let leftDirection = scene.viewController?.LeftJoystick.Direction
         let rightDirection = scene.viewController?.RightJoystick.Direction
         
+        print(position)
         MoveInDirection(direction: leftDirection!)
         
         if(lastFire > 0.25){
