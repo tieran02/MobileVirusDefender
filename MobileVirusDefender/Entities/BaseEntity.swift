@@ -10,9 +10,6 @@ import SpriteKit
 
 class BaseEntity : SKSpriteNode
 {
-    let PlayerMask : UInt32 =  0x1 << 1
-    let PlayerProjectile : UInt32 = 0x1 << 2
-    
     var Velocity : CGVector { get{ return self.physicsBody!.velocity } }
     
     let MaxHealth : Float
@@ -50,14 +47,14 @@ class BaseEntity : SKSpriteNode
     }
 
     
-    func MoveInDirection(direction : CGVector, tileSize : CGFloat)
+    func MoveInDirection(direction : CGVector)
     {
-        SetVelocity(velocity: direction * Speed, tileSize: tileSize)
+        SetVelocity(velocity: direction * Speed)
     }
     
-    func SetVelocity(velocity: CGVector, tileSize : CGFloat)
+    func SetVelocity(velocity: CGVector)
     {
-        self.physicsBody!.velocity = velocity * tileSize;
+        self.physicsBody!.velocity = velocity * CGFloat(TileMapSettings.TileSize);
     }
     
     func Update(deltaTime : Float, scene : GameScene)

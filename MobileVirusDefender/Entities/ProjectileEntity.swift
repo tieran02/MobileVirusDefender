@@ -16,8 +16,8 @@ class ProjectileEntity : BaseEntity
         _lifeTime = lifeTime;
         super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 100)
         Speed = 10
-        physicsBody?.categoryBitMask = PlayerProjectile;
-        physicsBody?.collisionBitMask = 0
+        physicsBody?.categoryBitMask = PhysicsMask.PlayerProjectile.rawValue;
+        physicsBody?.collisionBitMask = PhysicsMask.Envioment.rawValue
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,7 +31,7 @@ class ProjectileEntity : BaseEntity
         //add to scene
         self.position = position;
         scene.addChild(self)
-        self.MoveInDirection(direction: direction.normalized(), tileSize: tileSize)
+        self.MoveInDirection(direction: direction.normalized()	)
         
         //remove from parrent after lifetime
         DispatchQueue.main.asyncAfter(deadline: .now() + Double(_lifeTime))
