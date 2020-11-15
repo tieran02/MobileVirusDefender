@@ -25,7 +25,7 @@ class GameScene: SKScene {
     {
         sceneCamera = childNode(withName: "SKCameraNode") as? SKCameraNode
         addChild(Player)
-        
+        AddTileMapColliders()
     }
     
     
@@ -69,11 +69,8 @@ class GameScene: SKScene {
         
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
-        
-        let leftDirection = viewController?.LeftJoystick.Direction
-        let rightDirection = viewController?.RightJoystick.Direction
-        
-        if(sceneCamera != nil && leftDirection != nil)
+         
+        if(sceneCamera != nil)
         {
             Player.Update(deltaTime: Float(dt), scene: self)
             sceneCamera?.position = Player.position
@@ -81,5 +78,33 @@ class GameScene: SKScene {
         //print(leftJoystick.Direction)
         
         self.lastUpdateTime = currentTime
+    }
+    
+    func AddTileMapColliders()
+    {
+        guard let tileMap = childNode(withName: "Colliders") as? SKTileMapNode
+            else { fatalError("Missing tile map for the colliders") }
+        
+        let tileSize = tileMap.tileSize;
+        let halfWidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tileSize.width
+        let halfHeight = CGFloat(tileMap.numberOfRows) / 2.0 * tileSize.height
+        
+        for col in 0..<tileMap.numberOfColumns {
+            for row in 0..<tileMap.numberOfRows {
+                let tileDefinition = tileMap.tileDefinition(atColumn: col, row: row)
+                if (tileDefinition != nil) {
+                    let x = CGFloat(col) * tileSize.width - halfWidth
+                    let y = CGFloat(row) * tileSize.height - halfHeight
+                    let rect = CGRect(x: 0, y: 0, width: tileSize.width, height: tileSize.height)
+                    let tileNode = SKShapeNode(rect: rect)
+                    tileNode.position = CGPoint(x: x, y: y)
+                    tileNode.physicsBody = SKPhysicsBody.init(rectangleOf: tileSize, center: CGPoint(x: tileSize.width / 2.0, y: tileSize.height / 2.0))
+                    tileNode.physicsBody?.isDynamic = false
+                    tileNode.physicsBody?.collisionBitMask = PhysicsMask.All.rawValue
+                    tileNode.physicsBody?.categoryBitMask = PhysicsMask.Envioment.rawValue
+                    tileMap.addChild(tileNode)
+                }
+            }
+        }
     }
 }

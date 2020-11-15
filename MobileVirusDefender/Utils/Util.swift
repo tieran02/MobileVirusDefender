@@ -20,5 +20,7 @@ struct PhysicsMask: OptionSet {
     static let Envioment            = PhysicsMask(rawValue: 1 << 0)
     static let Player               = PhysicsMask(rawValue: 1 << 2)
     static let PlayerProjectile     = PhysicsMask(rawValue: 1 << 3)
+    
+    static let All: PhysicsMask     = [.Player, .PlayerProjectile]
 }
 
