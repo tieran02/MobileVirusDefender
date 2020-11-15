@@ -13,10 +13,10 @@ class PlayerEntity : BaseEntity
     let projectilePool : [ProjectileEntity]
     var lastFire : Float = 0.0
     
-    init()
+    init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
         self.projectilePool =  (0 ..< 50).map{_ in ProjectileEntity(lifeTime: 5)}
-        super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 100)
+        super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 100, position: position)
         physicsBody?.categoryBitMask = PhysicsMask.Player.rawValue;
         physicsBody?.collisionBitMask = PhysicsMask.Envioment.rawValue
         

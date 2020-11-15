@@ -19,12 +19,12 @@ class BaseEntity : SKSpriteNode
     
     var Speed : CGFloat = 1
     
-    init(texture:SKTexture, maxHealth : Float)
+    init(texture:SKTexture, maxHealth : Float, position: CGPoint = CGPoint(x: 0,y: 0))
     {
         MaxHealth = maxHealth
         _currentHealth = maxHealth;
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
-        
+        self.position = position
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: size.width, height: size.height));
         self.physicsBody?.affectedByGravity = false
     }
@@ -39,6 +39,11 @@ class BaseEntity : SKSpriteNode
     func Damage(amount: Float)
     {
         _currentHealth = max(CurrentHealth - amount,0)
+        
+        if _currentHealth <= 0
+        {
+            self.removeFromParent()
+        }
     }
     
     func Heal(amount: Float)

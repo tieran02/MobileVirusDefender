@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var sceneCamera : SKCameraNode?
     var Player : PlayerEntity = PlayerEntity()
+    var Enemy : EnemyEntity = EnemyEntity(position: CGPoint(x:512,y:512))
     
     private var lastUpdateTime : TimeInterval = 0
     
@@ -26,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     {
         sceneCamera = childNode(withName: "SKCameraNode") as? SKCameraNode
         addChild(Player)
+        addChild(Enemy)
         AddTileMapColliders()
         
         physicsWorld.contactDelegate = self
