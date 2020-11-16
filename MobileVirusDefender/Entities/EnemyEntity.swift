@@ -13,6 +13,7 @@ class EnemyEntity : BaseEntity
     var path : [Node]?
     var currentNode = 0
     var updatePathTime : Float = 0
+    let pathfindingUpdatePeriod : Float = 0.25
     var currentTarget : CGPoint?
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
@@ -31,9 +32,9 @@ class EnemyEntity : BaseEntity
     override func Update(deltaTime: Float, scene: GameScene)
     {
         updatePathTime += deltaTime
-        if(updatePathTime >= 0.25 && currentTarget != scene.Player.position)
+        
+        if(updatePathTime >= pathfindingUpdatePeriod)
         {
-            currentTarget = scene.Player.position
             FindPathToTarget(target: scene.Player.position, pathfinding: scene.pathfinding!)
             updatePathTime = 0
         }
@@ -43,12 +44,18 @@ class EnemyEntity : BaseEntity
     
     func FindPathToTarget(target : CGPoint, pathfinding : PathFinding)
     {
+        if(path != nil && currentTarget == target)
+        {
+            return
+        }
+        
         let start = pathfinding.GetNode(worldPosition: self.position)
         let end = pathfinding.GetNode(worldPosition: target)
         
         if(start != nil && end != nil)
         {
             self.path = pathfinding.FindPath(start: start!, end: end!)
+            currentTarget = target
             currentNode = 0
             //pathfinding.DrawPath(path: path!, scene: scene)
         }

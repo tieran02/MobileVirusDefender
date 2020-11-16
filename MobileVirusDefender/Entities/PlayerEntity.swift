@@ -7,11 +7,13 @@
 //
         
 import SpriteKit
+import CoreMotion
 
 class PlayerEntity : BaseEntity
 {
     let projectilePool : [ProjectileEntity]
     var lastFire : Float = 0.0
+    let pushbackThreshold : Double = 0.5
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
@@ -45,8 +47,7 @@ class PlayerEntity : BaseEntity
     {
         let leftDirection = scene.viewController?.LeftJoystick.Direction
         let rightDirection = scene.viewController?.RightJoystick.Direction
-        
-        print(position)
+
         MoveInDirection(direction: leftDirection!)
         
         if(lastFire > 0.25){
@@ -55,5 +56,13 @@ class PlayerEntity : BaseEntity
         }
         
         lastFire += deltaTime
+    }
+    
+    override func Acceleration(acceleration: CMAcceleration)
+    {
+        if(abs(acceleration.y) >= self.pushbackThreshold)
+        {
+            print("Push back infected")
+        }
     }
 }

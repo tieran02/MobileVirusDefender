@@ -9,6 +9,26 @@
 import Foundation
 import SpriteKit
 import GameplayKit
+import CoreMotion
+
+struct AccelerometerData
+{
+    let Acceleration : CMAcceleration
+    let LastAcceleration : CMAcceleration
+    
+    var DeltaAcceleration : CMAcceleration
+    {
+        get
+        {
+            return CMAcceleration(x: Acceleration.x - LastAcceleration.x, y: Acceleration.y - LastAcceleration.y, z: Acceleration.z - LastAcceleration.z)
+        }
+    }
+    
+    init(acceleration : CMAcceleration, lastAcceleration : CMAcceleration) {
+        Acceleration = acceleration
+        LastAcceleration = lastAcceleration
+    }
+}
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     weak var viewController: GameViewController?
@@ -22,9 +42,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var pathfinding : PathFinding?
     
-    
-    private var lastUpdateTime : TimeInterval = 0
-    
+    var motionManager = CMMotionManager()
+    private var lastUpdateTime : TimeInterval = 0    
 
     override func didMove(to view: SKView)
     {
@@ -39,6 +58,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //pathfinding?.DrawNodes(scene: self)
         
         physicsWorld.contactDelegate = self
+        
+        //setup accelerometer
+        if(motionManager.isAccelerometerAvailable)
+        {
+            motionManager.deviceMotionUpdateInterval = 1.0/60.0
+            motionManager.startDeviceMotionUpdates(to: .main)
+            {
+                (data, error) in
+                guard let data = data, error == nil else {
+                    return
+                }
+
+                self.Player.Acceleration(acceleration: data.userAcceleration)
+            }
+        }
     }
     
     func didBegin(_ contact: SKPhysicsContact)
@@ -104,7 +138,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             Enemy.Update(deltaTime: Float(dt), scene: self)
             sceneCamera?.position = Player.position
         }
-        //print(leftJoystick.Direction)
         
         self.lastUpdateTime = currentTime
     }

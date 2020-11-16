@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import CoreMotion
 
 class BaseEntity : SKSpriteNode
 {
@@ -81,6 +82,11 @@ class BaseEntity : SKSpriteNode
     }
     
     func collisionBegan(with: SKPhysicsBody)
+    {
+        
+    }
+    
+    func Acceleration(acceleration : CMAcceleration)
     {
         
     }
