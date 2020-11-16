@@ -39,7 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var sceneCamera : SKCameraNode?
     var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:-9 * TileMapSettings.TileSize,y:-1 * TileMapSettings.TileSize))
     var Enemy : EnemyEntity = EnemyEntity(position: CGPoint(x:5 * TileMapSettings.TileSize,y:5 * TileMapSettings.TileSize))
-    var ProjectilePool = EntityPool<ProjectileEntity>(entity: ProjectileEntity(lifeTime: 5), Amount: 200)
+    var ProjectilePool = EntityPool<ProjectileEntity>(entity: ProjectileEntity(lifeTime: 5), Amount: 100)
     
     var pathfinding : PathFinding?
     
