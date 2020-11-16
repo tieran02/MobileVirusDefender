@@ -92,5 +92,8 @@ class EnemyEntity : BaseEntity
         }
     }
     
+    override func Clone() -> BaseEntity {
+        EnemyEntity(position: position)
+    }
     
 }

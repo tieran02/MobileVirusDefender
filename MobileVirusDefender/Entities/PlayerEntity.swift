@@ -11,14 +11,12 @@ import CoreMotion
 
 class PlayerEntity : BaseEntity
 {
-    let projectilePool : [ProjectileEntity]
     var lastFire : Float = 0.0
     let pushbackThreshold : Double = 0.5
     var pushbackTimer : Float = 0.0
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
-        self.projectilePool =  (0 ..< 50).map{_ in ProjectileEntity(lifeTime: 5)}
         super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 100, position: position)
         physicsBody?.categoryBitMask = PhysicsMask.Player.rawValue;
         physicsBody?.collisionBitMask = PhysicsMask.Envioment.rawValue
@@ -28,18 +26,17 @@ class PlayerEntity : BaseEntity
     
     required init?(coder aDecoder: NSCoder)
     {
-        projectilePool = aDecoder.decodeObject(forKey: "projectilePool") as! [ProjectileEntity]
         super.init(coder: aDecoder)
     }
     	
-    func Fire(direction : CGVector, scene : SKScene)
+    func Fire(direction : CGVector, scene : GameScene)
     {
         if direction.lengthSquared() < 0.01
         {
             return
         }
         
-        let Projectile = projectilePool.first(where: {$0.Ready()})
+        let Projectile = scene.ProjectilePool.Retrieve()
         Projectile?.Fire(position: self.position,direction: direction,tileSize: 256,scene: scene)
         print("Firing")
     }
@@ -56,10 +53,6 @@ class PlayerEntity : BaseEntity
         if(lastFire > 0.25){
             Fire(direction: rightDirection!, scene: scene)
             lastFire = 0
-        }
-        
-        for projectile in projectilePool {
-            projectile.Update(deltaTime: deltaTime, scene: scene)
         }
         
         pushbackTimer += deltaTime
@@ -84,5 +77,9 @@ class PlayerEntity : BaseEntity
         
         
         scene.Enemy.ExternalForces = direction
+    }
+    
+    override func Clone() -> BaseEntity {
+        return PlayerEntity(position: position)
     }
 }

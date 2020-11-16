@@ -45,11 +45,6 @@ class ProjectileEntity : BaseEntity
         }
     }
     
-    func Ready() -> Bool
-    {
-        return (self.parent == nil)
-    }
-    
     override func collisionBegan(with: SKPhysicsBody)
     {
         let entity = with.node as? BaseEntity
@@ -57,4 +52,7 @@ class ProjectileEntity : BaseEntity
         self.removeFromParent()
     }
     
+    override func Clone() -> BaseEntity {
+        return ProjectileEntity(lifeTime: LifeTime)
+    }
 }

@@ -9,7 +9,11 @@
 import SpriteKit
 import CoreMotion
 
-class BaseEntity : SKSpriteNode
+protocol Cloneable {
+    func Clone() -> BaseEntity
+}
+
+class BaseEntity : SKSpriteNode, Cloneable
 {
     var _velocity : CGVector = CGVector(dx: 0, dy: 0)
     var Velocity : CGVector { get{ return _velocity } }
@@ -30,6 +34,13 @@ class BaseEntity : SKSpriteNode
         self.position = position
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: size.width, height: size.height));
         self.physicsBody?.affectedByGravity = false
+    }
+    
+    override init(texture: SKTexture?, color: UIColor, size: CGSize)
+    {
+        MaxHealth = 100
+        _currentHealth = MaxHealth
+        super.init(texture: texture,color: color,size: size)
     }
     
     required init?(coder aDecoder: NSCoder)
@@ -93,4 +104,10 @@ class BaseEntity : SKSpriteNode
     {
         
     }
+    
+    func Clone() -> BaseEntity
+    {
+        return BaseEntity(texture: texture!,maxHealth: MaxHealth,position: position)
+    }
+    
 }

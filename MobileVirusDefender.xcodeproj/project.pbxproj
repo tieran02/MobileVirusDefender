@@ -24,6 +24,7 @@
 		903EDEF5256144AE00CCE478 /* PathFinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903EDEF4256144AE00CCE478 /* PathFinding.swift */; };
 		908DDEF8255FDDAF0035EAA2 /* BaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908DDEF7255FDDAF0035EAA2 /* BaseEntity.swift */; };
 		908DDEFD255FE7270035EAA2 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908DDEFC255FE7270035EAA2 /* PlayerEntity.swift */; };
+		909868B92562DB5500F369A5 /* EntityPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909868B82562DB5500F369A5 /* EntityPool.swift */; };
 		90CADB3B25502C75002315F8 /* JoystickUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CADB3A25502C75002315F8 /* JoystickUI.swift */; };
 		90CADB4025502C95002315F8 /* JoystickUI.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CADB3F25502C95002315F8 /* JoystickUI.xib */; };
 		90FCD27F25501F7800E1A166 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FCD27E25501F7800E1A166 /* Joystick.swift */; };
@@ -70,6 +71,7 @@
 		903EDEF4256144AE00CCE478 /* PathFinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFinding.swift; sourceTree = "<group>"; };
 		908DDEF7255FDDAF0035EAA2 /* BaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEntity.swift; sourceTree = "<group>"; };
 		908DDEFC255FE7270035EAA2 /* PlayerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
+		909868B82562DB5500F369A5 /* EntityPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityPool.swift; sourceTree = "<group>"; };
 		90CADB3A25502C75002315F8 /* JoystickUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickUI.swift; sourceTree = "<group>"; };
 		90CADB3F25502C95002315F8 /* JoystickUI.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JoystickUI.xib; sourceTree = "<group>"; };
 		90FCD27E25501F7800E1A166 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				908DDEFC255FE7270035EAA2 /* PlayerEntity.swift */,
 				903BEB8125601A27004DBBDD /* ProjectileEntity.swift */,
 				903EDEEE25613F2A00CCE478 /* EnemyEntity.swift */,
+				909868B82562DB5500F369A5 /* EntityPool.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				903EDEEA25612CC900CCE478 /* Util.swift in Sources */,
 				903EDEF5256144AE00CCE478 /* PathFinding.swift in Sources */,
 				90CADB3B25502C75002315F8 /* JoystickUI.swift in Sources */,
+				909868B92562DB5500F369A5 /* EntityPool.swift in Sources */,
 				903BEB8225601A27004DBBDD /* ProjectileEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
