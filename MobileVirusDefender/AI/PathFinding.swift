@@ -73,24 +73,25 @@ class PathFinding
     
     func ToWorldPosition(node : Node) -> CGPoint
     {
-        let TileSize = TileMapSettings.TileSize
-        let nodeWorldPoint = CGPoint(x: (node.X * TileSize) - Int(TileMap.mapSize.width/2), y: (node.Y * TileSize) - Int(TileMap.mapSize.width/2))
-        
-        return nodeWorldPoint
+        return ToWorldPosition(x: node.X, y: node.Y)
     }
     
     func ToWorldPosition(x : Int, y:Int) -> CGPoint
     {
-        let TileSize = TileMapSettings.TileSize
-        let nodeWorldPoint = CGPoint(x: (x * TileSize) - Int(TileMap.mapSize.width/2), y: (y * TileSize) - Int(TileMap.mapSize.width/2))
+        let TileSize = CGFloat(TileMapSettings.TileSize)
+        let nodeXOffset = CGFloat(x) + 0.5
+        let nodeYOffset = CGFloat(y) + 0.5
+        
+        let nodeWorldPoint = CGPoint(x: (nodeXOffset * TileSize) - TileMap.mapSize.width/2,
+                                     y: (nodeYOffset * TileSize) - TileMap.mapSize.width/2)
         
         return nodeWorldPoint
     }
     
     func FindPath(startPosition : CGPoint, endPosition : CGPoint) -> [Node]
     {
-        let startNode = GetNode(position: startPosition)
-        let endNode = GetNode(position: endPosition)
+        let startNode = GetNode(worldPosition: startPosition)
+        let endNode = GetNode(worldPosition: endPosition)
         
         if(startNode != nil && endNode != nil)
         {
@@ -123,7 +124,9 @@ class PathFinding
                 var current : Node? = currentNode
                 while current != nil
                 {
-                    path.append(current!)
+                    if(current != start){
+                        path.append(current!)
+                    }
                     current = current!.parent
                 }
                 return path.reversed()
@@ -157,14 +160,17 @@ class PathFinding
         return []
     }
     
-    func GetNode(position : CGPoint) -> Node?
+    func GetNode(worldPosition : CGPoint) -> Node?
     {
         let tileSize = CGFloat(TileMapSettings.TileSize)
         let mapWidth2 = (TileMap.mapSize.width) * 0.5
         let mapHeight2 = (TileMap.mapSize.height) * 0.5
         
-        let x : Int = Int(floor((position.x + mapWidth2) / tileSize))
-        let y : Int = Int(floor((position.y + mapHeight2) / tileSize))
+        let percentX : CGFloat = (worldPosition.x + mapWidth2) / CGFloat(TileMap.mapSize.width)
+        let percentY : CGFloat = (worldPosition.y + mapHeight2) / CGFloat(TileMap.mapSize.height)
+        
+        let x = Int(round((CGFloat(TileMap.numberOfColumns) - 1.0) * percentX))
+        let y = Int(round((CGFloat(TileMap.numberOfRows) - 1.0) * percentY))
         
         if(x >= 0 && x < TileMap.numberOfColumns-1 && y >= 0 && y < TileMap.numberOfRows-1){
             return nodes[x][y]
@@ -221,4 +227,17 @@ class PathFinding
         scene.addChild(pathNode)
     }
     
+    func DrawNodes(scene : SKScene)
+    {
+        for column in 0...TileMap.numberOfColumns-1
+        {
+            for row in 0...TileMap.numberOfRows-1
+            {
+                let tileNode = nodes[column][row]!
+                let shape = SKShapeNode.init(circleOfRadius: 128)
+                shape.position = ToWorldPosition(node: tileNode)
+                scene.addChild(shape)
+            }
+        }
+    }
 }

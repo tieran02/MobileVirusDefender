@@ -12,6 +12,8 @@ class EnemyEntity : BaseEntity
 {
     var path : [Node]?
     var currentNode = 0
+    var updatePathTime : Float = 0
+    var currentTarget : CGPoint?
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
@@ -28,32 +30,56 @@ class EnemyEntity : BaseEntity
     
     override func Update(deltaTime: Float, scene: GameScene)
     {
-        if(self.path == nil)
+        updatePathTime += deltaTime
+        if(updatePathTime >= 0.25 && currentTarget != scene.Player.position)
         {
-            let start = scene.pathfinding?.GetNode(position: self.position)
-            let end = scene.pathfinding?.GetNode(position: scene.Player.position)
-            
-            if(start != nil && end != nil)
-            {
-                self.path = scene.pathfinding?.FindPath(start: start!, end: end!)
-                
-                scene.pathfinding?.DrawPath(path: path!, scene: scene)
-            }
+            currentTarget = scene.Player.position
+            FindPathToTarget(target: scene.Player.position, pathfinding: scene.pathfinding!)
+            updatePathTime = 0
         }
-        else if(currentNode < path!.count)
+        
+        MoveAlongPath(pathfinding: scene.pathfinding!)
+    }
+    
+    func FindPathToTarget(target : CGPoint, pathfinding : PathFinding)
+    {
+        let start = pathfinding.GetNode(worldPosition: self.position)
+        let end = pathfinding.GetNode(worldPosition: target)
+        
+        if(start != nil && end != nil)
         {
-            let nodeWorldPoint : CGPoint = scene.pathfinding!.ToWorldPosition(node: path![currentNode])
-            let targetPosVector = CGVector(point: nodeWorldPoint);
-            MoveTo(target: nodeWorldPoint)
-            
-            let distanceToTarget = CGVector(point: self.position).distanceTo(targetPosVector)
-            if(distanceToTarget <= 10)
-            {
-                currentNode += 1
-            }
+            self.path = pathfinding.FindPath(start: start!, end: end!)
+            currentNode = 0
+            //pathfinding.DrawPath(path: path!, scene: scene)
         }
         else{
-            SetVelocity(velocity: CGVector(dx: 0, dy: 0))
+            path = nil
         }
     }
+    
+    func MoveAlongPath(pathfinding : PathFinding)
+    {
+        if(path == nil)
+        {
+            return
+        }
+        
+        if(currentNode >= path?.count ?? 0)
+        {
+            SetVelocity(velocity: CGVector(dx: 0, dy: 0))
+            return
+        }
+        
+        let nodeWorldPoint : CGPoint = pathfinding.ToWorldPosition(node: path![currentNode])
+        let targetPosVector = CGVector(point: nodeWorldPoint);
+        MoveTo(target: nodeWorldPoint)
+        
+        let distanceToTarget = CGVector(point: self.position).distanceTo(targetPosVector)
+        if(distanceToTarget <= 10)
+        {
+            currentNode += 1
+        }
+    }
+    
+    
 }
