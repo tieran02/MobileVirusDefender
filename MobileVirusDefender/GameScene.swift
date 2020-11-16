@@ -70,7 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     return
                 }
 
-                self.Player.Acceleration(acceleration: data.userAcceleration)
+                self.Player.Acceleration(acceleration: data.userAcceleration,scene: self)
             }
         }
     }

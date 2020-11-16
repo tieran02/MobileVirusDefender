@@ -86,7 +86,7 @@ class BaseEntity : SKSpriteNode
         
     }
     
-    func Acceleration(acceleration : CMAcceleration)
+    func Acceleration(acceleration : CMAcceleration, scene : GameScene)
     {
         
     }

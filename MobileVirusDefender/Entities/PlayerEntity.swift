@@ -14,6 +14,7 @@ class PlayerEntity : BaseEntity
     let projectilePool : [ProjectileEntity]
     var lastFire : Float = 0.0
     let pushbackThreshold : Double = 0.5
+    var pushbackTimer : Float = 0.0
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
@@ -55,14 +56,27 @@ class PlayerEntity : BaseEntity
             lastFire = 0
         }
         
+        pushbackTimer += deltaTime
         lastFire += deltaTime
     }
     
-    override func Acceleration(acceleration: CMAcceleration)
+    override func Acceleration(acceleration: CMAcceleration, scene : GameScene)
     {
-        if(abs(acceleration.y) >= self.pushbackThreshold)
+        if(abs(acceleration.y) >= self.pushbackThreshold && pushbackTimer >= 1.0)
         {
-            print("Push back infected")
+            PushbackEnemies(radius: Float(1 * TileMapSettings.TileSize), scene: scene)
+            pushbackTimer = 0.0
         }
+    }
+    
+    func PushbackEnemies(radius : Float, scene : GameScene)
+    {
+        print("Push back infected")
+        
+        //get direction from player to enemy
+        let direction = (CGVector(point: scene.Enemy.position) - CGVector(point: self.position)).normalized() * (200 * CGFloat(TileMapSettings.TileSize))
+        
+        
+        scene.Enemy.physicsBody?.applyForce(direction)
     }
 }

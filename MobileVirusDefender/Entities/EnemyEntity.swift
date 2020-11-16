@@ -21,7 +21,7 @@ class EnemyEntity : BaseEntity
         super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 100, position: position)
         physicsBody?.categoryBitMask = PhysicsMask.Enemy.rawValue;
         physicsBody?.collisionBitMask = PhysicsMask.Envioment.rawValue
-        
+        self.physicsBody?.linearDamping = 5
         Speed = 2
     }
     
@@ -39,7 +39,7 @@ class EnemyEntity : BaseEntity
             updatePathTime = 0
         }
         
-        MoveAlongPath(pathfinding: scene.pathfinding!)
+        //MoveAlongPath(pathfinding: scene.pathfinding!)
     }
     
     func FindPathToTarget(target : CGPoint, pathfinding : PathFinding)
