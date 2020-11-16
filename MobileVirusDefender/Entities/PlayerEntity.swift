@@ -46,6 +46,8 @@ class PlayerEntity : BaseEntity
     
     override func Update(deltaTime: Float, scene : GameScene)
     {
+        super.Update(deltaTime: deltaTime, scene: scene)
+        
         let leftDirection = scene.viewController?.LeftJoystick.Direction
         let rightDirection = scene.viewController?.RightJoystick.Direction
 
@@ -54,6 +56,10 @@ class PlayerEntity : BaseEntity
         if(lastFire > 0.25){
             Fire(direction: rightDirection!, scene: scene)
             lastFire = 0
+        }
+        
+        for projectile in projectilePool {
+            projectile.Update(deltaTime: deltaTime, scene: scene)
         }
         
         pushbackTimer += deltaTime
@@ -74,9 +80,9 @@ class PlayerEntity : BaseEntity
         print("Push back infected")
         
         //get direction from player to enemy
-        let direction = (CGVector(point: scene.Enemy.position) - CGVector(point: self.position)).normalized() * (200 * CGFloat(TileMapSettings.TileSize))
+        let direction = (CGVector(point: scene.Enemy.position) - CGVector(point: self.position)).normalized() * (20 * CGFloat(TileMapSettings.TileSize))
         
         
-        scene.Enemy.physicsBody?.applyForce(direction)
+        scene.Enemy.ExternalForces = direction
     }
 }

@@ -35,6 +35,7 @@ class ProjectileEntity : BaseEntity
         //add to scene
         self.position = position;
         scene.addChild(self)
+        
         self.MoveInDirection(direction: direction.normalized()	)
         
         //remove from parrent after lifetime

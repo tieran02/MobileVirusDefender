@@ -31,6 +31,10 @@ class EnemyEntity : BaseEntity
     
     override func Update(deltaTime: Float, scene: GameScene)
     {
+        super.Update(deltaTime: deltaTime, scene: scene)
+        
+        SetVelocity(velocity: CGVector(dx: 0, dy: 0))
+        
         updatePathTime += deltaTime
         
         if(updatePathTime >= pathfindingUpdatePeriod)
@@ -39,7 +43,7 @@ class EnemyEntity : BaseEntity
             updatePathTime = 0
         }
         
-        //MoveAlongPath(pathfinding: scene.pathfinding!)
+        MoveAlongPath(pathfinding: scene.pathfinding!)
     }
     
     func FindPathToTarget(target : CGPoint, pathfinding : PathFinding)
@@ -66,14 +70,14 @@ class EnemyEntity : BaseEntity
     
     func MoveAlongPath(pathfinding : PathFinding)
     {
-        if(path == nil)
+        if(path == nil || path!.isEmpty)
         {
             return
         }
         
-        if(currentNode >= path?.count ?? 0)
+        if(currentNode >= path!.count)
         {
-            SetVelocity(velocity: CGVector(dx: 0, dy: 0))
+            path = nil
             return
         }
         

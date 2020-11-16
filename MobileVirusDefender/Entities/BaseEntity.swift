@@ -11,7 +11,8 @@ import CoreMotion
 
 class BaseEntity : SKSpriteNode
 {
-    var Velocity : CGVector { get{ return self.physicsBody!.velocity } }
+    var _velocity : CGVector = CGVector(dx: 0, dy: 0)
+    var Velocity : CGVector { get{ return _velocity } }
     
     let MaxHealth : Float
     
@@ -19,6 +20,7 @@ class BaseEntity : SKSpriteNode
     var CurrentHealth : Float { get{ return _currentHealth } }
     
     var Speed : CGFloat = 1
+    var ExternalForces : CGVector = CGVector(dx: 0, dy: 0)
     
     init(texture:SKTexture, maxHealth : Float, position: CGPoint = CGPoint(x: 0,y: 0))
     {
@@ -60,7 +62,7 @@ class BaseEntity : SKSpriteNode
     
     func SetVelocity(velocity: CGVector)
     {
-        self.physicsBody!.velocity = velocity * CGFloat(TileMapSettings.TileSize);
+        _velocity = (velocity * CGFloat(TileMapSettings.TileSize));
     }
     
     func MoveTo(target : CGPoint)
@@ -78,7 +80,8 @@ class BaseEntity : SKSpriteNode
     
     func Update(deltaTime : Float, scene : GameScene)
     {
-        
+        ExternalForces *= CGFloat(pow(0.002, deltaTime))
+        physicsBody?.velocity = Velocity + ExternalForces
     }
     
     func collisionBegan(with: SKPhysicsBody)
