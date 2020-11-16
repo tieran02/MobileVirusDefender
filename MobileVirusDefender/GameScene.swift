@@ -17,7 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var graphs = [String : GKGraph]()
     
     var sceneCamera : SKCameraNode?
-    var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:0 * TileMapSettings.TileSize,y:0 * TileMapSettings.TileSize))
+    var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:-5 * TileMapSettings.TileSize,y:-3 * TileMapSettings.TileSize))
     var Enemy : EnemyEntity = EnemyEntity(position: CGPoint(x:5 * TileMapSettings.TileSize,y:5 * TileMapSettings.TileSize))
     
     var pathfinding : PathFinding?
@@ -35,11 +35,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let tileMap = childNode(withName: "Colliders") as? SKTileMapNode
             else { fatalError("Missing tile map for the colliders") }
         pathfinding = PathFinding(tilemap: tileMap)
-        
-        let start = pathfinding?.GetNode(position: Player.position)
-        let end = pathfinding?.GetNode(position: Enemy.position)
-        
-        let path = pathfinding?.FindPath(start: start!, end: end!)
         
         physicsWorld.contactDelegate = self
     }

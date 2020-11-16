@@ -201,7 +201,24 @@ class PathFinding
     {
         let dstX : Int = Int(abs(start.X - end.X))
         let dstY : Int = Int(abs(start.Y - end.Y))
-        return 2 * (dstY + dstX)
+        
+        if (dstX > dstY)
+        {
+            return 14*dstY + 10 * (dstX-dstY);
+        }
+        return 14*dstX + 10 * (dstY-dstX);
+    }
+    
+    func DrawPath(path : [Node], scene : SKScene)
+    {
+        let spritePath = CGMutablePath()
+        let points = path.map{ToWorldPosition(x: $0.X, y: $00.Y)}
+        spritePath.addLines(between: points)
+        let pathNode = SKShapeNode.init(path: spritePath)
+        pathNode.fillColor = .clear
+        pathNode.strokeColor = .blue
+        pathNode.lineWidth = 30
+        scene.addChild(pathNode)
     }
     
 }

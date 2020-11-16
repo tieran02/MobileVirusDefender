@@ -37,14 +37,7 @@ class EnemyEntity : BaseEntity
             {
                 self.path = scene.pathfinding?.FindPath(start: start!, end: end!)
                 
-                let spritePath = CGMutablePath()
-                let points = path!.map{scene.pathfinding!.ToWorldPosition(x: $0.X, y: $00.Y)}
-                spritePath.addLines(between: points)
-                let pathNode = SKShapeNode.init(path: spritePath)
-                pathNode.fillColor = .clear
-                pathNode.strokeColor = .blue
-                pathNode.lineWidth = 30
-                scene.addChild(pathNode)
+                scene.pathfinding?.DrawPath(path: path!, scene: scene)
             }
         }
         else if(currentNode < path!.count)
