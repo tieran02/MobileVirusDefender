@@ -73,8 +73,9 @@ class GameViewController: UIViewController {
             
             // Get the SKScene from the loaded GKScene
             if let sceneNode = scene.rootNode as! SKScene? {
+                
                 // Set the scale mode to scale to fit the window
-                sceneNode.scaleMode = .resizeFill
+                sceneNode.scaleMode = .aspectFit
                 
                 if let puzzle = sceneNode as? IPuzzle
                 {
