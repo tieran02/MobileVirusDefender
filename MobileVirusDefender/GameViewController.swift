@@ -45,10 +45,6 @@ class GameViewController: UIViewController {
                     view.showsFPS = true
                     view.showsNodeCount = true
                 }
-                
-                
-                loadPuzzleScene()
-                
             }
         }
     }
@@ -69,22 +65,21 @@ class GameViewController: UIViewController {
         return true
     }
     
-    func loadPuzzleScene()
+    func loadPuzzleScene(sceneName : String, completeDelegate: ((Bool) -> Void)? )
     {
         // Load 'WirePuzzleScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
-        if let scene = GKScene(fileNamed: "WirePuzzleScene") {
+        if let scene = GKScene(fileNamed: sceneName) {
             
             // Get the SKScene from the loaded GKScene
-            if let sceneNode = scene.rootNode as! WirePuzzleScene? {
-                
-                // Copy gameplay related content over to the scene
-                sceneNode.entities = scene.entities
-                sceneNode.graphs = scene.graphs
-                sceneNode.viewController = self
-                
+            if let sceneNode = scene.rootNode as! SKScene? {
                 // Set the scale mode to scale to fit the window
                 sceneNode.scaleMode = .resizeFill
+                
+                if let puzzle = sceneNode as? IPuzzle
+                {
+                    puzzle.setCompleteDelegate(completeDelegate: completeDelegate)
+                }
                 
                 // Present the scene
                 if let view = self.PuzzleView as! SKView? {
@@ -95,6 +90,17 @@ class GameViewController: UIViewController {
                     view.showsFPS = true
                     view.showsNodeCount = true
                 }
+            }
+        }
+    }
+    
+    func closePuzzleView()
+    {
+        if let view = self.PuzzleView as! SKView?
+        {
+            if let puzzle = view.scene as? IPuzzle
+            {
+                puzzle.exit(completed: false)
             }
         }
     }

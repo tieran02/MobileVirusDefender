@@ -74,6 +74,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.Player.Acceleration(acceleration: data.userAcceleration,scene: self)
             }
         }
+        
+        //setup puzzle delegate
+        viewController?.loadPuzzleScene(sceneName: "WirePuzzleScene", completeDelegate: completePuzzle)
     }
     
     func didBegin(_ contact: SKPhysicsContact)
@@ -105,7 +108,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        viewController?.closePuzzleView()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -171,5 +174,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
+    }
+    
+    func completePuzzle(completed : Bool)
+    {
+        print("Have completed puzzle \(completed)")
     }
 }
