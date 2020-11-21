@@ -36,9 +36,14 @@ public extension CGVector
         return len>0 ? self / len : CGVector.zero
     }
     
-    public func distanceTo(_ vector: CGVector) -> CGFloat {
+    func distanceTo(_ vector: CGVector) -> CGFloat {
         return (self - vector).length()
-      }
+    }
+    
+    func angle() -> CGFloat
+    {
+        return atan2(self.dy, self.dx) - 1.5708;
+    }
 }
 
 public func + (left: CGVector, right: CGVector) -> CGVector {

@@ -18,24 +18,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KMn-ZJ-4M3" customClass="JoystickUI" customModule="MobileVirusDefender" customModuleProvider="target">
-                                <rect key="frame" x="60" y="597" width="176" height="176"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSd-cS-mg9" customClass="JoystickUI" customModule="MobileVirusDefender" customModuleProvider="target">
-                                <rect key="frame" x="857" y="597" width="176" height="176"/>
+                                <rect key="frame" x="69" y="595" width="176" height="176"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Bn-Nn-XMe" customClass="SKView">
-                                <rect key="frame" x="102" y="132.5" width="908" height="569"/>
+                                <rect key="frame" x="102" y="32" width="908" height="569"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSd-cS-mg9" customClass="JoystickUI" customModule="MobileVirusDefender" customModuleProvider="target">
+                                <rect key="frame" x="862" y="595" width="176" height="176"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="3Bn-Nn-XMe" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="32" id="02I-f5-EwC"/>
                             <constraint firstItem="3Bn-Nn-XMe" firstAttribute="width" secondItem="3se-qz-xqx" secondAttribute="width" multiplier="0.816547" id="52P-7j-Iep"/>
-                            <constraint firstItem="3Bn-Nn-XMe" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="AGT-YM-ujG"/>
                             <constraint firstItem="3Bn-Nn-XMe" firstAttribute="height" secondItem="3se-qz-xqx" secondAttribute="height" multiplier="0.682254" id="ENU-gy-Ca7"/>
-                            <constraint firstItem="3Bn-Nn-XMe" firstAttribute="centerY" secondItem="4qk-I5-YsI" secondAttribute="centerY" id="j1s-ci-NTb"/>
+                            <constraint firstItem="3Bn-Nn-XMe" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="XPU-lB-0CE"/>
                         </constraints>
                     </view>
                     <connections>

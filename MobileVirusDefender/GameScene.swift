@@ -37,7 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var graphs = [String : GKGraph]()
     
     var sceneCamera : SKCameraNode?
-    var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:-9 * TileMapSettings.TileSize,y:-1 * TileMapSettings.TileSize))
+    var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:-9 * TileMapSettings.TileSize,y:1 * TileMapSettings.TileSize))
     var Enemy : EnemyEntity = EnemyEntity(position: CGPoint(x:5 * TileMapSettings.TileSize,y:5 * TileMapSettings.TileSize))
     var ProjectilePool = EntityPool<ProjectileEntity>(entity: ProjectileEntity(lifeTime: 5), Amount: 100)
     
@@ -136,6 +136,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
          
+        let leftDirection = viewController?.LeftJoystick.Direction
+        let rightDirection = viewController?.RightJoystick.Direction
+        
+        if(leftDirection!.lengthSquared() > 0.0 || rightDirection!.lengthSquared() > 0.0)
+        {
+            viewController?.closePuzzleView()
+        }
+        
         if(sceneCamera != nil)
         {
             Player.Update(deltaTime: Float(dt), scene: self)

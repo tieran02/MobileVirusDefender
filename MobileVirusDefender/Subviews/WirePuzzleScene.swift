@@ -99,6 +99,7 @@ class WirePuzzleScene: SKScene, IPuzzle
             endConnection = getConnectionFromTouchPosition(point: touchLocation)
             if(endConnection == nil)
             {
+                tempLine.removeFromParent()
                 return
             }
             

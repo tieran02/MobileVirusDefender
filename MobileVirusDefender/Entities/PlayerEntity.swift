@@ -17,7 +17,7 @@ class PlayerEntity : BaseEntity
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
-        super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 100, position: position)
+        super.init(texture: SKTexture(imageNamed: "Player"), maxHealth: 100, position: position)
         physicsBody?.categoryBitMask = PhysicsMask.Player.rawValue;
         physicsBody?.collisionBitMask = PhysicsMask.Envioment.rawValue
         
@@ -47,6 +47,16 @@ class PlayerEntity : BaseEntity
         
         let leftDirection = scene.viewController?.LeftJoystick.Direction
         let rightDirection = scene.viewController?.RightJoystick.Direction
+        
+        let angleOffset : CGFloat = 0.0872665 //offset in radians to make the gun align with bullets
+        if(leftDirection!.lengthSquared() > 0)
+        {
+            zRotation = leftDirection!.angle() + angleOffset
+        }
+        if(rightDirection!.lengthSquared() > 0)
+        {
+            zRotation = rightDirection!.angle() + angleOffset
+        }
 
         MoveInDirection(direction: leftDirection!)
         
@@ -67,6 +77,7 @@ class PlayerEntity : BaseEntity
             pushbackTimer = 0.0
         }
     }
+
     
     func PushbackEnemies(radius : Float, scene : GameScene)
     {
