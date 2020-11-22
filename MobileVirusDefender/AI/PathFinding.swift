@@ -43,32 +43,61 @@ class Node : Hashable
 
 class PathFinding
 {
-    let TileMap : SKTileMapNode
+    let scene : GameScene
     var nodes : [[Node?]]
     
+    let nodesPerUnit : Int
+    let unitSize : Int
+    let unitColumns : Int
+    let unitRows : Int
     
-    init(tilemap : SKTileMapNode)
+    init(scene : GameScene, nodesPerUnit : Int, unitSize : Int, unitColumns : Int, unitRows : Int)
     {
-        self.TileMap = tilemap
+        self.scene = scene
+        self.nodesPerUnit = nodesPerUnit
+        self.unitSize = unitSize
+        self.unitColumns = unitColumns
+        self.unitRows = unitRows
         
-        nodes = [[Node?]]( repeating: [Node?](repeating: nil, count: TileMap.numberOfColumns), count: TileMap.numberOfRows)
+        nodes = [[Node?]]( repeating: [Node?](repeating: nil, count: unitColumns * nodesPerUnit), count: unitRows * nodesPerUnit)
         setupNodes()
     }
     
     private func setupNodes()
     {
-        for column in 0...TileMap.numberOfColumns-1
+        let nodeColumns = unitColumns * nodesPerUnit
+        let nodeRows = unitRows * nodesPerUnit
+        
+        for column in 0...nodeColumns-1
         {
-            for row in 0...TileMap.numberOfRows-1
+            for row in 0...nodeRows-1
             {
                 nodes[column][row] = Node(x:column,y:row)
-                let tileDefinition = TileMap.tileDefinition(atColumn: column, row: row)
+                rayCastFromPoint(x: column, y: row)
+                /*let tileDefinition = TileMap.tileDefinition(atColumn: column, row: row)
                 if(tileDefinition != nil)
                 {
                     nodes[column][row]!.walkable = false
-                }
+                }*/
             }
         }
+    }
+
+    func rayCastFromPoint(x: Int, y:Int)
+    {
+        let worldPoint = ToWorldPosition(x: x, y: y)
+
+        //let size = CGFloat(unitSize / nodesPerUnit)
+        //let rect = CGRect(x: worldPoint.x - (size*0.5), y: worldPoint.y - (size*0.5) , width: size, height: size)
+        
+        self.scene.physicsWorld.enumerateBodies(at: worldPoint)
+        {body,_ in
+            if body.categoryBitMask > 0 && PhysicsMask.NonWalkable.contains(PhysicsMask.init(rawValue: body.categoryBitMask))
+            {
+                self.nodes[x][y]?.walkable = false
+            }
+        }
+
     }
     
     func ToWorldPosition(node : Node) -> CGPoint
@@ -78,14 +107,13 @@ class PathFinding
     
     func ToWorldPosition(x : Int, y:Int) -> CGPoint
     {
-        let TileSize = CGFloat(TileMapSettings.TileSize)
-        let nodeXOffset = CGFloat(x) + 0.5
-        let nodeYOffset = CGFloat(y) + 0.5
+        let mapWidth2 = CGFloat(unitColumns * unitSize)  * 0.5
+        let mapHeight2 = CGFloat(unitRows * unitSize) * 0.5
+        let unit2 = (CGFloat(unitSize) / CGFloat(nodesPerUnit)) * 0.5
         
-        let nodeWorldPoint = CGPoint(x: (nodeXOffset * TileSize) - TileMap.mapSize.width/2,
-                                     y: (nodeYOffset * TileSize) - TileMap.mapSize.width/2)
-        
-        return nodeWorldPoint
+        let worldPoint = CGPoint(x: CGFloat((x * unitSize) / nodesPerUnit) - mapWidth2 + unit2, y: CGFloat((y * unitSize) / nodesPerUnit) - mapHeight2 + unit2)
+    
+        return worldPoint
     }
     
     func FindPath(startPosition : CGPoint, endPosition : CGPoint) -> [Node]
@@ -163,16 +191,16 @@ class PathFinding
     func GetNode(worldPosition : CGPoint) -> Node?
     {
         let tileSize = CGFloat(TileMapSettings.TileSize)
-        let mapWidth2 = (TileMap.mapSize.width) * 0.5
-        let mapHeight2 = (TileMap.mapSize.height) * 0.5
+        let mapWidth2 = CGFloat(unitColumns * unitSize)  * 0.5
+        let mapHeight2 = CGFloat(unitRows * unitSize) * 0.5
         
-        let percentX : CGFloat = (worldPosition.x + mapWidth2) / CGFloat(TileMap.mapSize.width)
-        let percentY : CGFloat = (worldPosition.y + mapHeight2) / CGFloat(TileMap.mapSize.height)
+        let percentX : CGFloat = (worldPosition.x + mapWidth2) / CGFloat(unitColumns * unitSize)
+        let percentY : CGFloat = (worldPosition.y + mapHeight2) / CGFloat(unitRows * unitSize)
         
-        let x = Int(round((CGFloat(TileMap.numberOfColumns) - 1.0) * percentX))
-        let y = Int(round((CGFloat(TileMap.numberOfRows) - 1.0) * percentY))
+        let x = Int(round((CGFloat(unitColumns * nodesPerUnit) - 1.0) * percentX))
+        let y = Int(round((CGFloat(unitRows * nodesPerUnit) - 1.0) * percentY))
         
-        if(x >= 0 && x < TileMap.numberOfColumns-1 && y >= 0 && y < TileMap.numberOfRows-1){
+        if(x >= 0 && x < (unitColumns * unitSize)-1 && y >= 0 && y < (unitRows * unitSize)-1){
             return nodes[x][y]
         }
         return nil
@@ -181,9 +209,9 @@ class PathFinding
     private func getAdjacentNodes(node : Node) -> Set<Node>
     {
         let minX : Int = max(Int(node.X) - 1, 0)
-        let maxX : Int = min(Int(node.X) + 1, TileMap.numberOfColumns-1)
+        let maxX : Int = min(Int(node.X) + 1, (unitColumns * unitSize)-1)
         let minY : Int = max(Int(node.Y) - 1, 0)
-        let maxY : Int = min(Int(node.Y) + 1, TileMap.numberOfRows-1)
+        let maxY : Int = min(Int(node.Y) + 1, (unitRows * unitSize)-1)
         
         var adjacentNodes : Set<Node> = []
         
@@ -229,13 +257,28 @@ class PathFinding
     
     func DrawNodes(scene : SKScene)
     {
-        for column in 0...TileMap.numberOfColumns-1
+        for column in 0...(unitColumns * nodesPerUnit)-1
         {
-            for row in 0...TileMap.numberOfRows-1
+            for row in 0...(unitRows * nodesPerUnit)-1
             {
                 let tileNode = nodes[column][row]!
-                let shape = SKShapeNode.init(circleOfRadius: 128)
-                shape.position = ToWorldPosition(node: tileNode)
+                
+                let worldPosition = ToWorldPosition(node: tileNode)
+                
+                let size = CGFloat(unitSize / nodesPerUnit)
+                let rect = CGRect(x: worldPosition.x - (size*0.5), y: worldPosition.y - (size*0.5) , width: size, height: size)
+                
+                let shape = SKShapeNode.init(circleOfRadius: size*0.5)
+                let nodeX = worldPosition.x - CGFloat(column*nodesPerUnit)
+                let nodeY = worldPosition.y - CGFloat(row*nodesPerUnit)
+                let nodePos = CGPoint(x: nodeX, y: nodeY)
+                shape.position = nodePos
+                if(!tileNode.walkable){
+                    shape.fillColor = UIColor.red
+                }
+                else{
+                    shape.fillColor = UIColor.white
+                }
                 scene.addChild(shape)
             }
         }

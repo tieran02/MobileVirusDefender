@@ -58,7 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         guard let tileMap = childNode(withName: "Colliders") as? SKTileMapNode
             else { fatalError("Missing tile map for the colliders") }
-        pathfinding = PathFinding(tilemap: tileMap)
+        pathfinding = PathFinding(scene: self, nodesPerUnit: 1, unitSize: 256, unitColumns: 64, unitRows: 64)
         //pathfinding?.DrawNodes(scene: self)
         
         physicsWorld.contactDelegate = self
@@ -118,7 +118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(sceneCamera != nil)
         {
-            Turrets?.forEach{ $0.Update(deltaTime: Float(dt), scene: self)}
+            //Turrets?.forEach{ $0.Update(deltaTime: Float(dt), scene: self)}
             
             Player.Update(deltaTime: Float(dt), scene: self)
             Enemy.Update(deltaTime: Float(dt), scene: self)
