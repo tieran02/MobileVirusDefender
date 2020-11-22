@@ -25,6 +25,7 @@ class BaseEntity : SKSpriteNode, Cloneable
     
     var Speed : CGFloat = 1
     var ExternalForces : CGVector = CGVector(dx: 0, dy: 0)
+    var Destructable : Bool = true
     
     init(texture:SKTexture, maxHealth : Float, position: CGPoint = CGPoint(x: 0,y: 0))
     {
@@ -32,10 +33,8 @@ class BaseEntity : SKSpriteNode, Cloneable
         _currentHealth = maxHealth;
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
         self.position = position
-        self.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
-        self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.allowsRotation = false
-        self.physicsBody?.usesPreciseCollisionDetection = true
+        
+        setup()
     }
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize)
@@ -43,17 +42,37 @@ class BaseEntity : SKSpriteNode, Cloneable
         MaxHealth = 100
         _currentHealth = MaxHealth
         super.init(texture: texture,color: color,size: size)
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder)
     {
-        MaxHealth = aDecoder.decodeObject(forKey: "MaxHealth") as! Float
-        _currentHealth = aDecoder.decodeObject(forKey: "CurrentHealth") as! Float
+        self.MaxHealth = aDecoder.decodeObject(forKey: "MaxHealth") as? Float ?? 100
+        self._currentHealth = aDecoder.decodeObject(forKey: "CurrentHealth") as? Float ?? 100
         super.init(coder: aDecoder)
+        
+        setup()
+    }
+    
+    func setup()
+    {
+        if(self.physicsBody == nil && texture != nil)
+        {
+            self.physicsBody = SKPhysicsBody(texture: self.texture!, size: texture!.size())
+        }
+        
+        self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.allowsRotation = false
+        self.physicsBody?.usesPreciseCollisionDetection = true
     }
     
     func Damage(amount: Float)
     {
+        if(!Destructable)
+        {
+            return
+        }
+        
         _currentHealth = max(CurrentHealth - amount,0)
         
         if _currentHealth <= 0

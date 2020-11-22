@@ -37,9 +37,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var graphs = [String : GKGraph]()
     
     var sceneCamera : SKCameraNode?
-    var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:-9 * TileMapSettings.TileSize,y:1 * TileMapSettings.TileSize))
+    var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:-9 * TileMapSettings.TileSize,y:-3 * TileMapSettings.TileSize))
     var Enemy : EnemyEntity = EnemyEntity(position: CGPoint(x:5 * TileMapSettings.TileSize,y:5 * TileMapSettings.TileSize))
     var ProjectilePool = EntityPool<ProjectileEntity>(entity: ProjectileEntity(lifeTime: 5), Amount: 100)
+    var Turrets : [TurretEntity]?
     
     var pathfinding : PathFinding?
     
@@ -52,6 +53,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(Player)
         addChild(Enemy)
         AddTileMapColliders()
+        
+        Turrets = children.compactMap{ $0 as? TurretEntity}
         
         guard let tileMap = childNode(withName: "Colliders") as? SKTileMapNode
             else { fatalError("Missing tile map for the colliders") }
@@ -94,37 +97,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //viewController?.closePuzzleView()
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-        
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-    }
-    
-    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
@@ -146,6 +118,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(sceneCamera != nil)
         {
+            Turrets?.forEach{ $0.Update(deltaTime: Float(dt), scene: self)}
+            
             Player.Update(deltaTime: Float(dt), scene: self)
             Enemy.Update(deltaTime: Float(dt), scene: self)
             ProjectilePool.Update(deltaTime: Float(dt), scene: self)
@@ -165,6 +139,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
             guard let tileMap = child as? SKTileMapNode
                 else { fatalError("Child is not of type SKTileMapNode") }
+            
+            //get category from user details for collisions
+            let mask = tileMap.userData?.value(forKey: "physicsCategory") as? UInt32 ?? PhysicsMask.Envioment.rawValue
+            
             
             let tileSize = tileMap.tileSize;
             let halfWidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tileSize.width
@@ -187,9 +165,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             //node.position = CGPoint(x: x, y: y)
                             let body : SKPhysicsBody = SKPhysicsBody(rectangleOf: rect.size, center: CGPoint(x:rect.midX,y:rect.midY))
                             body.isDynamic = false
+                            
                             body.collisionBitMask = PhysicsMask.All.rawValue
                             //body.contactTestBitMask = PhysicsMask.All.rawValue
-                            body.categoryBitMask = PhysicsMask.Envioment.rawValue
+                            body.categoryBitMask = mask
                             
                             node.physicsBody = body
                             tileNode.addChild(node)

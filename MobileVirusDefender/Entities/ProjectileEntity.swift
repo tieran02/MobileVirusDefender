@@ -31,8 +31,11 @@ class ProjectileEntity : BaseEntity
         super.init(coder: aDecoder)
     }
     
-    func Fire(position : CGPoint, direction : CGVector, tileSize : CGFloat, scene : SKScene)
+    func Fire(position : CGPoint, direction : CGVector, tileSize : CGFloat, scene : SKScene, Category : UInt32, Mask : UInt32)
     {
+        physicsBody?.categoryBitMask = Category
+        physicsBody?.collisionBitMask = Mask
+        physicsBody?.contactTestBitMask = Mask
         
         //add to scene
         self.position = position;

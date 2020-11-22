@@ -18,16 +18,23 @@ class PlayerEntity : BaseEntity
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
         super.init(texture: SKTexture(imageNamed: "Player"), maxHealth: 100, position: position)
-        physicsBody?.categoryBitMask = PhysicsMask.Player.rawValue;
-        physicsBody?.collisionBitMask = PhysicsMask.Envioment.rawValue
-        physicsBody?.contactTestBitMask = PhysicsMask.Envioment.rawValue
-        
         Speed = 5
+        setup()
     }
     
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
+        self.Speed = aDecoder.decodeObject(forKey: "Speed") as? CGFloat ?? 5
+        setup()
+    }
+    
+    override func setup()
+    {
+        super.setup()
+        physicsBody?.categoryBitMask = PhysicsMask.Player.rawValue;
+        physicsBody?.collisionBitMask = PhysicsMask.PlayerMask.rawValue
+        physicsBody?.contactTestBitMask = PhysicsMask.PlayerMask.rawValue
     }
     	
     func Fire(direction : CGVector, scene : GameScene)
@@ -38,7 +45,9 @@ class PlayerEntity : BaseEntity
         }
         
         let Projectile = scene.ProjectilePool.Retrieve()
-        Projectile?.Fire(position: self.position,direction: direction,tileSize: 256,scene: scene)
+        let category = PhysicsMask.PlayerProjectile.rawValue
+        let mask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Enemy, PhysicsMask.Turret]).rawValue
+        Projectile?.Fire(position: self.position,direction: direction,tileSize: 256,scene: scene,Category: category,Mask: mask)
         print("Firing")
     }
     
