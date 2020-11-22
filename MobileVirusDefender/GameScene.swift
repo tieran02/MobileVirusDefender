@@ -50,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     {
         sceneCamera = childNode(withName: "SKCameraNode") as? SKCameraNode
         addChild(Player)
-        addChild(Enemy)
+        //addChild(Enemy)
         AddTileMapColliders()
         
         guard let tileMap = childNode(withName: "Colliders") as? SKTileMapNode
@@ -147,7 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(sceneCamera != nil)
         {
             Player.Update(deltaTime: Float(dt), scene: self)
-            Enemy.Update(deltaTime: Float(dt), scene: self)
+            //Enemy.Update(deltaTime: Float(dt), scene: self)
             ProjectilePool.Update(deltaTime: Float(dt), scene: self)
             sceneCamera?.position = Player.position
         }
@@ -157,31 +157,111 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func AddTileMapColliders()
     {
-        guard let tileMap = childNode(withName: "Colliders") as? SKTileMapNode
-            else { fatalError("Missing tile map for the colliders") }
+        for child in children {
+            if child.userData?.value(forKey: "colliderMap") as? Int == nil
+            {
+                continue
+            }
         
-        let tileSize = tileMap.tileSize;
-        let halfWidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tileSize.width
-        let halfHeight = CGFloat(tileMap.numberOfRows) / 2.0 * tileSize.height
-        
-        for col in 0..<tileMap.numberOfColumns {
-            for row in 0..<tileMap.numberOfRows {
-                let tileDefinition = tileMap.tileDefinition(atColumn: col, row: row)
-                if (tileDefinition != nil) {
-                    let x = CGFloat(col) * tileSize.width - halfWidth
-                    let y = CGFloat(row) * tileSize.height - halfHeight
-                    let rect = CGRect(x: 0, y: 0, width: tileSize.width, height: tileSize.height)
-                    let tileNode = SKShapeNode(rect: rect)
-                    tileNode.position = CGPoint(x: x, y: y)
-                    tileNode.physicsBody = SKPhysicsBody.init(rectangleOf: tileSize, center: CGPoint(x: tileSize.width / 2.0, y: tileSize.height / 2.0))
-                    tileNode.physicsBody?.isDynamic = false
-                    tileNode.physicsBody?.collisionBitMask = PhysicsMask.All.rawValue
-                    tileNode.physicsBody?.contactTestBitMask = PhysicsMask.All.rawValue
-                    tileNode.physicsBody?.categoryBitMask = PhysicsMask.Envioment.rawValue
-                    tileMap.addChild(tileNode)
+            guard let tileMap = child as? SKTileMapNode
+                else { fatalError("Child is not of type SKTileMapNode") }
+            
+            let tileSize = tileMap.tileSize;
+            let halfWidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tileSize.width
+            let halfHeight = CGFloat(tileMap.numberOfRows) / 2.0 * tileSize.height
+            
+            for col in 0..<tileMap.numberOfColumns {
+                for row in 0..<tileMap.numberOfRows {
+                    let tileDefinition = tileMap.tileDefinition(atColumn: col, row: row)
+                    if (tileDefinition != nil) {
+                        let x = CGFloat(col) * tileSize.width - halfWidth
+                        let y = CGFloat(row) * tileSize.height - halfHeight
+                        let rect = CGRect(x: 0, y: 0, width: tileSize.width, height: tileSize.height)
+                        let tileNode = SKShapeNode(rect: rect)
+                        
+                        //physics bodies
+                        let rects = rectsFromUserData(userData: tileDefinition?.userData)
+                        for rect in rects
+                        {
+                            let node = SKNode()
+                            //node.position = CGPoint(x: x, y: y)
+                            let body : SKPhysicsBody = SKPhysicsBody(rectangleOf: rect.size, center: CGPoint(x:rect.midX,y:rect.midY))
+                            body.isDynamic = false
+                            body.collisionBitMask = PhysicsMask.All.rawValue
+                            body.contactTestBitMask = PhysicsMask.All.rawValue
+                            body.categoryBitMask = PhysicsMask.Envioment.rawValue
+                            
+                            node.physicsBody = body
+                            tileNode.addChild(node)
+                        }
+                        
+                        tileNode.position = CGPoint(x: x, y: y)
+
+                        tileMap.addChild(tileNode)
+                        
+                        //let test = boundingBoxFromTexture(texture: (tileDefinition?.textures[0])!)
+                    }
                 }
             }
         }
+    }
+    
+    func rectsFromUserData(userData : NSMutableDictionary?) -> [CGRect]
+    {
+        if(userData == nil)
+        {
+            return [CGRect]()
+        }
+        
+        var rects = [String : (Int,Int,Int,Int)]()
+        
+        for data in userData!
+        {
+            let splitData : [Substring]? = (data.key as? String)?.split(separator: "_")
+            
+            if(splitData == nil || splitData!.count < 2){
+                continue
+            }
+
+            let indexString = String(splitData![0])
+            let rectString = String(splitData![1])
+            
+            if(rects[indexString] == nil)
+            {
+                rects[indexString] = (Int,Int,Int,Int)(0,0,0,0)
+            }
+            
+            switch rectString
+            {
+                case "colliderX":
+                    rects[indexString]!.0 = data.value as! Int
+                    break
+                case "colliderY":
+                    rects[indexString]!.1 = data.value as! Int
+                    break
+                case "colliderWidth":
+                    rects[indexString]!.2 = data.value as! Int
+                    break
+                case "colliderHeight":
+                    rects[indexString]!.3 = data.value as! Int
+                    break
+                default:
+                    break
+            }
+        }
+        
+        var cgRects = [CGRect]()
+        
+        if(rects.count > 1)
+        {
+            print("Test")
+        }
+        
+        for rect in rects {
+            cgRects.append(CGRect(x: rect.value.0, y: rect.value.1, width: rect.value.2, height: rect.value.3))
+        }
+        
+        return cgRects
     }
     
     func completePuzzle(completed : Bool)

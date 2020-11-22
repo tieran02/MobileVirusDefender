@@ -20,6 +20,7 @@ class PlayerEntity : BaseEntity
         super.init(texture: SKTexture(imageNamed: "Player"), maxHealth: 100, position: position)
         physicsBody?.categoryBitMask = PhysicsMask.Player.rawValue;
         physicsBody?.collisionBitMask = PhysicsMask.Envioment.rawValue
+        physicsBody?.contactTestBitMask = PhysicsMask.Envioment.rawValue
         
         Speed = 5
     }

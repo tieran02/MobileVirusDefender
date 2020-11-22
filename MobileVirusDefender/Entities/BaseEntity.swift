@@ -32,8 +32,10 @@ class BaseEntity : SKSpriteNode, Cloneable
         _currentHealth = maxHealth;
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
         self.position = position
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: size.width, height: size.height));
+        self.physicsBody = SKPhysicsBody(texture: texture, size: texture.size())
         self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.allowsRotation = false
+        self.physicsBody?.usesPreciseCollisionDetection = true
     }
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize)
