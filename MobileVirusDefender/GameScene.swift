@@ -39,6 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var sceneCamera : SKCameraNode?
     var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:-9 * TileMapSettings.TileSize,y:-3 * TileMapSettings.TileSize))
     var Enemy : EnemyEntity = EnemyEntity(position: CGPoint(x:5 * TileMapSettings.TileSize,y:5 * TileMapSettings.TileSize))
+    
+    var EnemySpawner : SpawnerEntity?
     var ProjectilePool = EntityPool<ProjectileEntity>(entity: ProjectileEntity(lifeTime: 5), Amount: 100)
     var Turrets : [TurretEntity]?
     
@@ -54,6 +56,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(Enemy)
         AddTileMapColliders()
         
+        EnemySpawner = SpawnerEntity(enemy: Enemy, spawnFrequency: 5,position: CGPoint(x:5 * TileMapSettings.TileSize,y:5 * TileMapSettings.TileSize))
         Turrets = children.compactMap{ $0 as? TurretEntity}
         
         guard let tileMap = childNode(withName: "Colliders") as? SKTileMapNode
@@ -121,6 +124,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //Turrets?.forEach{ $0.Update(deltaTime: Float(dt), scene: self)}
             
             Player.Update(deltaTime: Float(dt), scene: self)
+            EnemySpawner?.Update(deltaTime: Float(dt), scene: self)
             Enemy.Update(deltaTime: Float(dt), scene: self)
             ProjectilePool.Update(deltaTime: Float(dt), scene: self)
             sceneCamera?.position = Player.position

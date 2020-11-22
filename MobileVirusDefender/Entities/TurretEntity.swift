@@ -36,18 +36,50 @@ class TurretEntity : BaseEntity
     override func Update(deltaTime: Float, scene: GameScene)
     {
         if(lastFire > 0.25){
-            let Projectile = scene.ProjectilePool.Retrieve()
-            
-            //temp get direction to enemy
-            let direction = (CGVector(point: scene.Enemy.position) - CGVector(point: position)).normalized()
-            
-            let category = PhysicsMask.TurretProjectile.rawValue
-            let mask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Enemy]).rawValue
-            Projectile?.Fire(position: self.position,direction: direction,tileSize: 256,scene: scene, Category: category,Mask: mask)
-            lastFire = 0
+            if let enemy = getClosestEnemy(scene: scene)
+            {
+                if let Projectile = scene.ProjectilePool.Retrieve()
+                {
+                    //temp get direction to enemy
+                    let direction = (CGVector(point: enemy.position) - CGVector(point: position)).normalized()
+                    
+                    let category = PhysicsMask.TurretProjectile.rawValue
+                    let mask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Enemy]).rawValue
+                    Projectile.Fire(position: self.position,direction: direction,tileSize: 256,scene: scene, Category: category,Mask: mask)
+                    lastFire = 0
+                }
+            }
         }
         
         lastFire += deltaTime
     
+    }
+    
+    func getClosestEnemy(scene : GameScene) -> EnemyEntity?
+    {
+        let enemies = scene.children.compactMap{ $0 as? EnemyEntity}
+        let playerPos = scene.Player.position
+        
+        var closestEnemy : EnemyEntity?
+        var closestDistance : CGFloat?
+        for enemy in enemies
+        {
+            let dist = CGVector(point: playerPos).distanceTo(CGVector(point: enemy.position))
+            
+            if closestEnemy == nil
+            {
+                closestEnemy = enemy
+                closestDistance = dist
+                continue
+            }
+            
+
+            if dist < closestDistance!
+            {
+                closestEnemy = enemy
+                closestDistance = dist
+            }
+        }
+        return closestEnemy
     }
 }

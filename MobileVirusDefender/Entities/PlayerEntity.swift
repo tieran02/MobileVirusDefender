@@ -93,11 +93,46 @@ class PlayerEntity : BaseEntity
     {
         print("Push back infected")
         
-        //get direction from player to enemy
-        let direction = (CGVector(point: scene.Enemy.position) - CGVector(point: self.position)).normalized() * (20 * CGFloat(TileMapSettings.TileSize))
+        let enemies = scene.children.compactMap{ $0 as? EnemyEntity}
+        for enemy in enemies
+        {
+            let dist = CGVector(point: position).distanceTo(CGVector(point: enemy.position))
+            
+            if dist <= CGFloat(TileMapSettings.TileSize) * 2.5
+            {
+                //get direction from player to enemy
+                let direction = (CGVector(point: enemy.position) - CGVector(point: self.position)).normalized() * (20 * CGFloat(TileMapSettings.TileSize))
+                enemy.ExternalForces = direction
+            }
+        }
+    }
+    
+    func getClosestEnemy(scene : GameScene) -> EnemyEntity?
+    {
+        let enemies = scene.children.compactMap{ $0 as? EnemyEntity}
+        let playerPos = scene.Player.position
         
-        
-        scene.Enemy.ExternalForces = direction
+        var closestEnemy : EnemyEntity?
+        var closestDistance : CGFloat?
+        for enemy in enemies
+        {
+            let dist = CGVector(point: playerPos).distanceTo(CGVector(point: enemy.position))
+            
+            if closestEnemy == nil
+            {
+                closestEnemy = enemy
+                closestDistance = dist
+                continue
+            }
+            
+
+            if dist < closestDistance!
+            {
+                closestEnemy = enemy
+                closestDistance = dist
+            }
+        }
+        return closestEnemy
     }
     
     override func Clone() -> BaseEntity {

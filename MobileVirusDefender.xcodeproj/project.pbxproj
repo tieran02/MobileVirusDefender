@@ -23,6 +23,7 @@
 		903EDEEF25613F2A00CCE478 /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903EDEEE25613F2A00CCE478 /* EnemyEntity.swift */; };
 		90615C47256A6F5300463DC2 /* TextureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90615C46256A6F5300463DC2 /* TextureExtension.swift */; };
 		90615C4C256AB45B00463DC2 /* TurretEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90615C4B256AB45B00463DC2 /* TurretEntity.swift */; };
+		90615C51256AF52B00463DC2 /* SpawnerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90615C50256AF52B00463DC2 /* SpawnerEntity.swift */; };
 		908DDEF8255FDDAF0035EAA2 /* BaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908DDEF7255FDDAF0035EAA2 /* BaseEntity.swift */; };
 		908DDEFD255FE7270035EAA2 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908DDEFC255FE7270035EAA2 /* PlayerEntity.swift */; };
 		909868B92562DB5500F369A5 /* EntityPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909868B82562DB5500F369A5 /* EntityPool.swift */; };
@@ -74,6 +75,7 @@
 		903EDEEE25613F2A00CCE478 /* EnemyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEntity.swift; sourceTree = "<group>"; };
 		90615C46256A6F5300463DC2 /* TextureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureExtension.swift; sourceTree = "<group>"; };
 		90615C4B256AB45B00463DC2 /* TurretEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurretEntity.swift; sourceTree = "<group>"; };
+		90615C50256AF52B00463DC2 /* SpawnerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnerEntity.swift; sourceTree = "<group>"; };
 		908DDEF7255FDDAF0035EAA2 /* BaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEntity.swift; sourceTree = "<group>"; };
 		908DDEFC255FE7270035EAA2 /* PlayerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
 		909868B82562DB5500F369A5 /* EntityPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityPool.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				903EDEEE25613F2A00CCE478 /* EnemyEntity.swift */,
 				909868B82562DB5500F369A5 /* EntityPool.swift */,
 				90615C4B256AB45B00463DC2 /* TurretEntity.swift */,
+				90615C50256AF52B00463DC2 /* SpawnerEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				908DDEF8255FDDAF0035EAA2 /* BaseEntity.swift in Sources */,
 				908DDEFD255FE7270035EAA2 /* PlayerEntity.swift in Sources */,
 				90FCD27F25501F7800E1A166 /* Joystick.swift in Sources */,
+				90615C51256AF52B00463DC2 /* SpawnerEntity.swift in Sources */,
 				903EDEEF25613F2A00CCE478 /* EnemyEntity.swift in Sources */,
 				909868DF2562E8C100F369A5 /* WirePuzzleScene.swift in Sources */,
 				903126BD254AC510006ECB27 /* GameViewController.swift in Sources */,
