@@ -12,6 +12,8 @@ class ProjectileEntity : BaseEntity
     let LifeTime : Float
     let Damage : Float
     
+    var currentAliveTime : Float = 0
+    
     init(lifeTime : Float)
     {
         LifeTime = lifeTime
@@ -37,12 +39,19 @@ class ProjectileEntity : BaseEntity
         scene.addChild(self)
         
         self.MoveInDirection(direction: direction.normalized()	)
+    }
+    
+    override func Update(deltaTime: Float, scene: GameScene)
+    {
+        super.Update(deltaTime: deltaTime, scene: scene)
         
         //remove from parrent after lifetime
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(LifeTime))
+        if(self.parent != nil && currentAliveTime >= LifeTime)
         {
             self.removeFromParent()
+            currentAliveTime = 0
         }
+        currentAliveTime += deltaTime
     }
     
     override func collisionBegan(with: SKPhysicsBody)
@@ -50,6 +59,7 @@ class ProjectileEntity : BaseEntity
         let entity = with.node as? BaseEntity
         entity?.Damage(amount: Damage)
         self.removeFromParent()
+        currentAliveTime = 0
     }
     
     override func Clone() -> BaseEntity {

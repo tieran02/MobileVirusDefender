@@ -50,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     {
         sceneCamera = childNode(withName: "SKCameraNode") as? SKCameraNode
         addChild(Player)
-        //addChild(Enemy)
+        addChild(Enemy)
         AddTileMapColliders()
         
         guard let tileMap = childNode(withName: "Colliders") as? SKTileMapNode
@@ -147,7 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(sceneCamera != nil)
         {
             Player.Update(deltaTime: Float(dt), scene: self)
-            //Enemy.Update(deltaTime: Float(dt), scene: self)
+            Enemy.Update(deltaTime: Float(dt), scene: self)
             ProjectilePool.Update(deltaTime: Float(dt), scene: self)
             sceneCamera?.position = Player.position
         }
@@ -188,7 +188,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             let body : SKPhysicsBody = SKPhysicsBody(rectangleOf: rect.size, center: CGPoint(x:rect.midX,y:rect.midY))
                             body.isDynamic = false
                             body.collisionBitMask = PhysicsMask.All.rawValue
-                            body.contactTestBitMask = PhysicsMask.All.rawValue
+                            //body.contactTestBitMask = PhysicsMask.All.rawValue
                             body.categoryBitMask = PhysicsMask.Envioment.rawValue
                             
                             node.physicsBody = body
