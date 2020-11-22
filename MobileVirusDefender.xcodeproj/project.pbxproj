@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		900746CF256B01C2000FA19C /* FiniteStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900746CE256B01C2000FA19C /* FiniteStateMachine.swift */; };
+		900746D4256B04D1000FA19C /* FollowPlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900746D3256B04D1000FA19C /* FollowPlayerState.swift */; };
 		903126B5254AC510006ECB27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903126B4254AC510006ECB27 /* AppDelegate.swift */; };
 		903126B7254AC510006ECB27 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 903126B6254AC510006ECB27 /* GameScene.sks */; };
 		903126BB254AC510006ECB27 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903126BA254AC510006ECB27 /* GameScene.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		900746CE256B01C2000FA19C /* FiniteStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiniteStateMachine.swift; sourceTree = "<group>"; };
+		900746D3256B04D1000FA19C /* FollowPlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPlayerState.swift; sourceTree = "<group>"; };
 		903126B1254AC510006ECB27 /* MobileVirusDefender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileVirusDefender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		903126B4254AC510006ECB27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		903126B6254AC510006ECB27 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				909868E32562EAD100F369A5 /* PathFinding.swift */,
+				900746CE256B01C2000FA19C /* FiniteStateMachine.swift */,
+				900746D3256B04D1000FA19C /* FollowPlayerState.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 				903126BB254AC510006ECB27 /* GameScene.swift in Sources */,
 				908DDEF8255FDDAF0035EAA2 /* BaseEntity.swift in Sources */,
 				908DDEFD255FE7270035EAA2 /* PlayerEntity.swift in Sources */,
+				900746D4256B04D1000FA19C /* FollowPlayerState.swift in Sources */,
 				90FCD27F25501F7800E1A166 /* Joystick.swift in Sources */,
 				90615C51256AF52B00463DC2 /* SpawnerEntity.swift in Sources */,
 				903EDEEF25613F2A00CCE478 /* EnemyEntity.swift in Sources */,
@@ -369,6 +376,7 @@
 				903126B5254AC510006ECB27 /* AppDelegate.swift in Sources */,
 				903BEB8825602A17004DBBDD /* VectorExtensions.swift in Sources */,
 				903EDEEA25612CC900CCE478 /* Util.swift in Sources */,
+				900746CF256B01C2000FA19C /* FiniteStateMachine.swift in Sources */,
 				90615C47256A6F5300463DC2 /* TextureExtension.swift in Sources */,
 				909868E42562EAD100F369A5 /* PathFinding.swift in Sources */,
 				90CADB3B25502C75002315F8 /* JoystickUI.swift in Sources */,

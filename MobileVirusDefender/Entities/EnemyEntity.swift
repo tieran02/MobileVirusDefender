@@ -16,6 +16,8 @@ class EnemyEntity : BaseEntity
     let pathfindingUpdatePeriod : Float = 0.25
     var currentTarget : CGPoint?
     
+    var StateMachine : FiniteStateMachine?
+    
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
         super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 100, position: position)
@@ -29,69 +31,25 @@ class EnemyEntity : BaseEntity
         super.init(coder: aDecoder)
     }
     
+    override func setup()
+    {
+        super.setup()
+        StateMachine = FiniteStateMachine(enemy: self)
+        
+    }
+    
     override func Update(deltaTime: Float, scene: GameScene)
     {
         super.Update(deltaTime: deltaTime, scene: scene)
         
-        SetVelocity(velocity: CGVector(dx: 0, dy: 0))
-        
-        updatePathTime += deltaTime
-        
-        if(updatePathTime >= pathfindingUpdatePeriod)
+        if(StateMachine?.currentState == nil)
         {
-            FindPathToTarget(target: scene.Player.position, pathfinding: scene.pathfinding!)
-            updatePathTime = 0
+            StateMachine?.PushState(state: FollowPlayerState(), scene: scene)
         }
         
-        MoveAlongPath(pathfinding: scene.pathfinding!)
+        StateMachine?.Update(deltaTime: deltaTime, scene: scene)
     }
-    
-    func FindPathToTarget(target : CGPoint, pathfinding : PathFinding)
-    {
-        if(path != nil && currentTarget == target)
-        {
-            return
-        }
-        
-        let start = pathfinding.GetNode(worldPosition: self.position)
-        let end = pathfinding.GetNode(worldPosition: target)
-        
-        if(start != nil && end != nil)
-        {
-            self.path = pathfinding.FindPath(start: start!, end: end!)
-            currentTarget = target
-            currentNode = 0
-            //pathfinding.DrawPath(path: path!, scene: scene)
-        }
-        else{
-            path = nil
-        }
-    }
-    
-    func MoveAlongPath(pathfinding : PathFinding)
-    {
-        if(path == nil || path!.isEmpty)
-        {
-            return
-        }
-        
-        if(currentNode >= path!.count)
-        {
-            path = nil
-            return
-        }
-        
-        let nodeWorldPoint : CGPoint = pathfinding.ToWorldPosition(node: path![currentNode])
-        let targetPosVector = CGVector(point: nodeWorldPoint);
-        MoveTo(target: nodeWorldPoint)
-        
-        let distanceToTarget = CGVector(point: self.position).distanceTo(targetPosVector)
-        if(distanceToTarget <= 10)
-        {
-            currentNode += 1
-        }
-    }
-    
+
     override func Clone() -> BaseEntity {
         EnemyEntity(position: position)
     }
