@@ -107,6 +107,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
+        
+        if(scene?.speed == 0)
+        {
+            self.lastUpdateTime = currentTime
+            return
+        }
          
         let leftDirection = viewController?.LeftJoystick.Direction
         let rightDirection = viewController?.RightJoystick.Direction

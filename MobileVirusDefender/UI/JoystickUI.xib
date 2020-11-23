@@ -20,11 +20,11 @@
             <rect key="frame" x="0.0" y="0.0" width="256" height="256"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OuterPad" translatesAutoresizingMaskIntoConstraints="NO" id="ZnA-tC-J3V">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadedLight11" translatesAutoresizingMaskIntoConstraints="NO" id="ZnA-tC-J3V">
                     <rect key="frame" x="0.0" y="0.0" width="256" height="256"/>
                 </imageView>
-                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CenterPad" translatesAutoresizingMaskIntoConstraints="NO" id="axG-C7-AyK">
-                    <rect key="frame" x="80" y="80" width="96" height="96"/>
+                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadedDark01" translatesAutoresizingMaskIntoConstraints="NO" id="axG-C7-AyK">
+                    <rect key="frame" x="64" y="64" width="128" height="128"/>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="OdZ-YF-int"/>
@@ -38,16 +38,16 @@
                 <constraint firstItem="axG-C7-AyK" firstAttribute="centerY" secondItem="l83-1K-diL" secondAttribute="centerY" id="OuZ-51-IRI"/>
                 <constraint firstItem="ZnA-tC-J3V" firstAttribute="centerX" secondItem="l83-1K-diL" secondAttribute="centerX" id="Xza-9E-dj3"/>
                 <constraint firstItem="ZnA-tC-J3V" firstAttribute="height" secondItem="l83-1K-diL" secondAttribute="height" id="cdj-3Z-l0V"/>
-                <constraint firstItem="axG-C7-AyK" firstAttribute="height" secondItem="l83-1K-diL" secondAttribute="height" multiplier="0.375" id="g2s-As-3Ee"/>
+                <constraint firstItem="axG-C7-AyK" firstAttribute="height" secondItem="l83-1K-diL" secondAttribute="height" multiplier="0.5" id="g2s-As-3Ee"/>
                 <constraint firstItem="ZnA-tC-J3V" firstAttribute="centerY" secondItem="l83-1K-diL" secondAttribute="centerY" id="xnk-sV-18B"/>
-                <constraint firstItem="axG-C7-AyK" firstAttribute="width" secondItem="l83-1K-diL" secondAttribute="width" multiplier="0.375" id="ymO-5C-4nS"/>
+                <constraint firstItem="axG-C7-AyK" firstAttribute="width" secondItem="l83-1K-diL" secondAttribute="width" multiplier="0.5" id="ymO-5C-4nS"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-407.24637681159425" y="-531.02678571428567"/>
         </view>
     </objects>
     <resources>
-        <image name="CenterPad" width="96" height="96"/>
-        <image name="OuterPad" width="256" height="256"/>
+        <image name="shadedDark01" width="96" height="100"/>
+        <image name="shadedLight11" width="160" height="160"/>
     </resources>
 </document>

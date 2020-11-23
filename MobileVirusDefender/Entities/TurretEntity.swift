@@ -28,7 +28,7 @@ class TurretEntity : BaseEntity
     override func setup()
     {
         super.setup()
-        
+        self.isUserInteractionEnabled = true
         Destructable = false
         physicsBody?.isDynamic = false
         physicsBody?.categoryBitMask = PhysicsMask.Turret.rawValue
@@ -82,5 +82,20 @@ class TurretEntity : BaseEntity
             }
         }
         return closestEnemy
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        print("touched")
+        if let gameScene = scene as? GameScene
+        {
+            //setup puzzle delegate
+            gameScene.viewController?.loadPuzzleScene(sceneName: "WirePuzzleScene", completeDelegate: completePuzzle)
+        }
+    }
+    
+    func completePuzzle(completed : Bool)
+    {
+        
     }
 }

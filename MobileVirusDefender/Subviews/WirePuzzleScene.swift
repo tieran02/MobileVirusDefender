@@ -27,6 +27,13 @@ class WirePuzzleScene: SKScene, IPuzzle
     
     override func didMove(to view: SKView)
     {
+        //pause game
+        if let gameView = self.view?.superview as! SKView?
+        {
+            gameView.scene?.speed = 0
+            gameView.scene?.physicsWorld.speed = 0
+        }
+        
         AddConnectionFromName(withName: "LeftRedNode")
         AddConnectionFromName(withName: "LeftYellowNode")
         AddConnectionFromName(withName: "LeftGreenNode")
@@ -151,7 +158,14 @@ class WirePuzzleScene: SKScene, IPuzzle
     {
         onCompleteDelegate?(completed)
         
-        self.view?.removeFromSuperview()
+        self.view?.isHidden = true
+        
+        //unpause game
+        if let gameView = self.view?.superview as! SKView?
+        {
+            gameView.scene?.speed = 1
+            gameView.scene?.physicsWorld.speed = 1
+        }
     }
     
     

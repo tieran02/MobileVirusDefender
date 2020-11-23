@@ -22,6 +22,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        PuzzleView.isHidden = true
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
         if let scene = GKScene(fileNamed: "GameScene") {
@@ -69,6 +70,15 @@ class GameViewController: UIViewController {
     
     func loadPuzzleScene(sceneName : String, completeDelegate: ((Bool) -> Void)? )
     {
+        if(self.PuzzleView.isHidden == false)
+        {
+            return
+        }
+        if(self.PuzzleView.superview == nil)
+        {
+            view.addSubview(self.PuzzleView)
+        }
+        
         // Load 'WirePuzzleScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
         if let scene = GKScene(fileNamed: sceneName) {
@@ -92,6 +102,7 @@ class GameViewController: UIViewController {
                     
                     view.showsFPS = true
                     view.showsNodeCount = true
+                    view.isHidden = false
                 }
             }
         }
@@ -102,7 +113,7 @@ class GameViewController: UIViewController {
         if let view = self.PuzzleView as! SKView?
         {
             if let puzzle = view.scene as? IPuzzle
-            {
+            {                
                 puzzle.exit(completed: false)
             }
         }
