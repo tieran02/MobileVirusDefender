@@ -44,7 +44,7 @@ class EnemyEntity : BaseEntity
         
         if(StateMachine?.currentState == nil)
         {
-            StateMachine?.PushState(state: FollowPlayerState(), scene: scene)
+            StateMachine?.PushState(state: MoveToFacility(), scene: scene)
         }
         
         StateMachine?.Update(deltaTime: deltaTime, scene: scene)
@@ -52,6 +52,12 @@ class EnemyEntity : BaseEntity
 
     override func Clone() -> BaseEntity {
         EnemyEntity(position: position)
+    }
+    
+    override func Destroy()
+    {
+        super.Destroy()
+        StateMachine?.Clear()
     }
     
 }

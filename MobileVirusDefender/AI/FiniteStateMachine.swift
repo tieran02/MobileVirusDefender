@@ -35,14 +35,15 @@ class FiniteStateMachine
     
     func PopState(scene : GameScene) -> StateProtocol?
     {
-        let state = stateStack?.popLast()
+        let state = stateStack?.removeFirst()
         state?.OnPop(Enemy: Enemy, stateMachine: self, scene: scene)
+        currentState = Peek()
         return state
     }
     
     func Peek() -> StateProtocol?
     {
-        return currentState
+        return stateStack?.first
     }
     
     func Clear()

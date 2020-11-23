@@ -18,7 +18,7 @@ class BaseEntity : SKSpriteNode, Cloneable
     var _velocity : CGVector = CGVector(dx: 0, dy: 0)
     var Velocity : CGVector { get{ return _velocity } }
     
-    let MaxHealth : Float
+    var MaxHealth : Float
     
     private var _currentHealth : Float;
     var CurrentHealth : Float { get{ return _currentHealth } }
@@ -77,15 +77,19 @@ class BaseEntity : SKSpriteNode, Cloneable
         
         if _currentHealth <= 0
         {
-            self.removeFromParent()
+            Destroy()
         }
+    }
+    
+    func Destroy()
+    {
+        self.removeFromParent()
     }
     
     func Heal(amount: Float)
     {
         _currentHealth = min(CurrentHealth + amount, MaxHealth)
     }
-
     
     func MoveInDirection(direction : CGVector)
     {

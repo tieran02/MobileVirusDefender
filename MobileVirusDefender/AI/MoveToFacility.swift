@@ -1,15 +1,16 @@
 //
-//  FollowPlayerState.swift
+//  MoveToFacility.swift
 //  MobileVirusDefender
 //
-//  Created by Tieran on 22/11/2020.
+//  Created by Tieran on 23/11/2020.
 //  Copyright © 2020 Tieran. All rights reserved.
 //
 
 import SpriteKit
 
-class FollowPlayerState : StateProtocol
+class MoveToFacility : StateProtocol
 {
+    var facility : ResearchEntity?
     var Player : PlayerEntity?
     
     var path : [Node]?
@@ -20,7 +21,8 @@ class FollowPlayerState : StateProtocol
     
     func OnPush(Enemy: EnemyEntity, stateMachine: FiniteStateMachine, scene: GameScene)
     {
-        //find player
+        //find facility
+        facility = scene.ResearchFacility
         Player = scene.Player
         currentNode = 0
         currentTarget = nil
@@ -33,44 +35,47 @@ class FollowPlayerState : StateProtocol
     
     func OnUpdate(Enemy: EnemyEntity, stateMachine: FiniteStateMachine, deltaTime: Float, scene: GameScene)
     {
-        if Player == nil
+        if facility == nil
         {
             return
         }
         
-        let distanceToPlayer = CGVector(point: Enemy.position).distanceTo(CGVector(point: Player!.position))
-        if distanceToPlayer > CGFloat(TileMapSettings.TileSize * 5)
+        //check if the player is within range
+        if(Player != nil)
         {
-            //player is out of range pop this state from the stack
-            stateMachine.PopState(scene: scene)
-            return
+            let distanceToPlayer = CGVector(point: Enemy.position).distanceTo(CGVector(point: Player!.position))
+            if distanceToPlayer <= CGFloat(TileMapSettings.TileSize) * 5
+            {
+                //player is within 5 units, so follow the player
+                stateMachine.PushState(state: FollowPlayerState(), scene: scene)
+            }
         }
         
         updatePathTime += deltaTime
         
         if(updatePathTime >= pathfindingUpdatePeriod)
         {
-            FindPathToPlayer(enemy: Enemy, player: Player!, pathfinding: scene.pathfinding!)
+            FindPathToFacility(enemy: Enemy, facility: facility!, pathfinding: scene.pathfinding!)
             updatePathTime = 0
         }
         
         MoveAlongPath(enemy: Enemy, pathfinding: scene.pathfinding!)
     }
     
-    func FindPathToPlayer(enemy : EnemyEntity, player: PlayerEntity, pathfinding : PathFinding)
+    func FindPathToFacility(enemy : EnemyEntity, facility: ResearchEntity, pathfinding : PathFinding)
     {
-        if(path != nil && currentTarget == player.position)
+        if(path != nil && currentTarget == facility.position)
         {
             return
         }
         
         let start = pathfinding.GetNode(worldPosition: enemy.position)
-        let end = pathfinding.GetNode(worldPosition: player.position)
+        let end = pathfinding.GetNode(worldPosition: facility.position)
         
         if(start != nil && end != nil)
         {
             self.path = pathfinding.FindPath(start: start!, end: end!)
-            currentTarget = player.position
+            currentTarget = facility.position
             currentNode = 0
             //pathfinding.DrawPath(path: path!, scene: scene)
         }
@@ -83,12 +88,14 @@ class FollowPlayerState : StateProtocol
     {
         if(path == nil || path!.isEmpty)
         {
+            enemy.SetVelocity(velocity: CGVector(dx: 0, dy: 0))
             return
         }
         
         if(currentNode >= path!.count)
         {
             path = nil
+            enemy.SetVelocity(velocity: CGVector(dx: 0, dy: 0))
             return
         }
         

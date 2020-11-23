@@ -38,11 +38,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var sceneCamera : SKCameraNode?
     var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:-9 * TileMapSettings.TileSize,y:-3 * TileMapSettings.TileSize))
-    var Enemy : EnemyEntity = EnemyEntity(position: CGPoint(x:5 * TileMapSettings.TileSize,y:5 * TileMapSettings.TileSize))
-    
-    var EnemySpawner : SpawnerEntity?
     var ProjectilePool = EntityPool<ProjectileEntity>(entity: ProjectileEntity(lifeTime: 5), Amount: 100)
+    var Spawners : [SpawnerEntity]?
     var Turrets : [TurretEntity]?
+    var ResearchFacility : ResearchEntity?
     
     var pathfinding : PathFinding?
     
@@ -53,14 +52,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     {
         sceneCamera = childNode(withName: "SKCameraNode") as? SKCameraNode
         addChild(Player)
-        addChild(Enemy)
         AddTileMapColliders()
         
-        EnemySpawner = SpawnerEntity(enemy: Enemy, spawnFrequency: 5,position: CGPoint(x:5 * TileMapSettings.TileSize,y:5 * TileMapSettings.TileSize))
+        Spawners = children.compactMap{ $0 as? SpawnerEntity}
         Turrets = children.compactMap{ $0 as? TurretEntity}
+        ResearchFacility = children.compactMap{ $0 as? ResearchEntity}.first
         
-        guard let tileMap = childNode(withName: "Colliders") as? SKTileMapNode
-            else { fatalError("Missing tile map for the colliders") }
         pathfinding = PathFinding(scene: self, nodesPerUnit: 1, unitSize: 256, unitColumns: 64, unitRows: 64)
         //pathfinding?.DrawNodes(scene: self)
         
@@ -121,11 +118,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(sceneCamera != nil)
         {
-            //Turrets?.forEach{ $0.Update(deltaTime: Float(dt), scene: self)}
+            Turrets?.forEach{ $0.Update(deltaTime: Float(dt), scene: self)}
+            Spawners?.forEach{ $0.Update(deltaTime: Float(dt), scene: self)}
             
             Player.Update(deltaTime: Float(dt), scene: self)
-            EnemySpawner?.Update(deltaTime: Float(dt), scene: self)
-            Enemy.Update(deltaTime: Float(dt), scene: self)
             ProjectilePool.Update(deltaTime: Float(dt), scene: self)
             sceneCamera?.position = Player.position
         }

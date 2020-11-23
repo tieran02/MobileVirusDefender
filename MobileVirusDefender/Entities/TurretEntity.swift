@@ -11,6 +11,7 @@ import SpriteKit
 class TurretEntity : BaseEntity
 {
     var lastFire : Float = 0.0
+    let maxDistance : CGFloat = CGFloat(TileMapSettings.TileSize) * 5
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
@@ -35,7 +36,7 @@ class TurretEntity : BaseEntity
     
     override func Update(deltaTime: Float, scene: GameScene)
     {
-        if(lastFire > 0.25){
+        if(lastFire > 1){
             if let enemy = getClosestEnemy(scene: scene)
             {
                 if let Projectile = scene.ProjectilePool.Retrieve()
@@ -58,23 +59,23 @@ class TurretEntity : BaseEntity
     func getClosestEnemy(scene : GameScene) -> EnemyEntity?
     {
         let enemies = scene.children.compactMap{ $0 as? EnemyEntity}
-        let playerPos = scene.Player.position
-        
         var closestEnemy : EnemyEntity?
         var closestDistance : CGFloat?
         for enemy in enemies
         {
-            let dist = CGVector(point: playerPos).distanceTo(CGVector(point: enemy.position))
+            let dist = CGVector(point: position).distanceTo(CGVector(point: enemy.position))
             
-            if closestEnemy == nil
+            if(dist > maxDistance)
+            {
+                continue
+            }
+            else if closestEnemy == nil
             {
                 closestEnemy = enemy
                 closestDistance = dist
                 continue
             }
-            
-
-            if dist < closestDistance!
+            else if dist < closestDistance!
             {
                 closestEnemy = enemy
                 closestDistance = dist
