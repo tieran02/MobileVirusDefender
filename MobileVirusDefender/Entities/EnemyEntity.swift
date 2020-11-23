@@ -18,6 +18,8 @@ class EnemyEntity : BaseEntity
     
     var StateMachine : FiniteStateMachine?
     
+    let AttackDamage : Float = 5
+    
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
         super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 100, position: position)
@@ -48,6 +50,11 @@ class EnemyEntity : BaseEntity
         }
         
         StateMachine?.Update(deltaTime: deltaTime, scene: scene)
+    }
+    
+    func Attack(entity : BaseEntity)
+    {
+        entity.Damage(amount: AttackDamage)
     }
 
     override func Clone() -> BaseEntity {

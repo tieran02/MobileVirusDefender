@@ -34,6 +34,7 @@
 		909868DF2562E8C100F369A5 /* WirePuzzleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909868DE2562E8C100F369A5 /* WirePuzzleScene.swift */; };
 		909868E42562EAD100F369A5 /* PathFinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909868E32562EAD100F369A5 /* PathFinding.swift */; };
 		90A5CF39256C30DB00E1622C /* MoveToFacility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A5CF38256C30DB00E1622C /* MoveToFacility.swift */; };
+		90A5CF3E256C3C7800E1622C /* AttackFaciltyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A5CF3D256C3C7800E1622C /* AttackFaciltyState.swift */; };
 		90CADB3B25502C75002315F8 /* JoystickUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CADB3A25502C75002315F8 /* JoystickUI.swift */; };
 		90CADB4025502C95002315F8 /* JoystickUI.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CADB3F25502C95002315F8 /* JoystickUI.xib */; };
 		90FCD27F25501F7800E1A166 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FCD27E25501F7800E1A166 /* Joystick.swift */; };
@@ -90,6 +91,7 @@
 		909868DE2562E8C100F369A5 /* WirePuzzleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WirePuzzleScene.swift; sourceTree = "<group>"; };
 		909868E32562EAD100F369A5 /* PathFinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathFinding.swift; sourceTree = "<group>"; };
 		90A5CF38256C30DB00E1622C /* MoveToFacility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToFacility.swift; sourceTree = "<group>"; };
+		90A5CF3D256C3C7800E1622C /* AttackFaciltyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackFaciltyState.swift; sourceTree = "<group>"; };
 		90CADB3A25502C75002315F8 /* JoystickUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickUI.swift; sourceTree = "<group>"; };
 		90CADB3F25502C95002315F8 /* JoystickUI.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JoystickUI.xib; sourceTree = "<group>"; };
 		90FCD27E25501F7800E1A166 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				900746CE256B01C2000FA19C /* FiniteStateMachine.swift */,
 				900746D3256B04D1000FA19C /* FollowPlayerState.swift */,
 				90A5CF38256C30DB00E1622C /* MoveToFacility.swift */,
+				90A5CF3D256C3C7800E1622C /* AttackFaciltyState.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				900746CF256B01C2000FA19C /* FiniteStateMachine.swift in Sources */,
 				90615C47256A6F5300463DC2 /* TextureExtension.swift in Sources */,
 				909868E42562EAD100F369A5 /* PathFinding.swift in Sources */,
+				90A5CF3E256C3C7800E1622C /* AttackFaciltyState.swift in Sources */,
 				90CADB3B25502C75002315F8 /* JoystickUI.swift in Sources */,
 				909868B92562DB5500F369A5 /* EntityPool.swift in Sources */,
 				903BEB8225601A27004DBBDD /* ProjectileEntity.swift in Sources */,
