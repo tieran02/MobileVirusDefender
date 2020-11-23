@@ -10,6 +10,7 @@ import SpriteKit
 
 class ResearchEntity : BaseEntity
 {
+    var healthbar : UIProgressView?
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
         super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 1000)
@@ -31,5 +32,19 @@ class ResearchEntity : BaseEntity
         Destructable = true
         physicsBody?.isDynamic = false
         physicsBody?.categoryBitMask = PhysicsMask.Turret.rawValue
+    }
+    
+    override func Damage(amount: Float)
+    {
+        super.Damage(amount: amount)
+        setHealthUI()
+    }
+    
+    func setHealthUI()
+    {
+        if let gameScene = scene as? GameScene
+        {
+            gameScene.viewController?.FacilityHealthBar?.progress = HealthPercentage()
+        }
     }
 }

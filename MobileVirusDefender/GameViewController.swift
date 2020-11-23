@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var LeftJoystick: JoystickUI!
     @IBOutlet weak var RightJoystick: JoystickUI!
     @IBOutlet weak var PuzzleView: UIView!
+    @IBOutlet weak var FacilityHealthBar: UIProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

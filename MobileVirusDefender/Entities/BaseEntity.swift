@@ -91,6 +91,11 @@ class BaseEntity : SKSpriteNode, Cloneable
         _currentHealth = min(CurrentHealth + amount, MaxHealth)
     }
     
+    func HealthPercentage() -> Float
+    {
+        return _currentHealth / MaxHealth
+    }
+    
     func MoveInDirection(direction : CGVector)
     {
         SetVelocity(velocity: direction * Speed)
