@@ -44,5 +44,5 @@ class ProgressBarSprite : SKNode
                 addChild(track)
                 addChild(bar)
             }
-        }
+    }
 }

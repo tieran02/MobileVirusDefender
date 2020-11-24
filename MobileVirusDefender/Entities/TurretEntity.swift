@@ -13,6 +13,11 @@ class TurretEntity : BaseEntity
     var lastFire : Float = 0.0
     let maxDistance : CGFloat = CGFloat(TileMapSettings.TileSize) * 5
     
+    var ShotsTillTimeout : Int?
+    var currentShots : Int = 0
+    
+    let arrow = ArrowSprite()
+    
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
         super.init(texture: SKTexture(imageNamed: "Turret0"), maxHealth: 200, position: position)
@@ -32,10 +37,27 @@ class TurretEntity : BaseEntity
         Destructable = false
         physicsBody?.isDynamic = false
         physicsBody?.categoryBitMask = PhysicsMask.Turret.rawValue
+        
+        //hide healthbar
+        HealthBar.isHidden = true
     }
     
     override func Update(deltaTime: Float, scene: GameScene)
     {
+        
+        if(ShotsTillTimeout == nil)
+        {
+            ShotsTillTimeout = Int.random(in: 1...10)
+            currentShots = 0
+            showDirectionalArrow(scene: scene, visible: false)
+        }
+        
+        if(currentShots >= ShotsTillTimeout!)
+        {
+            showDirectionalArrow(scene: scene, visible: true)
+            return
+        }
+        
         if(lastFire > 1){
             if let enemy = getClosestEnemy(scene: scene)
             {
@@ -48,6 +70,7 @@ class TurretEntity : BaseEntity
                     let mask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Enemy]).rawValue
                     Projectile.Fire(position: self.position,direction: direction,tileSize: 256,scene: scene, Category: category,Mask: mask)
                     lastFire = 0
+                    currentShots+=1
                 }
             }
         }
@@ -86,16 +109,33 @@ class TurretEntity : BaseEntity
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        print("touched")
-        if let gameScene = scene as? GameScene
+        if currentShots >= ShotsTillTimeout!, let gameScene = scene as? GameScene
         {
             //setup puzzle delegate
             gameScene.viewController?.loadPuzzleScene(sceneName: "WirePuzzleScene", completeDelegate: completePuzzle)
         }
     }
     
+    func showDirectionalArrow(scene : GameScene, visible : Bool)
+    {
+        if(arrow.parent == nil && visible)
+        {
+            scene.addChild(arrow)
+        }
+        
+        if(visible)
+        {
+            arrow.clampToView(scene: scene, scenePoint: position)
+        }
+        else
+        {
+            arrow.removeFromParent()
+        }
+
+    }
+    
     func completePuzzle(completed : Bool)
     {
-        
+        ShotsTillTimeout = nil
     }
 }

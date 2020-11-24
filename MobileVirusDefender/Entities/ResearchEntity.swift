@@ -32,6 +32,9 @@ class ResearchEntity : BaseEntity
         Destructable = true
         physicsBody?.isDynamic = false
         physicsBody?.categoryBitMask = PhysicsMask.Turret.rawValue
+        
+        //hide healthbar
+        HealthBar.isHidden = true
     }
     
     override func Damage(amount: Float)

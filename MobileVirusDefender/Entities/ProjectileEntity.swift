@@ -31,6 +31,12 @@ class ProjectileEntity : BaseEntity
         super.init(coder: aDecoder)
     }
     
+    override func setup() {
+        super.setup()
+        //hide healthbar
+        HealthBar.isHidden = true
+    }
+    
     func Fire(position : CGPoint, direction : CGVector, tileSize : CGFloat, scene : SKScene, Category : UInt32, Mask : UInt32)
     {
         physicsBody?.categoryBitMask = Category

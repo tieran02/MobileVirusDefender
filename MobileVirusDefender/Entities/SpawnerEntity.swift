@@ -36,6 +36,9 @@ class SpawnerEntity : BaseEntity
         
         Destructable = false
         physicsBody?.isDynamic = false
+        
+        //hide healthbar
+        HealthBar.isHidden = true
     }
     
     override func Update(deltaTime: Float, scene: GameScene)
