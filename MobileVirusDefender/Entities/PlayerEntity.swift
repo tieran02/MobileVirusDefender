@@ -46,7 +46,7 @@ class PlayerEntity : BaseEntity
         
         let Projectile = scene.ProjectilePool.Retrieve()
         let category = PhysicsMask.PlayerProjectile.rawValue
-        let mask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Enemy, PhysicsMask.Turret]).rawValue
+        let mask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Enemy, PhysicsMask.Turret, PhysicsMask.Walls]).rawValue
         Projectile?.Fire(position: self.position,direction: direction,tileSize: 256,scene: scene,Category: category,Mask: mask)
         print("Firing")
     }

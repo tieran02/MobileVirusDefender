@@ -49,6 +49,13 @@ class MoveToFacility : StateProtocol
             return
         }
         
+        //check if enemy is next to a gate is so attack it
+        if let gate = GetClosestGate(scene: scene, enemyPosition: Enemy.position)
+        {
+            stateMachine.PushState(state: AttackEntityState(target: gate), scene: scene)
+            return
+        }
+        
         //check if the player is within range
         if(Player != nil)
         {
@@ -70,6 +77,39 @@ class MoveToFacility : StateProtocol
         }
         
         MoveAlongPath(enemy: Enemy, pathfinding: scene.pathfinding!)
+    }
+    
+    func GetClosestGate(scene : GameScene, enemyPosition : CGPoint) -> GateEntity?
+    {
+        let gates = scene.children.compactMap{ $0 as? GateEntity}
+        var closestGate : GateEntity?
+        var closestDistance : CGFloat?
+        for gate in gates
+        {
+            if(gate.Open)
+            {
+                continue
+            }
+            
+            let dist = CGVector(point: gate.position).distanceTo(CGVector(point: enemyPosition))
+            
+            if(dist > CGFloat(TileMapSettings.TileSize))
+            {
+                continue
+            }
+            else if closestGate == nil
+            {
+                closestGate = gate
+                closestDistance = dist
+                continue
+            }
+            else if dist < closestDistance!
+            {
+                closestGate = gate
+                closestDistance = dist
+            }
+        }
+        return closestGate
     }
     
     func FindPathToFacility(enemy : EnemyEntity, facility: ResearchEntity, pathfinding : PathFinding)

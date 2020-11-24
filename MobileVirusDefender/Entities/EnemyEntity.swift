@@ -25,7 +25,7 @@ class EnemyEntity : BaseEntity
     {
         super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 100, position: position)
         physicsBody?.categoryBitMask = PhysicsMask.Enemy.rawValue;
-        physicsBody?.collisionBitMask = PhysicsMask.Envioment.rawValue
+        physicsBody?.collisionBitMask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Turret, PhysicsMask.Walls]).rawValue
         self.physicsBody?.linearDamping = 5
         Speed = 2
     }

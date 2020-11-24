@@ -104,6 +104,7 @@ class BaseEntity : SKSpriteNode, Cloneable
     func Heal(amount: Float)
     {
         _currentHealth = min(CurrentHealth + amount, MaxHealth)
+        HealthBar.Progress = CGFloat(HealthPercentage())
     }
     
     func HealthPercentage() -> Float
