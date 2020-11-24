@@ -16,13 +16,18 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var LeftJoystick: JoystickUI!
     @IBOutlet weak var RightJoystick: JoystickUI!
+    @IBOutlet weak var PuzzleViewContainer: UIView!
     @IBOutlet weak var PuzzleView: UIView!
     @IBOutlet weak var FacilityHealthBar: UIProgressView!
+    @IBAction func QuitButtonTouched(_ sender: Any) {
+        closePuzzleView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PuzzleView.isHidden = true
+        PuzzleViewContainer.isHidden = true
+        
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
         if let scene = GKScene(fileNamed: "GameScene") {
@@ -70,14 +75,16 @@ class GameViewController: UIViewController {
     
     func loadPuzzleScene(sceneName : String, completeDelegate: ((Bool) -> Void)? )
     {
-        if(self.PuzzleView.isHidden == false)
+        if(self.PuzzleViewContainer.isHidden == false)
         {
             return
         }
-        if(self.PuzzleView.superview == nil)
+        if(self.PuzzleViewContainer.superview == nil)
         {
-            view.addSubview(self.PuzzleView)
+            view.addSubview(self.PuzzleViewContainer)
         }
+        
+        PuzzleViewContainer.isHidden = false
         
         // Load 'WirePuzzleScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
@@ -113,7 +120,8 @@ class GameViewController: UIViewController {
         if let view = self.PuzzleView as! SKView?
         {
             if let puzzle = view.scene as? IPuzzle
-            {                
+            {
+                PuzzleViewContainer.isHidden = true
                 puzzle.exit(completed: false)
             }
         }

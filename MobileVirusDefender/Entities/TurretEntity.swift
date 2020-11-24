@@ -136,6 +136,8 @@ class TurretEntity : BaseEntity
     
     func completePuzzle(completed : Bool)
     {
-        ShotsTillTimeout = nil
+        if completed{
+            ShotsTillTimeout = nil
+        }
     }
 }

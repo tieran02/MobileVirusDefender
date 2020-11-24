@@ -28,7 +28,7 @@ class WirePuzzleScene: SKScene, IPuzzle
     override func didMove(to view: SKView)
     {
         //pause game
-        if let gameView = self.view?.superview as! SKView?
+        if let gameView = self.view?.superview?.superview as! SKView?
         {
             gameView.scene?.speed = 0
             gameView.scene?.physicsWorld.speed = 0
@@ -158,14 +158,14 @@ class WirePuzzleScene: SKScene, IPuzzle
     {
         onCompleteDelegate?(completed)
         
-        self.view?.isHidden = true
-        
         //unpause game
-        if let gameView = self.view?.superview as! SKView?
+        if let gameView = self.view?.superview?.superview as! SKView?
         {
             gameView.scene?.speed = 1
             gameView.scene?.physicsWorld.speed = 1
         }
+        
+        self.view?.superview?.isHidden = true
     }
     
     

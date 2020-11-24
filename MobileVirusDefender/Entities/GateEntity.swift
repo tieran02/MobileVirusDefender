@@ -53,9 +53,9 @@ class GateEntity : BaseEntity
         physicsBody?.categoryBitMask = PhysicsMask.Walls.rawValue
         
         //hide healthbar
-        //HealthBar.isHidden = true
+        HealthBar.isHidden = true
         
-        Open = false
+        Open = true
         
     }
     
@@ -75,7 +75,7 @@ class GateEntity : BaseEntity
         if open, let gameScene = scene as? GameScene
         {
             //setup puzzle delegate
-            gameScene.viewController?.loadPuzzleScene(sceneName: "WirePuzzleScene", completeDelegate: completePuzzle)
+            gameScene.viewController?.loadPuzzleScene(sceneName: "LeverPuzzleScene", completeDelegate: completePuzzle)
         }
     }
     
