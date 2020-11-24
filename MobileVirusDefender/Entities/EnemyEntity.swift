@@ -19,6 +19,7 @@ class EnemyEntity : BaseEntity
     var StateMachine : FiniteStateMachine?
     
     let AttackDamage : Float = 5
+    let AttackRange : CGFloat = CGFloat(TileMapSettings.TileSize)
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {

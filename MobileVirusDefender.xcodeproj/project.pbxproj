@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		900746CF256B01C2000FA19C /* FiniteStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900746CE256B01C2000FA19C /* FiniteStateMachine.swift */; };
 		900746D4256B04D1000FA19C /* FollowPlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900746D3256B04D1000FA19C /* FollowPlayerState.swift */; };
+		902E46EC256D0E8500414A8F /* ProgressBarSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E46EB256D0E8500414A8F /* ProgressBarSprite.swift */; };
 		903126B5254AC510006ECB27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903126B4254AC510006ECB27 /* AppDelegate.swift */; };
 		903126B7254AC510006ECB27 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 903126B6254AC510006ECB27 /* GameScene.sks */; };
 		903126BB254AC510006ECB27 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903126BA254AC510006ECB27 /* GameScene.swift */; };
@@ -34,10 +35,9 @@
 		909868DF2562E8C100F369A5 /* WirePuzzleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909868DE2562E8C100F369A5 /* WirePuzzleScene.swift */; };
 		909868E42562EAD100F369A5 /* PathFinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909868E32562EAD100F369A5 /* PathFinding.swift */; };
 		90A5CF39256C30DB00E1622C /* MoveToFacility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A5CF38256C30DB00E1622C /* MoveToFacility.swift */; };
-		90A5CF3E256C3C7800E1622C /* AttackFaciltyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A5CF3D256C3C7800E1622C /* AttackFaciltyState.swift */; };
+		90A5CF3E256C3C7800E1622C /* AttackEntityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A5CF3D256C3C7800E1622C /* AttackEntityState.swift */; };
 		90CADB3B25502C75002315F8 /* JoystickUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CADB3A25502C75002315F8 /* JoystickUI.swift */; };
 		90CADB4025502C95002315F8 /* JoystickUI.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CADB3F25502C95002315F8 /* JoystickUI.xib */; };
-		90FCD27F25501F7800E1A166 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FCD27E25501F7800E1A166 /* Joystick.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +60,7 @@
 /* Begin PBXFileReference section */
 		900746CE256B01C2000FA19C /* FiniteStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiniteStateMachine.swift; sourceTree = "<group>"; };
 		900746D3256B04D1000FA19C /* FollowPlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPlayerState.swift; sourceTree = "<group>"; };
+		902E46EB256D0E8500414A8F /* ProgressBarSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarSprite.swift; sourceTree = "<group>"; };
 		903126B1254AC510006ECB27 /* MobileVirusDefender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileVirusDefender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		903126B4254AC510006ECB27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		903126B6254AC510006ECB27 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -91,10 +92,9 @@
 		909868DE2562E8C100F369A5 /* WirePuzzleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WirePuzzleScene.swift; sourceTree = "<group>"; };
 		909868E32562EAD100F369A5 /* PathFinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathFinding.swift; sourceTree = "<group>"; };
 		90A5CF38256C30DB00E1622C /* MoveToFacility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToFacility.swift; sourceTree = "<group>"; };
-		90A5CF3D256C3C7800E1622C /* AttackFaciltyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackFaciltyState.swift; sourceTree = "<group>"; };
+		90A5CF3D256C3C7800E1622C /* AttackEntityState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackEntityState.swift; sourceTree = "<group>"; };
 		90CADB3A25502C75002315F8 /* JoystickUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickUI.swift; sourceTree = "<group>"; };
 		90CADB3F25502C95002315F8 /* JoystickUI.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JoystickUI.xib; sourceTree = "<group>"; };
-		90FCD27E25501F7800E1A166 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,7 +198,7 @@
 				900746CE256B01C2000FA19C /* FiniteStateMachine.swift */,
 				900746D3256B04D1000FA19C /* FollowPlayerState.swift */,
 				90A5CF38256C30DB00E1622C /* MoveToFacility.swift */,
-				90A5CF3D256C3C7800E1622C /* AttackFaciltyState.swift */,
+				90A5CF3D256C3C7800E1622C /* AttackEntityState.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -230,9 +230,9 @@
 		90FCD27D25501F5B00E1A166 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				90FCD27E25501F7800E1A166 /* Joystick.swift */,
 				90CADB3A25502C75002315F8 /* JoystickUI.swift */,
 				90CADB3F25502C95002315F8 /* JoystickUI.xib */,
+				902E46EB256D0E8500414A8F /* ProgressBarSprite.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -377,9 +377,9 @@
 				908DDEF8255FDDAF0035EAA2 /* BaseEntity.swift in Sources */,
 				90A5CF39256C30DB00E1622C /* MoveToFacility.swift in Sources */,
 				908DDEFD255FE7270035EAA2 /* PlayerEntity.swift in Sources */,
+				902E46EC256D0E8500414A8F /* ProgressBarSprite.swift in Sources */,
 				900746D4256B04D1000FA19C /* FollowPlayerState.swift in Sources */,
 				904612B9256C1E52006B0172 /* ResearchEntity.swift in Sources */,
-				90FCD27F25501F7800E1A166 /* Joystick.swift in Sources */,
 				90615C51256AF52B00463DC2 /* SpawnerEntity.swift in Sources */,
 				903EDEEF25613F2A00CCE478 /* EnemyEntity.swift in Sources */,
 				909868DF2562E8C100F369A5 /* WirePuzzleScene.swift in Sources */,
@@ -390,7 +390,7 @@
 				900746CF256B01C2000FA19C /* FiniteStateMachine.swift in Sources */,
 				90615C47256A6F5300463DC2 /* TextureExtension.swift in Sources */,
 				909868E42562EAD100F369A5 /* PathFinding.swift in Sources */,
-				90A5CF3E256C3C7800E1622C /* AttackFaciltyState.swift in Sources */,
+				90A5CF3E256C3C7800E1622C /* AttackEntityState.swift in Sources */,
 				90CADB3B25502C75002315F8 /* JoystickUI.swift in Sources */,
 				909868B92562DB5500F369A5 /* EntityPool.swift in Sources */,
 				903BEB8225601A27004DBBDD /* ProjectileEntity.swift in Sources */,

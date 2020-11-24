@@ -61,11 +61,11 @@ class PlayerEntity : BaseEntity
         let angleOffset : CGFloat = 0.0872665 //offset in radians to make the gun align with bullets
         if(leftDirection!.lengthSquared() > 0)
         {
-            zRotation = leftDirection!.angle() + angleOffset
+            Rotate(radians: leftDirection!.angle() + angleOffset)
         }
         if(rightDirection!.lengthSquared() > 0)
         {
-            zRotation = rightDirection!.angle() + angleOffset
+            Rotate(radians: rightDirection!.angle() + angleOffset)
         }
 
         MoveInDirection(direction: leftDirection!)

@@ -45,6 +45,11 @@ class FollowPlayerState : StateProtocol
             stateMachine.PopState(scene: scene)
             return
         }
+        else if distanceToPlayer <= Enemy.AttackRange
+        {
+            stateMachine.PushState(state: AttackEntityState(target: Player!), scene: scene)
+            return
+        }
         
         updatePathTime += deltaTime
         

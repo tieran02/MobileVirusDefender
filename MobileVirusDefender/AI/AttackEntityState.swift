@@ -8,20 +8,20 @@
 
 import SpriteKit
 
-class AttackFacilityState : StateProtocol
+class AttackEntityState : StateProtocol
 {
-    var facility : ResearchEntity?
-    var Player : PlayerEntity?
-    
+    let target : BaseEntity
+
     var attackTimer : Float = 0
     let AttackSpeed : Float = 2
     
+    init(target : BaseEntity)
+    {
+        self.target = target
+    }
+    
     func OnPush(Enemy: EnemyEntity, stateMachine: FiniteStateMachine, scene: GameScene)
     {
-        //find facility
-        facility = scene.ResearchFacility
-        Player = scene.Player
-        
         //enemy should be at the facility so set velocity to zero
         Enemy.SetVelocity(velocity: CGVector(dx: 0, dy: 0))
     }
@@ -33,14 +33,17 @@ class AttackFacilityState : StateProtocol
     
     func OnUpdate(Enemy: EnemyEntity, stateMachine: FiniteStateMachine, deltaTime: Float, scene: GameScene)
     {
-        if(facility == nil)
+        let distanceToTarget : CGFloat = CGVector(point: Enemy.position).distanceTo(CGVector(point:target.position))
+        
+        if(distanceToTarget > Enemy.AttackRange || target.CurrentHealth <= 0)
         {
+            stateMachine.PopState(scene: scene)
             return
         }
         
         if(attackTimer >= AttackSpeed)
         {
-            Enemy.Attack(entity: facility!)
+            Enemy.Attack(entity: target)
             attackTimer = 0
         }
         attackTimer += deltaTime

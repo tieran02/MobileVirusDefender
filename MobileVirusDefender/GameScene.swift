@@ -79,7 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         //setup puzzle delegate
-        viewController?.loadPuzzleScene(sceneName: "WirePuzzleScene", completeDelegate: completePuzzle)
+        //viewController?.loadPuzzleScene(sceneName: "WirePuzzleScene", completeDelegate: completePuzzle)
     }
     
     func didBegin(_ contact: SKPhysicsContact)

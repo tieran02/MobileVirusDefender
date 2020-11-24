@@ -42,10 +42,10 @@ class MoveToFacility : StateProtocol
         
         //check distance to facility, if within range then change to attack state
         let distanceToFacility = CGVector(point: Enemy.position).distanceTo(CGVector(point: facility!.position))
-        if distanceToFacility <= CGFloat(TileMapSettings.TileSize)
+        if distanceToFacility <= Enemy.AttackRange
         {
             //enemy is within 1 units of facility so attack facility
-            stateMachine.PushState(state: AttackFacilityState(), scene: scene)
+            stateMachine.PushState(state: AttackEntityState(target: facility!), scene: scene)
             return
         }
         

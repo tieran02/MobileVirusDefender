@@ -27,13 +27,18 @@ class BaseEntity : SKSpriteNode, Cloneable
     var ExternalForces : CGVector = CGVector(dx: 0, dy: 0)
     var Destructable : Bool = true
     
+    let HealthBar : ProgressBarSprite
+    
     init(texture:SKTexture, maxHealth : Float, position: CGPoint = CGPoint(x: 0,y: 0))
     {
         MaxHealth = maxHealth
         _currentHealth = maxHealth;
+        HealthBar = ProgressBarSprite(color: SKColor.red, size: CGSize(width: 128, height: 10))
+        
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
         self.position = position
         
+        addChild(HealthBar)
         setup()
     }
     
@@ -41,7 +46,10 @@ class BaseEntity : SKSpriteNode, Cloneable
     {
         MaxHealth = 100
         _currentHealth = MaxHealth
+        HealthBar = ProgressBarSprite(color: SKColor.red, size: CGSize(width: 128, height: 10))
         super.init(texture: texture,color: color,size: size)
+        
+        addChild(HealthBar)
         setup()
     }
     
@@ -49,8 +57,10 @@ class BaseEntity : SKSpriteNode, Cloneable
     {
         self.MaxHealth = aDecoder.decodeObject(forKey: "MaxHealth") as? Float ?? 100
         self._currentHealth = aDecoder.decodeObject(forKey: "CurrentHealth") as? Float ?? 100
+        self.HealthBar = ProgressBarSprite(color: SKColor.red, size: CGSize(width: 128, height: 10))
         super.init(coder: aDecoder)
         
+        addChild(HealthBar)
         setup()
     }
     
@@ -64,6 +74,10 @@ class BaseEntity : SKSpriteNode, Cloneable
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.usesPreciseCollisionDetection = true
+        
+        HealthBar.position = CGPoint(x: 0, y: (self.size.height / 2) + 10 )
+        HealthBar.zPosition = 200
+        HealthBar.Progress = 1
     }
     
     func Damage(amount: Float)
@@ -74,6 +88,7 @@ class BaseEntity : SKSpriteNode, Cloneable
         }
         
         _currentHealth = max(CurrentHealth - amount,0)
+        HealthBar.Progress = CGFloat(HealthPercentage())
         
         if _currentHealth <= 0
         {
@@ -117,6 +132,22 @@ class BaseEntity : SKSpriteNode, Cloneable
         if(distance > 10){
             MoveInDirection(direction: direction)
         }
+    }
+    
+    func Rotate(radians : CGFloat)
+    {
+        self.zRotation = radians
+        
+        let dx = size.width * 0.5
+        let dy = size.height  * 0.5
+        let radius :CGFloat = sqrt(dx*dx + dy*dy)
+        let x = cos(-self.zRotation + 1.5708)*radius
+        let y = sin(-self.zRotation + 1.5708)*radius
+        
+        
+        self.HealthBar.position = CGPoint(x: x, y: y)
+        self.HealthBar.zRotation = -radians
+        
     }
     
     func Update(deltaTime : Float, scene : GameScene)
