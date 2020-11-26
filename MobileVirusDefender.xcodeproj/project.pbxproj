@@ -30,6 +30,9 @@
 		90615C51256AF52B00463DC2 /* SpawnerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90615C50256AF52B00463DC2 /* SpawnerEntity.swift */; };
 		908DDEF8255FDDAF0035EAA2 /* BaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908DDEF7255FDDAF0035EAA2 /* BaseEntity.swift */; };
 		908DDEFD255FE7270035EAA2 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908DDEFC255FE7270035EAA2 /* PlayerEntity.swift */; };
+		90951518256FDDF8004F2308 /* TestTubePuzzleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90951517256FDDF8004F2308 /* TestTubePuzzleScene.swift */; };
+		9095151D256FDF0B004F2308 /* TestTubePuzzleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9095151C256FDF0B004F2308 /* TestTubePuzzleScene.sks */; };
+		9095154B256FFC55004F2308 /* FloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9095154A256FFC55004F2308 /* FloatExtensions.swift */; };
 		909868B92562DB5500F369A5 /* EntityPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909868B82562DB5500F369A5 /* EntityPool.swift */; };
 		909868D22562E7A200F369A5 /* WirePuzzleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 909868D12562E7A200F369A5 /* WirePuzzleScene.sks */; };
 		909868DF2562E8C100F369A5 /* WirePuzzleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909868DE2562E8C100F369A5 /* WirePuzzleScene.swift */; };
@@ -92,6 +95,9 @@
 		90615C50256AF52B00463DC2 /* SpawnerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnerEntity.swift; sourceTree = "<group>"; };
 		908DDEF7255FDDAF0035EAA2 /* BaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEntity.swift; sourceTree = "<group>"; };
 		908DDEFC255FE7270035EAA2 /* PlayerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
+		90951517256FDDF8004F2308 /* TestTubePuzzleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTubePuzzleScene.swift; sourceTree = "<group>"; };
+		9095151C256FDF0B004F2308 /* TestTubePuzzleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestTubePuzzleScene.sks; sourceTree = "<group>"; };
+		9095154A256FFC55004F2308 /* FloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtensions.swift; sourceTree = "<group>"; };
 		909868B82562DB5500F369A5 /* EntityPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityPool.swift; sourceTree = "<group>"; };
 		909868D12562E7A200F369A5 /* WirePuzzleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WirePuzzleScene.sks; sourceTree = "<group>"; };
 		909868DE2562E8C100F369A5 /* WirePuzzleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WirePuzzleScene.swift; sourceTree = "<group>"; };
@@ -198,6 +204,7 @@
 				903EDEE925612CC900CCE478 /* Util.swift */,
 				90615C46256A6F5300463DC2 /* TextureExtension.swift */,
 				90B87441256D4B99004B3711 /* SKNodeExtensions.swift */,
+				9095154A256FFC55004F2308 /* FloatExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -237,6 +244,8 @@
 				909868DE2562E8C100F369A5 /* WirePuzzleScene.swift */,
 				90B8744B256D6F3A004B3711 /* LeverPuzzleScene.swift */,
 				90B87450256D73A1004B3711 /* LeverPuzzleScene.sks */,
+				90951517256FDDF8004F2308 /* TestTubePuzzleScene.swift */,
+				9095151C256FDF0B004F2308 /* TestTubePuzzleScene.sks */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -358,6 +367,7 @@
 			files = (
 				903126C0254AC510006ECB27 /* Main.storyboard in Resources */,
 				90B87451256D73A1004B3711 /* LeverPuzzleScene.sks in Resources */,
+				9095151D256FDF0B004F2308 /* TestTubePuzzleScene.sks in Resources */,
 				903126B7254AC510006ECB27 /* GameScene.sks in Resources */,
 				90CADB4025502C95002315F8 /* JoystickUI.xib in Resources */,
 				909868D22562E7A200F369A5 /* WirePuzzleScene.sks in Resources */,
@@ -398,6 +408,7 @@
 				904612B9256C1E52006B0172 /* ResearchEntity.swift in Sources */,
 				90615C51256AF52B00463DC2 /* SpawnerEntity.swift in Sources */,
 				90B8744C256D6F3A004B3711 /* LeverPuzzleScene.swift in Sources */,
+				9095154B256FFC55004F2308 /* FloatExtensions.swift in Sources */,
 				903EDEEF25613F2A00CCE478 /* EnemyEntity.swift in Sources */,
 				909868DF2562E8C100F369A5 /* WirePuzzleScene.swift in Sources */,
 				903126BD254AC510006ECB27 /* GameViewController.swift in Sources */,
@@ -408,6 +419,7 @@
 				900746CF256B01C2000FA19C /* FiniteStateMachine.swift in Sources */,
 				90615C47256A6F5300463DC2 /* TextureExtension.swift in Sources */,
 				90B87447256D6212004B3711 /* GateEntity.swift in Sources */,
+				90951518256FDDF8004F2308 /* TestTubePuzzleScene.swift in Sources */,
 				90B8743D256D3D99004B3711 /* ArrowSprite.swift in Sources */,
 				909868E42562EAD100F369A5 /* PathFinding.swift in Sources */,
 				90A5CF3E256C3C7800E1622C /* AttackEntityState.swift in Sources */,

@@ -9,14 +9,26 @@ import SpriteKit
 
 public extension CGPoint
 {
-    public init(vector: CGVector) {
+    init(vector: CGVector) {
         self.init(x: vector.dx, y: vector.dy)
+    }
+    
+    func lerp(min: CGPoint, max: CGPoint) -> CGPoint {
+        let x = self.x.lerp(min: min.x, max: max.x)
+        let y = self.y.lerp(min: min.y, max: max.y)
+        return CGPoint(x: x, y: y)
+    }
+    
+    func ilerp(min: CGPoint, max: CGPoint) -> CGPoint {
+        let x = self.x.ilerp(min: min.x, max: max.x)
+        let y = self.y.ilerp(min: min.y, max: max.y)
+        return CGPoint(x: x, y: y)
     }
 }
 
 public extension CGVector
 {
-    public init(point: CGPoint) {
+    init(point: CGPoint) {
         self.init(dx: point.x, dy: point.y)
     }
     
