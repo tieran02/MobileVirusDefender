@@ -64,6 +64,11 @@ class EnemyEntity : BaseEntity
     
     override func Destroy()
     {
+        if let gamescene = scene as? GameScene
+        {
+            gamescene.ResearchPoint += 1
+        }
+        
         super.Destroy()
         StateMachine?.Clear()
     }
