@@ -45,6 +45,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var pathfinding : PathFinding?
     
+    private var researchPoints : Int = 0
+    var ResearchPoint : Int
+    {
+        get{ return researchPoints}
+        set
+        {
+            researchPoints = newValue
+            if let researchPointLabel = viewController?.ResearchPointLabel
+            {
+                researchPointLabel.text = String(self.researchPoints)
+            }
+        }
+    }
+    
     var motionManager = CMMotionManager()
     private var lastUpdateTime : TimeInterval = 0    
 

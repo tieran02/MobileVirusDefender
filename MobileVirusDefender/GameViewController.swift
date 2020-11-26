@@ -22,6 +22,7 @@ class GameViewController: UIViewController {
     @IBAction func QuitButtonTouched(_ sender: Any) {
         closePuzzleView()
     }
+    @IBOutlet weak var ResearchPointLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
