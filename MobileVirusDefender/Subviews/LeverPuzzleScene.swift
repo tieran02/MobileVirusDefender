@@ -13,6 +13,7 @@ class LeverPuzzleScene: SKScene, IPuzzle
     weak var viewController: GameViewController?
     var onCompleteDelegate: ((Bool) -> Void)?
     
+    let ResearchGain : Int = 3
     var startingPoint : CGPoint?
     var lever : SKNode?
     var activationPoint : SKNode?
@@ -23,8 +24,9 @@ class LeverPuzzleScene: SKScene, IPuzzle
         //pause game
         if let gameView = self.view?.superview?.superview as! SKView?
         {
-            gameView.scene?.speed = 0
-            gameView.scene?.physicsWorld.speed = 0
+            if let gameScene = gameView.scene as? GameScene{
+                gameScene.Pause(pause: true)
+            }
         }
 
         let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanFrom))
@@ -87,8 +89,16 @@ class LeverPuzzleScene: SKScene, IPuzzle
         //unpause game
         if let gameView = self.view?.superview?.superview as! SKView?
         {
-            gameView.scene?.speed = 1
-            gameView.scene?.physicsWorld.speed = 1
+            if let gameScene = gameView.scene as? GameScene{
+                gameScene.Pause(pause: false)
+            }
+            
+            if(completed)
+            {
+                if let gameScene = gameView.scene as? GameScene{
+                    gameScene.ResearchPoint += ResearchGain
+                }
+            }
         }
         
         self.view?.superview?.isHidden = true

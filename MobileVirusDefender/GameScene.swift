@@ -32,6 +32,7 @@ struct AccelerometerData
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     weak var viewController: GameViewController?
+    private var lastUpdateTime: TimeInterval = 0
     
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
@@ -60,7 +61,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     var motionManager = CMMotionManager()
-    private var lastUpdateTime : TimeInterval = 0    
 
     override func didMove(to view: SKView)
     {
@@ -92,9 +92,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        //setup puzzle delegate
-        //viewController?.loadPuzzleScene(sceneName: "WirePuzzleScene", completeDelegate: completePuzzle)
+        //setup notifcation for pause when app enters the background
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "Pause"), object: nil, queue: OperationQueue.main) { (paused) in
+            self.Pause(pause : paused.object as! Bool)
+        }
     }
+
+    
     
     func didBegin(_ contact: SKPhysicsContact)
     {
@@ -113,21 +117,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime
         }
         
         // Calculate time since last update
-        let dt = currentTime - self.lastUpdateTime
-        
-        if(scene?.speed == 0)
-        {
-            self.lastUpdateTime = currentTime
-            return
-        }
-         
+        let dt = Float(currentTime - self.lastUpdateTime)
+ 
         let leftDirection = viewController?.LeftJoystick.Direction
         let rightDirection = viewController?.RightJoystick.Direction
         
@@ -138,15 +135,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(sceneCamera != nil)
         {
-            Turrets?.forEach{ $0.Update(deltaTime: Float(dt), scene: self)}
-            Spawners?.forEach{ $0.Update(deltaTime: Float(dt), scene: self)}
-            
-            Player.Update(deltaTime: Float(dt), scene: self)
-            ProjectilePool.Update(deltaTime: Float(dt), scene: self)
+            Turrets?.forEach{ $0.Update(deltaTime: dt, scene: self)}
+            Spawners?.forEach{ $0.Update(deltaTime: dt, scene: self)}
+            ResearchFacility?.Update(deltaTime: dt, scene: self)
+            Player.Update(deltaTime: dt, scene: self)
+            ProjectilePool.Update(deltaTime: dt, scene: self)
             sceneCamera?.position = Player.position
         }
         
         self.lastUpdateTime = currentTime
+    }
+    
+    func Pause(pause : Bool)
+    {
+        isPaused = pause
+        lastUpdateTime = 0
     }
     
     func AddTileMapColliders()

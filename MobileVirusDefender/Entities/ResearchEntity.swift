@@ -12,9 +12,9 @@ class ResearchEntity : BaseEntity
 {
     var healthbar : UIProgressView?
     
-    let PointGain : Int = 5
-    let WaitTime : Double = 10
-    var researchPointAction : SKAction?
+    let PointGain : Int = 20
+    let WaitTime : Float = 10
+    var pointTimer : Float = 0
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
@@ -40,12 +40,18 @@ class ResearchEntity : BaseEntity
         
         //hide healthbar
         HealthBar.isHidden = true
+    }
+    
+    override func Update(deltaTime: Float, scene: GameScene)
+    {
+        super.Update(deltaTime: deltaTime, scene: scene)
         
-        if(researchPointAction == nil)
+        if(pointTimer >= WaitTime)
         {
-            researchPointAction = SKAction.repeatForever(SKAction.sequence([SKAction.run(increaseResearch), SKAction.wait(forDuration: WaitTime)]))
-            run(researchPointAction!)
+            increaseResearch()
+            pointTimer = 0
         }
+        pointTimer += deltaTime
     }
     
     override func Damage(amount: Float)
@@ -64,7 +70,7 @@ class ResearchEntity : BaseEntity
     
     func increaseResearch()
     {
-        if let scene = self.scene as? GameScene
+        if self.CurrentHealth > 0, let scene = self.scene as? GameScene
         {
             scene.ResearchPoint += PointGain
         }

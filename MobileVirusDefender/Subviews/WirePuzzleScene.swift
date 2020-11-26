@@ -21,6 +21,7 @@ class WirePuzzleScene: SKScene, IPuzzle
     weak var viewController: GameViewController?
     var onCompleteDelegate: ((Bool) -> Void)?
     
+    let ResearchGain : Int = 5
     var ConnectionPoints = [SKSpriteNode]()
     var tempLine = SKShapeNode()
     var lineDictionary = [String : SKShapeNode]()
@@ -30,8 +31,9 @@ class WirePuzzleScene: SKScene, IPuzzle
         //pause game
         if let gameView = self.view?.superview?.superview as! SKView?
         {
-            gameView.scene?.speed = 0
-            gameView.scene?.physicsWorld.speed = 0
+            if let gameScene = gameView.scene as? GameScene{
+                gameScene.Pause(pause: true)
+            }
         }
         
         AddConnectionFromName(withName: "LeftRedNode")
@@ -161,8 +163,16 @@ class WirePuzzleScene: SKScene, IPuzzle
         //unpause game
         if let gameView = self.view?.superview?.superview as! SKView?
         {
-            gameView.scene?.speed = 1
-            gameView.scene?.physicsWorld.speed = 1
+            if let gameScene = gameView.scene as? GameScene{
+                gameScene.Pause(pause: false)
+            }
+            
+            if(completed)
+            {
+                if let gameScene = gameView.scene as? GameScene{
+                    gameScene.ResearchPoint += ResearchGain
+                }
+            }
         }
         
         self.view?.superview?.isHidden = true

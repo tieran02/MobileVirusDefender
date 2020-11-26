@@ -109,7 +109,7 @@ class TurretEntity : BaseEntity
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        if currentShots >= ShotsTillTimeout!, let gameScene = scene as? GameScene
+        if currentShots >= ShotsTillTimeout ?? 0, let gameScene = scene as? GameScene
         {
             //setup puzzle delegate
             gameScene.viewController?.loadPuzzleScene(sceneName: "WirePuzzleScene", completeDelegate: completePuzzle)
