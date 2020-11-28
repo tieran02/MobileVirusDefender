@@ -22,7 +22,32 @@ class ArrowSprite : SKSpriteNode
         isUserInteractionEnabled = false
     }
     
-    func clampToView(scene : GameScene, scenePoint : CGPoint)
+    func clampToRadius(scene: SKScene, originPoint : CGPoint, targetPoint : CGPoint, radius : CGFloat)
+    {
+        //convet point to view
+        let orginView = CGVector(point: scene.convertPoint(toView: originPoint))
+        //convet target to view
+        let targetView = CGVector(point: scene.convertPoint(toView: targetPoint))
+        
+        //get distance
+        let distance = targetView.distanceTo(orginView)
+        
+        if(distance > radius)
+        {
+            var originToTarget = targetView - orginView
+            originToTarget *= radius / distance
+            
+            //convert back to scene space
+            let scenePosition = scene.convertPoint(fromView: CGPoint(vector: orginView + originToTarget))
+            self.position = scenePosition
+            
+            //get direction from 0,0
+            let angle = (CGVector(point:targetPoint) - CGVector(point: scenePosition)).normalized().angle()
+            zRotation = angle
+        }
+    }
+    
+    func clampToView(scene : SKScene, scenePoint : CGPoint, targetPoint : CGPoint)
     {
         //convet point to view
         let viewPoint = scene.convertPoint(toView: scenePoint)
@@ -37,7 +62,7 @@ class ArrowSprite : SKSpriteNode
         self.position = clampedScene
         
         //get direction from 0,0
-        let angle = (CGVector(point:clampedScene) - CGVector(point: scene.Player.position)).normalized().angle()
+        let angle = (CGVector(point:clampedScene) - CGVector(point: targetPoint)).normalized().angle()
         zRotation = angle
     }
 }

@@ -125,7 +125,7 @@ class TurretEntity : BaseEntity
         
         if(visible)
         {
-            arrow.clampToView(scene: scene, scenePoint: position)
+            arrow.clampToView(scene: scene, scenePoint: position, targetPoint: scene.Player.position)
         }
         else
         {

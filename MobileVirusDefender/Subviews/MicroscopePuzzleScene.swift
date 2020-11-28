@@ -29,6 +29,8 @@ class MicroscopePuzzleScene : SKScene, IPuzzle
     
     let minStartRoll : CGFloat = -2.0
     let maxStartRoll : CGFloat = -0.25
+    
+    let arrow = ArrowSprite()
  
     override func didMove(to view: SKView)
     {
@@ -55,6 +57,7 @@ class MicroscopePuzzleScene : SKScene, IPuzzle
             }
         }
         
+        
         //setup accelerometer
         if(motionManager.isAccelerometerAvailable)
         {
@@ -77,6 +80,15 @@ class MicroscopePuzzleScene : SKScene, IPuzzle
                 
                 let centerPos = CGPoint(x: self.virus!.frame.midX, y: self.virus!.frame.midY)
                 let centerRect = CGRect(x: -32, y: -32, width: 64, height: 64)
+               
+                
+                if(self.microscope!.contains(centerPos))
+                {
+                    self.showDirectionalArrow(visible: false)
+                }else{
+                    self.showDirectionalArrow(visible: true)
+                }
+                
                 //print("Center \(centerPos)")
                 if centerRect.contains(centerPos)
                 {
@@ -137,6 +149,24 @@ class MicroscopePuzzleScene : SKScene, IPuzzle
         let y = worldSize.height * normlisedRoll
         
         return CGPoint(x: x, y: y);
+    }
+    
+    func showDirectionalArrow(visible : Bool)
+    {
+        if(arrow.parent == nil && visible)
+        {
+            addChild(arrow)
+        }
+        
+        if(visible)
+        {
+            arrow.clampToRadius(scene: self, originPoint: microscope!.position, targetPoint: virus!.position, radius: (microscope!.frame.width*0.5)-128)
+        }
+        else
+        {
+            arrow.removeFromParent()
+        }
+
     }
     
 }
