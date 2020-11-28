@@ -101,8 +101,12 @@ class PlayerEntity : BaseEntity
             if dist <= CGFloat(TileMapSettings.TileSize) * 2.5
             {
                 //get direction from player to enemy
-                let direction = (CGVector(point: enemy.position) - CGVector(point: self.position)).normalized() * (20 * CGFloat(TileMapSettings.TileSize))
-                enemy.ExternalForces = direction
+                if enemy.StateMachine?.Peek() as? KnockbackState != nil
+                {
+                    //already knockedback/stunned
+                    continue
+                }
+                enemy.StateMachine?.PushState(state: KnockbackState(target: self), scene: scene)
             }
         }
     }
