@@ -17,13 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KMn-ZJ-4M3" customClass="JoystickUI" customModule="MobileVirusDefender" customModuleProvider="target">
-                                <rect key="frame" x="69" y="595" width="176" height="176"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSd-cS-mg9" customClass="JoystickUI" customModule="MobileVirusDefender" customModuleProvider="target">
+                                <rect key="frame" x="949" y="595" width="176" height="176"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NSd-cS-mg9" secondAttribute="height" multiplier="1:1" id="dP5-XH-uHh"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSd-cS-mg9" customClass="JoystickUI" customModule="MobileVirusDefender" customModuleProvider="target">
-                                <rect key="frame" x="862" y="595" width="176" height="176"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KMn-ZJ-4M3" customClass="JoystickUI" customModule="MobileVirusDefender" customModuleProvider="target">
+                                <rect key="frame" x="69" y="595" width="176" height="176"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KMn-ZJ-4M3" secondAttribute="height" multiplier="1:1" id="r0C-CB-6dS"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C9N-ED-cma">
                                 <rect key="frame" x="30" y="10" width="1134" height="100"/>
@@ -103,10 +109,16 @@
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="NSd-cS-mg9" secondAttribute="bottom" constant="43" id="3Mh-ac-csg"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="NSd-cS-mg9" secondAttribute="trailing" constant="69" id="4iz-tv-SuV"/>
+                            <constraint firstItem="KMn-ZJ-4M3" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="69" id="OXX-NJ-5jq"/>
+                            <constraint firstItem="NSd-cS-mg9" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="height" multiplier="8:37" id="P29-kz-uIh"/>
+                            <constraint firstItem="KMn-ZJ-4M3" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="height" multiplier="8:37" id="QVx-oa-uYc"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="Wch-nK-UFq" secondAttribute="trailing" constant="89" id="ReD-B7-5ev"/>
                             <constraint firstItem="Wch-nK-UFq" firstAttribute="height" secondItem="4qk-I5-YsI" secondAttribute="height" multiplier="0.720624" id="TKc-gY-rhv"/>
                             <constraint firstItem="Wch-nK-UFq" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="50" id="WLs-XM-xhy"/>
                             <constraint firstItem="Wch-nK-UFq" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="width" multiplier="0.839928" id="ef7-j7-gn6"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="KMn-ZJ-4M3" secondAttribute="bottom" constant="43" id="hxi-ax-r5M"/>
                             <constraint firstItem="C9N-ED-cma" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="rpB-KZ-nVS"/>
                             <constraint firstItem="C9N-ED-cma" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="width" multiplier="0.95" id="u9v-ej-zkk"/>
                             <constraint firstItem="C9N-ED-cma" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="10" id="uQ9-gI-yVk"/>
@@ -130,6 +142,9 @@
         <image name="ResearchIcon" width="96" height="96"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
