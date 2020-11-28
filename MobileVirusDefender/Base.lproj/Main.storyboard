@@ -91,6 +91,14 @@
                                     <constraint firstItem="3Bn-Nn-XMe" firstAttribute="centerY" secondItem="Wch-nK-UFq" secondAttribute="centerY" id="pwl-Cn-iOC"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSw-KK-FiV">
+                                <rect key="frame" x="574" y="679" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="TurretButtonPressed:" destination="BV1-FR-VrT" eventType="touchDown" id="og6-ej-S7V"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

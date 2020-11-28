@@ -40,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var sceneCamera : SKCameraNode?
     var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:-9 * TileMapSettings.TileSize,y:-3 * TileMapSettings.TileSize))
     var ProjectilePool = EntityPool<ProjectileEntity>(entity: ProjectileEntity(lifeTime: 5), Amount: 100)
+    var PlaceableTurretPool = EntityPool<PlaceableTurret>(entity: PlaceableTurret(), Amount: 10)
     var Spawners : [SpawnerEntity]?
     var Turrets : [TurretEntity]?
     var ResearchFacility : ResearchEntity?
@@ -135,6 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(sceneCamera != nil)
         {
+            PlaceableTurretPool.Update(deltaTime: dt, scene: self)
             Turrets?.forEach{ $0.Update(deltaTime: dt, scene: self)}
             Spawners?.forEach{ $0.Update(deltaTime: dt, scene: self)}
             ResearchFacility?.Update(deltaTime: dt, scene: self)
@@ -264,6 +266,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         return cgRects
+    }
+    
+    func PlaceTurretAtPlayerPosition()
+    {
+        let turret = PlaceableTurretPool.Retrieve()
+        
+        if(turret != nil)
+        {
+            turret!.position = Player.position
+            turret!.Reset()
+            addChild(turret!)
+        }
     }
     
     func completePuzzle(completed : Bool)

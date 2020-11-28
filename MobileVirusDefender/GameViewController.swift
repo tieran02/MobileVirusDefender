@@ -22,6 +22,10 @@ class GameViewController: UIViewController {
     @IBAction func QuitButtonTouched(_ sender: Any) {
         closePuzzleView()
     }
+    @IBAction func TurretButtonPressed(_ sender: Any)
+    {
+        self.currentGame?.PlaceTurretAtPlayerPosition()
+    }
     @IBOutlet weak var ResearchPointLabel: UILabel!
     
     override func viewDidLoad() {
@@ -34,8 +38,9 @@ class GameViewController: UIViewController {
         if let scene = GKScene(fileNamed: "GameScene") {
             
             // Get the SKScene from the loaded GKScene
-            if let sceneNode = scene.rootNode as! GameScene? {
-                
+            if let sceneNode = scene.rootNode as! GameScene?
+            {
+                currentGame = sceneNode
                 // Copy gameplay related content over to the scene
                 sceneNode.entities = scene.entities
                 sceneNode.graphs = scene.graphs

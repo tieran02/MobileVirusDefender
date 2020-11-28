@@ -22,6 +22,7 @@
 		903126E9254AD94A006ECB27 /* GroundTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 903126E8254AD94A006ECB27 /* GroundTileSet.sks */; };
 		9032480E2572550F008A59B7 /* MicroscopePuzzleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9032480D2572550F008A59B7 /* MicroscopePuzzleScene.swift */; };
 		90324813257256C3008A59B7 /* MicroscopePuzzleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 90324812257256C3008A59B7 /* MicroscopePuzzleScene.sks */; };
+		9032481825728C0D008A59B7 /* PlaceableTurret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9032481725728C0D008A59B7 /* PlaceableTurret.swift */; };
 		903BEB8225601A27004DBBDD /* ProjectileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903BEB8125601A27004DBBDD /* ProjectileEntity.swift */; };
 		903BEB8825602A17004DBBDD /* VectorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903BEB8725602A17004DBBDD /* VectorExtensions.swift */; };
 		903EDEEA25612CC900CCE478 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903EDEE925612CC900CCE478 /* Util.swift */; };
@@ -89,6 +90,7 @@
 		903126E8254AD94A006ECB27 /* GroundTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GroundTileSet.sks; sourceTree = "<group>"; };
 		9032480D2572550F008A59B7 /* MicroscopePuzzleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicroscopePuzzleScene.swift; sourceTree = "<group>"; };
 		90324812257256C3008A59B7 /* MicroscopePuzzleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MicroscopePuzzleScene.sks; sourceTree = "<group>"; };
+		9032481725728C0D008A59B7 /* PlaceableTurret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceableTurret.swift; sourceTree = "<group>"; };
 		903BEB8125601A27004DBBDD /* ProjectileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectileEntity.swift; sourceTree = "<group>"; };
 		903BEB8725602A17004DBBDD /* VectorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorExtensions.swift; sourceTree = "<group>"; };
 		903EDEE925612CC900CCE478 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				90615C50256AF52B00463DC2 /* SpawnerEntity.swift */,
 				904612B8256C1E52006B0172 /* ResearchEntity.swift */,
 				90B87446256D6212004B3711 /* GateEntity.swift */,
+				9032481725728C0D008A59B7 /* PlaceableTurret.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				909868DF2562E8C100F369A5 /* WirePuzzleScene.swift in Sources */,
 				903126BD254AC510006ECB27 /* GameViewController.swift in Sources */,
 				903126B5254AC510006ECB27 /* AppDelegate.swift in Sources */,
+				9032481825728C0D008A59B7 /* PlaceableTurret.swift in Sources */,
 				90B87442256D4B99004B3711 /* SKNodeExtensions.swift in Sources */,
 				9032480E2572550F008A59B7 /* MicroscopePuzzleScene.swift in Sources */,
 				903BEB8825602A17004DBBDD /* VectorExtensions.swift in Sources */,
