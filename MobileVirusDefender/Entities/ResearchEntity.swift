@@ -31,6 +31,7 @@ class ResearchEntity : BaseEntity
     override func setup()
     {
         super.setup()
+        self.isUserInteractionEnabled = true
         MaxHealth = 1000
         Heal(amount: MaxHealth)
         
@@ -54,6 +55,22 @@ class ResearchEntity : BaseEntity
         pointTimer += deltaTime
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        if let gameScene = scene as? GameScene
+        {
+            switch Int.random(in: 0...1) {
+            case 0:
+                gameScene.viewController?.loadPuzzleScene(sceneName: "TestTubePuzzleScene", completeDelegate: completePuzzle)
+                break
+            case 1:
+                gameScene.viewController?.loadPuzzleScene(sceneName: "MicroscopePuzzleScene", completeDelegate: completePuzzle)
+            default:
+                gameScene.viewController?.loadPuzzleScene(sceneName: "TestTubePuzzleScene", completeDelegate: completePuzzle)
+            }
+        }
+    }
+    
     override func Damage(amount: Float)
     {
         super.Damage(amount: amount)
@@ -73,6 +90,13 @@ class ResearchEntity : BaseEntity
         if self.CurrentHealth > 0, let scene = self.scene as? GameScene
         {
             scene.ResearchPoint += PointGain
+        }
+    }
+    
+    func completePuzzle(completed : Bool)
+    {
+        if completed{
+            Heal(amount: 0.05 * MaxHealth)
         }
     }
 }
