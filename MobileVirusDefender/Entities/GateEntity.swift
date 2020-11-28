@@ -75,7 +75,7 @@ class GateEntity : BaseEntity
         if open, let gameScene = scene as? GameScene
         {
             //setup puzzle delegate
-            gameScene.viewController?.loadPuzzleScene(sceneName: "TestTubePuzzleScene", completeDelegate: completePuzzle)
+            gameScene.viewController?.loadPuzzleScene(sceneName: "MicroscopePuzzleScene", completeDelegate: completePuzzle)
         }
     }
     

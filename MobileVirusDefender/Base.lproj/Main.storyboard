@@ -25,31 +25,6 @@
                                 <rect key="frame" x="862" y="595" width="176" height="176"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wch-nK-UFq">
-                                <rect key="frame" x="102" y="50" width="1003" height="586.5"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Bn-Nn-XMe" customClass="SKView">
-                                        <rect key="frame" x="14" y="15.5" width="975" height="555.5"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDo-q2-f8b">
-                                                <rect key="frame" x="910" y="0.0" width="65" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Quit"/>
-                                                <connections>
-                                                    <action selector="QuitButtonTouched:" destination="BV1-FR-VrT" eventType="touchDown" id="asy-5x-oU6"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                <constraints>
-                                    <constraint firstItem="3Bn-Nn-XMe" firstAttribute="width" secondItem="Wch-nK-UFq" secondAttribute="width" multiplier="0.972163" id="9Yf-zf-gRp"/>
-                                    <constraint firstItem="3Bn-Nn-XMe" firstAttribute="height" secondItem="Wch-nK-UFq" secondAttribute="height" multiplier="0.946755" id="GwA-l5-bHb"/>
-                                    <constraint firstItem="3Bn-Nn-XMe" firstAttribute="centerX" secondItem="Wch-nK-UFq" secondAttribute="centerX" id="QqS-dg-bBd"/>
-                                    <constraint firstItem="3Bn-Nn-XMe" firstAttribute="centerY" secondItem="Wch-nK-UFq" secondAttribute="centerY" id="pwl-Cn-iOC"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C9N-ED-cma">
                                 <rect key="frame" x="30" y="10" width="1134" height="100"/>
                                 <subviews>
@@ -84,6 +59,36 @@
                                     <constraint firstItem="XMQ-hg-CMK" firstAttribute="leading" secondItem="C9N-ED-cma" secondAttribute="leading" id="dtG-iO-1K3"/>
                                     <constraint firstItem="RJR-FR-kJX" firstAttribute="top" secondItem="C9N-ED-cma" secondAttribute="top" constant="10" id="kep-sO-1gv"/>
                                     <constraint firstItem="XMQ-hg-CMK" firstAttribute="width" secondItem="C9N-ED-cma" secondAttribute="width" multiplier="0.0595349" id="paF-Yv-xnp"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wch-nK-UFq">
+                                <rect key="frame" x="102" y="50" width="1003" height="586.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Bn-Nn-XMe" customClass="SKView">
+                                        <rect key="frame" x="14" y="15.5" width="975" height="555.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDo-q2-f8b">
+                                                <rect key="frame" x="937" y="8" width="30" height="30"/>
+                                                <state key="normal" title="Quit"/>
+                                                <connections>
+                                                    <action selector="QuitButtonTouched:" destination="BV1-FR-VrT" eventType="touchDown" id="asy-5x-oU6"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="iDo-q2-f8b" secondAttribute="trailing" constant="8" id="QFm-TW-Qu0"/>
+                                            <constraint firstItem="iDo-q2-f8b" firstAttribute="top" secondItem="3Bn-Nn-XMe" secondAttribute="top" constant="8" id="ZbA-LG-1Nx"/>
+                                            <constraint firstItem="iDo-q2-f8b" firstAttribute="height" secondItem="3Bn-Nn-XMe" secondAttribute="height" multiplier="0.0540054" id="mfb-rM-SSp"/>
+                                            <constraint firstItem="iDo-q2-f8b" firstAttribute="width" secondItem="3Bn-Nn-XMe" secondAttribute="width" multiplier="0.0307692" id="sKF-Mm-qE8"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <constraints>
+                                    <constraint firstItem="3Bn-Nn-XMe" firstAttribute="width" secondItem="Wch-nK-UFq" secondAttribute="width" multiplier="0.972163" id="9Yf-zf-gRp"/>
+                                    <constraint firstItem="3Bn-Nn-XMe" firstAttribute="height" secondItem="Wch-nK-UFq" secondAttribute="height" multiplier="0.946755" id="GwA-l5-bHb"/>
+                                    <constraint firstItem="3Bn-Nn-XMe" firstAttribute="centerX" secondItem="Wch-nK-UFq" secondAttribute="centerX" id="QqS-dg-bBd"/>
+                                    <constraint firstItem="3Bn-Nn-XMe" firstAttribute="centerY" secondItem="Wch-nK-UFq" secondAttribute="centerY" id="pwl-Cn-iOC"/>
                                 </constraints>
                             </view>
                         </subviews>

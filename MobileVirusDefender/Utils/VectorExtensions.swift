@@ -90,3 +90,19 @@ public func / (vector: CGVector, scalar: CGFloat) -> CGVector {
 public func /= (vector: inout CGVector, scalar: CGFloat) {
   vector = vector / scalar
 }
+
+public func + (left: CGPoint, right: CGPoint) -> CGPoint {
+  return CGPoint(x: left.x + right.x, y: left.y + right.y)
+}
+
+public func - (left: CGPoint, right: CGPoint) -> CGPoint {
+  return CGPoint(x: left.x - right.x, y: left.y - right.y)
+}
+
+public func * (left: CGPoint, scalar: CGFloat) -> CGPoint {
+  return CGPoint(x: left.x * scalar, y: left.y * scalar)
+}
+
+public func += (left: inout CGPoint, right: CGPoint) {
+  left = left + right
+}
