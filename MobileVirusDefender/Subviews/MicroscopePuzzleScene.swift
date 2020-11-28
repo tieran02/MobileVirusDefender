@@ -27,6 +27,8 @@ class MicroscopePuzzleScene : SKScene, IPuzzle
     let minRoll : CGFloat = -1.5
     let maxRoll : CGFloat = 1.5
     
+    let minStartYaw : CGFloat = -1.0
+    let maxStartYaw : CGFloat = 1.0
     let minStartRoll : CGFloat = -2.0
     let maxStartRoll : CGFloat = -0.25
     
@@ -57,7 +59,6 @@ class MicroscopePuzzleScene : SKScene, IPuzzle
             }
         }
         
-        
         //setup accelerometer
         if(motionManager.isAccelerometerAvailable)
         {
@@ -65,21 +66,16 @@ class MicroscopePuzzleScene : SKScene, IPuzzle
             motionManager.startDeviceMotionUpdates(to: .main)
             {
                 (data, error) in
-                guard let data = data, error == nil else
+                guard let data = data, error == nil, self.virus != nil, self.microscope != nil else
                 {
                     return
                 }
-
-                /*print("Pitch \(data.attitude.pitch)")
-                print("Yaw \(data.attitude.yaw)")
-                print("Roll \(data.attitude.roll)")
-                print("Point \(self.virusAttitudePoint)")*/
                 
                 let offset = self.attitudeToWorld(yaw: self.virusAttitudePoint.x, roll: self.virusAttitudePoint.y)
                 self.virus?.position = offset - self.attitudeToWorld(yaw: CGFloat(data.attitude.yaw), roll: CGFloat(data.attitude.roll))
                 
                 let centerPos = CGPoint(x: self.virus!.frame.midX, y: self.virus!.frame.midY)
-                let centerRect = CGRect(x: -32, y: -32, width: 64, height: 64)
+                let centerRect = CGRect(x: self.microscope!.position.x-32, y: self.microscope!.position.y-32, width: 64, height: 64)
                
                 
                 if(self.microscope!.contains(centerPos))
@@ -134,7 +130,7 @@ class MicroscopePuzzleScene : SKScene, IPuzzle
         let rand01 : CGFloat = CGFloat(arc4random()) / 0xFFFFFFFF
         
         
-        let x = rand01 * (maxYaw - minYaw) + minYaw
+        let x = rand01 * (maxStartYaw - minStartYaw) + minStartYaw
         let y = rand01 * (maxStartRoll - minStartRoll) + minStartRoll
         return CGPoint(x: x, y: y)
     }
