@@ -115,6 +115,7 @@ class ResearchEntity : BaseEntity
     {
         if completed{
             Heal(amount: 0.05 * MaxHealth)
+            setHealthUI()
         }
     }
     

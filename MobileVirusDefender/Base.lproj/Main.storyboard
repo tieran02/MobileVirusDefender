@@ -47,9 +47,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C9N-ED-cma">
                                 <rect key="frame" x="30" y="10" width="1134" height="100"/>
                                 <subviews>
-                                    <progressView opaque="NO" contentMode="scaleAspectFit" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="RJR-FR-kJX">
+                                    <progressView opaque="NO" contentMode="scaleAspectFit" verticalHuggingPriority="750" progress="1" progressImage="ProgressbarRed" trackImage="ProgressBackground" translatesAutoresizingMaskIntoConstraints="NO" id="RJR-FR-kJX">
                                         <rect key="frame" x="198.5" y="10" width="737" height="10"/>
-                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
                                         <color key="tintColor" systemColor="systemRedColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="foG-m1-2Ue"/>
@@ -272,15 +271,14 @@
         <image name="MediumBox" width="202" height="52"/>
         <image name="PauseButton" width="80" height="71"/>
         <image name="PlayButton" width="80" height="71"/>
+        <image name="ProgressBackground" width="1024" height="35"/>
+        <image name="ProgressbarRed" width="1024" height="35"/>
         <image name="Rectangle4_3" width="400" height="300"/>
         <image name="ResearchIcon" width="96" height="96"/>
         <image name="SmallMenu" width="303" height="149"/>
         <image name="red_cross" width="104" height="90"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
