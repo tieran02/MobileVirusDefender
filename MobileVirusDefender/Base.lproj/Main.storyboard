@@ -81,8 +81,8 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L40-P6-y8w">
-                                <rect key="frame" x="988.5" y="466.5" width="97" height="96.5"/>
-                                <state key="normal" image="shadedLight11"/>
+                                <rect key="frame" x="1002" y="492.5" width="70" height="70.5"/>
+                                <state key="normal" image="FireButton"/>
                                 <connections>
                                     <action selector="TurretButtonPressed:" destination="BV1-FR-VrT" eventType="touchDown" id="gjP-Hn-8oc"/>
                                 </connections>
@@ -130,12 +130,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Wch-nK-UFq" firstAttribute="height" secondItem="4qk-I5-YsI" secondAttribute="height" multiplier="0.720988" id="0Oe-Nt-MgF"/>
-                            <constraint firstItem="L40-P6-y8w" firstAttribute="height" secondItem="NSd-cS-mg9" secondAttribute="height" multiplier="0.548571" id="11h-Nc-dC8"/>
+                            <constraint firstItem="L40-P6-y8w" firstAttribute="height" secondItem="NSd-cS-mg9" secondAttribute="height" multiplier="0.4" id="11h-Nc-dC8"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="NSd-cS-mg9" secondAttribute="bottom" constant="43" id="3Mh-ac-csg"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="NSd-cS-mg9" secondAttribute="trailing" constant="69" id="4iz-tv-SuV"/>
                             <constraint firstItem="Wch-nK-UFq" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="8pN-Qn-3BQ"/>
                             <constraint firstItem="KMn-ZJ-4M3" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="69" id="OXX-NJ-5jq"/>
-                            <constraint firstItem="L40-P6-y8w" firstAttribute="width" secondItem="NSd-cS-mg9" secondAttribute="width" multiplier="0.548571" id="OZq-LX-TOy"/>
+                            <constraint firstItem="L40-P6-y8w" firstAttribute="width" secondItem="NSd-cS-mg9" secondAttribute="width" multiplier="0.4" id="OZq-LX-TOy"/>
                             <constraint firstItem="NSd-cS-mg9" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="height" multiplier="8:37" id="P29-kz-uIh"/>
                             <constraint firstItem="KMn-ZJ-4M3" firstAttribute="width" secondItem="4qk-I5-YsI" secondAttribute="height" multiplier="8:37" id="QVx-oa-uYc"/>
                             <constraint firstItem="NSd-cS-mg9" firstAttribute="top" secondItem="L40-P6-y8w" secondAttribute="bottom" constant="32" id="gNp-Yh-JD2"/>
@@ -162,10 +162,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="FireButton" width="100" height="96"/>
         <image name="Rectangle4_3" width="400" height="300"/>
         <image name="ResearchIcon" width="96" height="96"/>
         <image name="red_cross" width="104" height="90"/>
-        <image name="shadedLight11" width="160" height="160"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
