@@ -26,6 +26,12 @@ class GameViewController: UIViewController {
     {
         self.currentGame?.PlaceTurretAtPlayerPosition()
     }
+    @IBAction func PauseButtonPressed(_ sender: Any)
+    {
+        
+    }
+    @IBOutlet weak var PauseView: UIView!
+    
     @IBOutlet weak var ResearchPointLabel: UILabel!
     
     override func viewDidLoad() {
