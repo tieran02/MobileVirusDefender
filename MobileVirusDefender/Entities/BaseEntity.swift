@@ -20,6 +20,8 @@ class BaseEntity : SKSpriteNode, Cloneable
         case Idle
         case Running
         case Attacking
+        case Dying
+        case Stun
     }
     
     var _velocity : CGVector = CGVector(dx: 0, dy: 0)
@@ -110,7 +112,17 @@ class BaseEntity : SKSpriteNode, Cloneable
     
     func Destroy()
     {
-        self.removeFromParent()
+        if let action = AnimationStateDictionary[.Dying]
+        {
+            currentAnimationState = .Dying
+            run(SKAction.sequence([action, SKAction.run {
+                self.removeFromParent()
+            }]))
+        }
+        else
+        {
+            self.removeFromParent()
+        }
     }
     
     func Heal(amount: Float)
@@ -165,6 +177,12 @@ class BaseEntity : SKSpriteNode, Cloneable
     
     func Update(deltaTime : Float, scene : GameScene)
     {
+        if(currentAnimationState == AnimationState.Dying)
+        {
+            physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            return
+        }
+        
         ExternalForces *= CGFloat(pow(0.002, deltaTime))
         physicsBody?.velocity = Velocity + ExternalForces
         

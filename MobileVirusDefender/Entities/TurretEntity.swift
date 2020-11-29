@@ -88,7 +88,7 @@ class TurretEntity : BaseEntity
         {
             let dist = CGVector(point: position).distanceTo(CGVector(point: enemy.position))
             
-            if(dist > maxDistance)
+            if(dist > maxDistance || enemy.CurrentHealth <= 0)
             {
                 continue
             }

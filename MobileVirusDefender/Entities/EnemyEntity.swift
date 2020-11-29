@@ -44,7 +44,7 @@ class EnemyEntity : BaseEntity
         super.AnimationStateDictionary[AnimationState.Idle] = SKAction(named: "ZombieIdle")
         super.AnimationStateDictionary[AnimationState.Running] = SKAction(named: "ZombieRun")
         super.AnimationStateDictionary[AnimationState.Attacking] = SKAction(named: "ZombieAttack")
-        
+        super.AnimationStateDictionary[AnimationState.Dying] = SKAction(named: "ZombieDying")
     }
     
     override func Update(deltaTime: Float, scene: GameScene)

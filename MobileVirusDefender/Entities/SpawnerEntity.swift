@@ -52,6 +52,7 @@ class SpawnerEntity : BaseEntity
             {
                 enemy.position = self.position
                 enemy.Heal(amount: enemy.MaxHealth)
+                enemy.currentAnimationState = AnimationState.Idle
                 scene.addChild(enemy)
                 spawnTimer = 0
             }
