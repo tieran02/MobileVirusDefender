@@ -23,7 +23,7 @@ class EnemyEntity : BaseEntity
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
-        super.init(texture: SKTexture(imageNamed: "CenterPad"), maxHealth: 100, position: position)
+        super.init(texture: SKTexture(imageNamed: "Idle_000"), maxHealth: 100, position: position)
         physicsBody?.categoryBitMask = PhysicsMask.Enemy.rawValue;
         physicsBody?.collisionBitMask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Turret, PhysicsMask.Walls]).rawValue
         self.physicsBody?.linearDamping = 5
@@ -36,8 +36,14 @@ class EnemyEntity : BaseEntity
     
     override func setup()
     {
+        size = CGSize(width: texture!.size().width * 0.6, height: texture!.size().height * 0.6)
+        physicsBody = SKPhysicsBody(circleOfRadius: 64)
         super.setup()
         StateMachine = FiniteStateMachine(enemy: self)
+        
+        super.AnimationStateDictionary[AnimationState.Idle] = SKAction(named: "ZombieIdle")
+        super.AnimationStateDictionary[AnimationState.Running] = SKAction(named: "ZombieRun")
+        super.AnimationStateDictionary[AnimationState.Attacking] = SKAction(named: "ZombieAttack")
         
     }
     
@@ -50,11 +56,21 @@ class EnemyEntity : BaseEntity
             StateMachine?.PushState(state: MoveToFacility(), scene: scene)
         }
         
+        if(Velocity.dx >= 0)
+        {
+            xScale = 1
+        }
+        else
+        {
+            xScale = -1
+        }
+        
         StateMachine?.Update(deltaTime: deltaTime, scene: scene)
     }
     
     func Attack(entity : BaseEntity)
     {
+        runAnimationState(state: AnimationState.Attacking)
         entity.Damage(amount: AttackDamage)
     }
 

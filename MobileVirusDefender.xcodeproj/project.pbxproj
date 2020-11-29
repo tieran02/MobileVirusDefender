@@ -49,6 +49,7 @@
 		90B8744C256D6F3A004B3711 /* LeverPuzzleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B8744B256D6F3A004B3711 /* LeverPuzzleScene.swift */; };
 		90B87451256D73A1004B3711 /* LeverPuzzleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 90B87450256D73A1004B3711 /* LeverPuzzleScene.sks */; };
 		90BDDBF82573D51F003BD8E0 /* PlayerAnimations.sks in Resources */ = {isa = PBXBuildFile; fileRef = 90BDDBF72573D51F003BD8E0 /* PlayerAnimations.sks */; };
+		90BDDC002573EC32003BD8E0 /* ZombieAnimations.sks in Resources */ = {isa = PBXBuildFile; fileRef = 90BDDBFF2573EC32003BD8E0 /* ZombieAnimations.sks */; };
 		90CADB3B25502C75002315F8 /* JoystickUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CADB3A25502C75002315F8 /* JoystickUI.swift */; };
 		90CADB4025502C95002315F8 /* JoystickUI.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CADB3F25502C95002315F8 /* JoystickUI.xib */; };
 /* End PBXBuildFile section */
@@ -119,6 +120,7 @@
 		90B8744B256D6F3A004B3711 /* LeverPuzzleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeverPuzzleScene.swift; sourceTree = "<group>"; };
 		90B87450256D73A1004B3711 /* LeverPuzzleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LeverPuzzleScene.sks; sourceTree = "<group>"; };
 		90BDDBF72573D51F003BD8E0 /* PlayerAnimations.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerAnimations.sks; sourceTree = "<group>"; };
+		90BDDBFF2573EC32003BD8E0 /* ZombieAnimations.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ZombieAnimations.sks; sourceTree = "<group>"; };
 		90CADB3A25502C75002315F8 /* JoystickUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickUI.swift; sourceTree = "<group>"; };
 		90CADB3F25502C95002315F8 /* JoystickUI.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JoystickUI.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -269,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				90BDDBF72573D51F003BD8E0 /* PlayerAnimations.sks */,
+				90BDDBFF2573EC32003BD8E0 /* ZombieAnimations.sks */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				909868D22562E7A200F369A5 /* WirePuzzleScene.sks in Resources */,
 				90324813257256C3008A59B7 /* MicroscopePuzzleScene.sks in Resources */,
 				903126C2254AC511006ECB27 /* Assets.xcassets in Resources */,
+				90BDDC002573EC32003BD8E0 /* ZombieAnimations.sks in Resources */,
 				903126C5254AC511006ECB27 /* LaunchScreen.storyboard in Resources */,
 				903126E9254AD94A006ECB27 /* GroundTileSet.sks in Resources */,
 				90BDDBF82573D51F003BD8E0 /* PlayerAnimations.sks in Resources */,

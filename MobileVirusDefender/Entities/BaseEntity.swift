@@ -19,6 +19,7 @@ class BaseEntity : SKSpriteNode, Cloneable
     {
         case Idle
         case Running
+        case Attacking
     }
     
     var _velocity : CGVector = CGVector(dx: 0, dy: 0)
@@ -167,12 +168,19 @@ class BaseEntity : SKSpriteNode, Cloneable
         ExternalForces *= CGFloat(pow(0.002, deltaTime))
         physicsBody?.velocity = Velocity + ExternalForces
         
+        
+        //if no action is running then idle,
+        if !hasActions()
+        {
+            runAnimationState(state: AnimationState.Idle)
+        }
+        
         //set animation
-        if Velocity.lengthSquared() != 0 && (currentAnimationState != AnimationState.Running || shouldReverseAnimation != reverseAnimation)
+        if Velocity.lengthSquared() != 0 && (currentAnimationState == AnimationState.Idle || shouldReverseAnimation != reverseAnimation)
         {
             runAnimationState(state: AnimationState.Running)
         }
-        else if Velocity.lengthSquared() == 0 && (currentAnimationState != AnimationState.Idle || shouldReverseAnimation != reverseAnimation)
+        else if Velocity.lengthSquared() == 0 && (currentAnimationState == AnimationState.Running || shouldReverseAnimation != reverseAnimation)
         {
             runAnimationState(state: AnimationState.Idle)
         }
