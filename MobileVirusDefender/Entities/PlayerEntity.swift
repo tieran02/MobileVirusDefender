@@ -17,7 +17,7 @@ class PlayerEntity : BaseEntity
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
-        super.init(texture: SKTexture(imageNamed: "Player"), maxHealth: 100, position: position)
+        super.init(texture: SKTexture(imageNamed: "Idle - Rifle_000"), maxHealth: 100, position: position)
         Speed = 5
         setup()
     }
@@ -31,10 +31,15 @@ class PlayerEntity : BaseEntity
     
     override func setup()
     {
+        size = CGSize(width: texture!.size().width * 0.4, height: texture!.size().height * 0.4)
+        
         super.setup()
         physicsBody?.categoryBitMask = PhysicsMask.Player.rawValue;
         physicsBody?.collisionBitMask = PhysicsMask.PlayerMask.rawValue
         physicsBody?.contactTestBitMask = PhysicsMask.PlayerMask.rawValue
+        
+        super.AnimationStateDictionary[AnimationState.Idle] = SKAction(named: "PlayerIdle")
+        super.AnimationStateDictionary[AnimationState.Running] = SKAction(named: "PlayerRun")
     }
     	
     func Fire(direction : CGVector, scene : GameScene)
@@ -53,21 +58,35 @@ class PlayerEntity : BaseEntity
     
     override func Update(deltaTime: Float, scene : GameScene)
     {
-        super.Update(deltaTime: deltaTime, scene: scene)
-        
         let leftDirection = scene.viewController?.LeftJoystick.Direction
         let rightDirection = scene.viewController?.RightJoystick.Direction
+        if(leftDirection!.dx >= 0)
+        {
+            xScale = 1
+        }
+        else
+        {
+            xScale = -1
+        }
         
-        let angleOffset : CGFloat = 0.0872665 //offset in radians to make the gun align with bullets
-        if(leftDirection!.lengthSquared() > 0)
+        if(rightDirection!.dx > 0)
         {
-            Rotate(radians: leftDirection!.angle() + angleOffset)
+            xScale = 1
         }
-        if(rightDirection!.lengthSquared() > 0)
+        else if(rightDirection!.dx < 0)
         {
-            Rotate(radians: rightDirection!.angle() + angleOffset)
+            xScale = -1
         }
-
+        
+        super.shouldReverseAnimation = false
+        if(leftDirection!.dx > 0 && rightDirection!.dx < 0 || leftDirection!.dx < 0 && rightDirection!.dx > 0 )
+        {
+            super.shouldReverseAnimation = true
+        }
+        
+        
+        super.Update(deltaTime: deltaTime, scene: scene)
+        
         MoveInDirection(direction: leftDirection!)
         
         if(lastFire > 0.25){
@@ -88,7 +107,6 @@ class PlayerEntity : BaseEntity
         }
     }
 
-    
     func PushbackEnemies(radius : Float, scene : GameScene)
     {
         print("Push back infected")
@@ -138,7 +156,7 @@ class PlayerEntity : BaseEntity
         }
         return closestEnemy
     }
-    
+        
     override func Clone() -> BaseEntity {
         return PlayerEntity(position: position)
     }

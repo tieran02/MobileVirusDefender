@@ -15,6 +15,12 @@ protocol Cloneable {
 
 class BaseEntity : SKSpriteNode, Cloneable
 {
+    enum AnimationState
+    {
+        case Idle
+        case Running
+    }
+    
     var _velocity : CGVector = CGVector(dx: 0, dy: 0)
     var Velocity : CGVector { get{ return _velocity } }
     
@@ -28,6 +34,11 @@ class BaseEntity : SKSpriteNode, Cloneable
     var Destructable : Bool = true
     
     let HealthBar : ProgressBarSprite
+    
+    var AnimationStateDictionary = [AnimationState : SKAction]()
+    var currentAnimationState : AnimationState = AnimationState.Idle
+    var shouldReverseAnimation : Bool = false
+    private var reverseAnimation : Bool = false
     
     init(texture:SKTexture, maxHealth : Float, position: CGPoint = CGPoint(x: 0,y: 0))
     {
@@ -68,7 +79,7 @@ class BaseEntity : SKSpriteNode, Cloneable
     {
         if(self.physicsBody == nil && texture != nil)
         {
-            self.physicsBody = SKPhysicsBody(texture: self.texture!, size: texture!.size())
+            self.physicsBody = SKPhysicsBody(texture: self.texture!, size: size)
         }
         
         self.physicsBody?.affectedByGravity = false
@@ -155,6 +166,33 @@ class BaseEntity : SKSpriteNode, Cloneable
     {
         ExternalForces *= CGFloat(pow(0.002, deltaTime))
         physicsBody?.velocity = Velocity + ExternalForces
+        
+        //set animation
+        if Velocity.lengthSquared() != 0 && (currentAnimationState != AnimationState.Running || shouldReverseAnimation != reverseAnimation)
+        {
+            runAnimationState(state: AnimationState.Running)
+        }
+        else if Velocity.lengthSquared() == 0 && (currentAnimationState != AnimationState.Idle || shouldReverseAnimation != reverseAnimation)
+        {
+            runAnimationState(state: AnimationState.Idle)
+        }
+    }
+    
+    func runAnimationState(state : AnimationState)
+    {
+        if let action = AnimationStateDictionary[state]
+        {
+            self.removeAllActions()
+            if(shouldReverseAnimation)
+            {
+                self.run(action.reversed())
+            }
+            else{
+                self.run(action)
+            }
+            currentAnimationState = state
+            reverseAnimation = shouldReverseAnimation
+        }
     }
     
     func collisionBegan(with: SKPhysicsBody)
