@@ -50,6 +50,7 @@
 		90B87451256D73A1004B3711 /* LeverPuzzleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 90B87450256D73A1004B3711 /* LeverPuzzleScene.sks */; };
 		90BDDBF82573D51F003BD8E0 /* PlayerAnimations.sks in Resources */ = {isa = PBXBuildFile; fileRef = 90BDDBF72573D51F003BD8E0 /* PlayerAnimations.sks */; };
 		90BDDC002573EC32003BD8E0 /* ZombieAnimations.sks in Resources */ = {isa = PBXBuildFile; fileRef = 90BDDBFF2573EC32003BD8E0 /* ZombieAnimations.sks */; };
+		90BDDC0525740643003BD8E0 /* AIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BDDC0425740643003BD8E0 /* AIHelpers.swift */; };
 		90CADB3B25502C75002315F8 /* JoystickUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CADB3A25502C75002315F8 /* JoystickUI.swift */; };
 		90CADB4025502C95002315F8 /* JoystickUI.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CADB3F25502C95002315F8 /* JoystickUI.xib */; };
 /* End PBXBuildFile section */
@@ -121,6 +122,7 @@
 		90B87450256D73A1004B3711 /* LeverPuzzleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LeverPuzzleScene.sks; sourceTree = "<group>"; };
 		90BDDBF72573D51F003BD8E0 /* PlayerAnimations.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerAnimations.sks; sourceTree = "<group>"; };
 		90BDDBFF2573EC32003BD8E0 /* ZombieAnimations.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ZombieAnimations.sks; sourceTree = "<group>"; };
+		90BDDC0425740643003BD8E0 /* AIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHelpers.swift; sourceTree = "<group>"; };
 		90CADB3A25502C75002315F8 /* JoystickUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickUI.swift; sourceTree = "<group>"; };
 		90CADB3F25502C95002315F8 /* JoystickUI.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JoystickUI.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,6 +233,7 @@
 				90A5CF38256C30DB00E1622C /* MoveToFacility.swift */,
 				90A5CF3D256C3C7800E1622C /* AttackEntityState.swift */,
 				9032481C2572971F008A59B7 /* KnockbackState.swift */,
+				90BDDC0425740643003BD8E0 /* AIHelpers.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				90A5CF39256C30DB00E1622C /* MoveToFacility.swift in Sources */,
 				908DDEFD255FE7270035EAA2 /* PlayerEntity.swift in Sources */,
 				902E46EC256D0E8500414A8F /* ProgressBarSprite.swift in Sources */,
+				90BDDC0525740643003BD8E0 /* AIHelpers.swift in Sources */,
 				900746D4256B04D1000FA19C /* FollowPlayerState.swift in Sources */,
 				904612B9256C1E52006B0172 /* ResearchEntity.swift in Sources */,
 				90615C51256AF52B00463DC2 /* SpawnerEntity.swift in Sources */,

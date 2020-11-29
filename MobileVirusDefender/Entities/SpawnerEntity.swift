@@ -51,8 +51,7 @@ class SpawnerEntity : BaseEntity
             if let enemy = enemyPool.Retrieve()
             {
                 enemy.position = self.position
-                enemy.Heal(amount: enemy.MaxHealth)
-                enemy.currentAnimationState = AnimationState.Idle
+                enemy.Reset()
                 scene.addChild(enemy)
                 spawnTimer = 0
             }

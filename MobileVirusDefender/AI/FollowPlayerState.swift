@@ -38,6 +38,14 @@ class FollowPlayerState : StateProtocol
             return
         }
         
+        
+        //enemies priotise gates over the player
+        if let gate = AIHelpers.GetGateWithinDistance(scene: scene, enemyPosition: Enemy.position)
+        {
+            stateMachine.PushState(state: AttackEntityState(target: gate), scene: scene)
+            return
+        }
+        
         let distanceToPlayer = CGVector(point: Enemy.position).distanceTo(CGVector(point: Player!.position))
         if distanceToPlayer > CGFloat(TileMapSettings.TileSize * 5)
         {

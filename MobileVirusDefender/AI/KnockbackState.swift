@@ -35,6 +35,9 @@ class KnockbackState : StateProtocol
     func OnPop(Enemy: EnemyEntity, stateMachine: FiniteStateMachine, scene: GameScene)
     {
         Enemy.SetVelocity(velocity: CGVector(dx: 0, dy: 0))
+        
+        //knockback clears what the AI was doing and goes back to move to facility
+        
     }
     
     func OnUpdate(Enemy: EnemyEntity, stateMachine: FiniteStateMachine, deltaTime: Float, scene: GameScene)

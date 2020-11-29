@@ -85,7 +85,7 @@ class PlaceableTurret : BaseEntity
         {
             let dist = CGVector(point: position).distanceTo(CGVector(point: enemy.position))
             
-            if(dist > maxDistance)
+            if(enemy.CurrentHealth <= 0 || dist > maxDistance)
             {
                 continue
             }

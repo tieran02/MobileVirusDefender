@@ -10,12 +10,6 @@ import SpriteKit
 
 class EnemyEntity : BaseEntity
 {
-    var path : [Node]?
-    var currentNode = 0
-    var updatePathTime : Float = 0
-    let pathfindingUpdatePeriod : Float = 0.25
-    var currentTarget : CGPoint?
-    
     var StateMachine : FiniteStateMachine?
     
     let AttackDamage : Float = 5
@@ -72,6 +66,12 @@ class EnemyEntity : BaseEntity
     {
         runAnimationState(state: AnimationState.Attacking)
         entity.Damage(amount: AttackDamage)
+    }
+    
+    func Reset()
+    {
+        Heal(amount: MaxHealth)
+        runAnimationState(state: AnimationState.Idle)
     }
 
     override func Clone() -> BaseEntity {
