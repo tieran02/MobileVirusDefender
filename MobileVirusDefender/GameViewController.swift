@@ -28,7 +28,18 @@ class GameViewController: UIViewController {
     }
     @IBAction func PauseButtonPressed(_ sender: Any)
     {
-        
+        if(PauseView.isHidden){
+            pauseGame(paused: true)
+        }
+        else{
+            pauseGame(paused: false)
+        }
+    }
+    @IBAction func ContinueButtonPressed(_ sender: Any)
+    {
+        pauseGame(paused: false)
+    }
+    @IBAction func ExitButtonPressed(_ sender: Any) {
     }
     @IBOutlet weak var PauseView: UIView!
     
@@ -38,6 +49,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         PuzzleViewContainer.isHidden = true
+        PauseView.isHidden = true
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
@@ -125,6 +137,24 @@ class GameViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func pauseGame(paused : Bool)
+    {
+        if(paused)
+        {
+            currentGame?.Pause(pause: true)
+            PauseView.isHidden = false
+        }
+        else{
+            currentGame?.Pause(pause: false)
+            PauseView.isHidden = true
+        }
+    }
+    
+    func exitToMenu()
+    {
+        //TODO
     }
     
     func closePuzzleView()
