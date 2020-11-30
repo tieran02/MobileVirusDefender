@@ -29,6 +29,7 @@
 		903EDEEA25612CC900CCE478 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903EDEE925612CC900CCE478 /* Util.swift */; };
 		903EDEEF25613F2A00CCE478 /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903EDEEE25613F2A00CCE478 /* EnemyEntity.swift */; };
 		904612B9256C1E52006B0172 /* ResearchEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904612B8256C1E52006B0172 /* ResearchEntity.swift */; };
+		90577D2D25751ADF003502E8 /* DesignAbleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90577D2C25751ADF003502E8 /* DesignAbleSlider.swift */; };
 		90615C47256A6F5300463DC2 /* TextureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90615C46256A6F5300463DC2 /* TextureExtension.swift */; };
 		90615C4C256AB45B00463DC2 /* TurretEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90615C4B256AB45B00463DC2 /* TurretEntity.swift */; };
 		90615C51256AF52B00463DC2 /* SpawnerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90615C50256AF52B00463DC2 /* SpawnerEntity.swift */; };
@@ -101,6 +102,7 @@
 		903EDEE925612CC900CCE478 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		903EDEEE25613F2A00CCE478 /* EnemyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEntity.swift; sourceTree = "<group>"; };
 		904612B8256C1E52006B0172 /* ResearchEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchEntity.swift; sourceTree = "<group>"; };
+		90577D2C25751ADF003502E8 /* DesignAbleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignAbleSlider.swift; sourceTree = "<group>"; };
 		90615C46256A6F5300463DC2 /* TextureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureExtension.swift; sourceTree = "<group>"; };
 		90615C4B256AB45B00463DC2 /* TurretEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurretEntity.swift; sourceTree = "<group>"; };
 		90615C50256AF52B00463DC2 /* SpawnerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnerEntity.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				90CADB3F25502C95002315F8 /* JoystickUI.xib */,
 				902E46EB256D0E8500414A8F /* ProgressBarSprite.swift */,
 				90B8743C256D3D99004B3711 /* ArrowSprite.swift */,
+				90577D2C25751ADF003502E8 /* DesignAbleSlider.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				903126B5254AC510006ECB27 /* AppDelegate.swift in Sources */,
 				9032481825728C0D008A59B7 /* PlaceableTurret.swift in Sources */,
 				90B87442256D4B99004B3711 /* SKNodeExtensions.swift in Sources */,
+				90577D2D25751ADF003502E8 /* DesignAbleSlider.swift in Sources */,
 				9032480E2572550F008A59B7 /* MicroscopePuzzleScene.swift in Sources */,
 				903BEB8825602A17004DBBDD /* VectorExtensions.swift in Sources */,
 				903EDEEA25612CC900CCE478 /* Util.swift in Sources */,
