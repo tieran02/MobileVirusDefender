@@ -30,6 +30,10 @@
 		903EDEEF25613F2A00CCE478 /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903EDEEE25613F2A00CCE478 /* EnemyEntity.swift */; };
 		904612B9256C1E52006B0172 /* ResearchEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904612B8256C1E52006B0172 /* ResearchEntity.swift */; };
 		90577D2D25751ADF003502E8 /* DesignAbleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90577D2C25751ADF003502E8 /* DesignAbleSlider.swift */; };
+		90577D3225754E3F003502E8 /* GlobalSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90577D3125754E3F003502E8 /* GlobalSoundManager.swift */; };
+		90577D37257553F0003502E8 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90577D36257553F0003502E8 /* MainMenuViewController.swift */; };
+		90577D3D2575549F003502E8 /* background.wav in Resources */ = {isa = PBXBuildFile; fileRef = 90577D3C2575549F003502E8 /* background.wav */; };
+		90577D45257559F6003502E8 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90577D44257559F6003502E8 /* OptionsViewController.swift */; };
 		90615C47256A6F5300463DC2 /* TextureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90615C46256A6F5300463DC2 /* TextureExtension.swift */; };
 		90615C4C256AB45B00463DC2 /* TurretEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90615C4B256AB45B00463DC2 /* TurretEntity.swift */; };
 		90615C51256AF52B00463DC2 /* SpawnerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90615C50256AF52B00463DC2 /* SpawnerEntity.swift */; };
@@ -103,6 +107,10 @@
 		903EDEEE25613F2A00CCE478 /* EnemyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEntity.swift; sourceTree = "<group>"; };
 		904612B8256C1E52006B0172 /* ResearchEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchEntity.swift; sourceTree = "<group>"; };
 		90577D2C25751ADF003502E8 /* DesignAbleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignAbleSlider.swift; sourceTree = "<group>"; };
+		90577D3125754E3F003502E8 /* GlobalSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSoundManager.swift; sourceTree = "<group>"; };
+		90577D36257553F0003502E8 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		90577D3C2575549F003502E8 /* background.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = background.wav; sourceTree = "<group>"; };
+		90577D44257559F6003502E8 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		90615C46256A6F5300463DC2 /* TextureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureExtension.swift; sourceTree = "<group>"; };
 		90615C4B256AB45B00463DC2 /* TurretEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurretEntity.swift; sourceTree = "<group>"; };
 		90615C50256AF52B00463DC2 /* SpawnerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnerEntity.swift; sourceTree = "<group>"; };
@@ -157,6 +165,7 @@
 		903126A8254AC510006ECB27 = {
 			isa = PBXGroup;
 			children = (
+				90577D3B25755485003502E8 /* Sounds */,
 				903126B3254AC510006ECB27 /* MobileVirusDefender */,
 				903126CE254AC512006ECB27 /* MobileVirusDefenderTests */,
 				903126D9254AC512006ECB27 /* MobileVirusDefenderUITests */,
@@ -183,10 +192,10 @@
 				903BEB86256029F8004DBBDD /* Utils */,
 				908DDEF6255FDD810035EAA2 /* Entities */,
 				90FCD27D25501F5B00E1A166 /* UI */,
+				90577D4925755A01003502E8 /* ViewControllers */,
 				903126B4254AC510006ECB27 /* AppDelegate.swift */,
 				903126B6254AC510006ECB27 /* GameScene.sks */,
 				903126BA254AC510006ECB27 /* GameScene.swift */,
-				903126BC254AC510006ECB27 /* GameViewController.swift */,
 				903126BE254AC510006ECB27 /* Main.storyboard */,
 				903126C1254AC511006ECB27 /* Assets.xcassets */,
 				903126C3254AC511006ECB27 /* LaunchScreen.storyboard */,
@@ -222,6 +231,7 @@
 				90615C46256A6F5300463DC2 /* TextureExtension.swift */,
 				90B87441256D4B99004B3711 /* SKNodeExtensions.swift */,
 				9095154A256FFC55004F2308 /* FloatExtensions.swift */,
+				90577D3125754E3F003502E8 /* GlobalSoundManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -238,6 +248,24 @@
 				90BDDC0425740643003BD8E0 /* AIHelpers.swift */,
 			);
 			path = AI;
+			sourceTree = "<group>";
+		};
+		90577D3B25755485003502E8 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				90577D3C2575549F003502E8 /* background.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		90577D4925755A01003502E8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				90577D44257559F6003502E8 /* OptionsViewController.swift */,
+				903126BC254AC510006ECB27 /* GameViewController.swift */,
+				90577D36257553F0003502E8 /* MainMenuViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		908DDEF6255FDD810035EAA2 /* Entities */ = {
@@ -398,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				903126C0254AC510006ECB27 /* Main.storyboard in Resources */,
+				90577D3D2575549F003502E8 /* background.wav in Resources */,
 				90B87451256D73A1004B3711 /* LeverPuzzleScene.sks in Resources */,
 				9095151D256FDF0B004F2308 /* TestTubePuzzleScene.sks in Resources */,
 				903126B7254AC510006ECB27 /* GameScene.sks in Resources */,
@@ -444,14 +473,17 @@
 				900746D4256B04D1000FA19C /* FollowPlayerState.swift in Sources */,
 				904612B9256C1E52006B0172 /* ResearchEntity.swift in Sources */,
 				90615C51256AF52B00463DC2 /* SpawnerEntity.swift in Sources */,
+				90577D37257553F0003502E8 /* MainMenuViewController.swift in Sources */,
 				90B8744C256D6F3A004B3711 /* LeverPuzzleScene.swift in Sources */,
 				9095154B256FFC55004F2308 /* FloatExtensions.swift in Sources */,
 				903EDEEF25613F2A00CCE478 /* EnemyEntity.swift in Sources */,
 				909868DF2562E8C100F369A5 /* WirePuzzleScene.swift in Sources */,
 				903126BD254AC510006ECB27 /* GameViewController.swift in Sources */,
+				90577D3225754E3F003502E8 /* GlobalSoundManager.swift in Sources */,
 				903126B5254AC510006ECB27 /* AppDelegate.swift in Sources */,
 				9032481825728C0D008A59B7 /* PlaceableTurret.swift in Sources */,
 				90B87442256D4B99004B3711 /* SKNodeExtensions.swift in Sources */,
+				90577D45257559F6003502E8 /* OptionsViewController.swift in Sources */,
 				90577D2D25751ADF003502E8 /* DesignAbleSlider.swift in Sources */,
 				9032480E2572550F008A59B7 /* MicroscopePuzzleScene.swift in Sources */,
 				903BEB8825602A17004DBBDD /* VectorExtensions.swift in Sources */,

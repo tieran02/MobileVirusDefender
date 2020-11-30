@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main Menu View Controller-->
         <scene sceneID="sar-Hl-8BO">
             <objects>
-                <viewController id="7JD-DL-0bz" sceneMemberID="viewController">
+                <viewController id="7JD-DL-0bz" customClass="MainMenuViewController" customModule="MobileVirusDefender" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2ac-bS-tRv">
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -208,10 +208,10 @@
             </objects>
             <point key="canvasLocation" x="-1420" y="219"/>
         </scene>
-        <!--View Controller-->
+        <!--Options View Controller-->
         <scene sceneID="B5B-z0-tOM">
             <objects>
-                <viewController id="y6l-TN-ytG" sceneMemberID="viewController">
+                <viewController id="y6l-TN-ytG" customClass="OptionsViewController" customModule="MobileVirusDefender" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aht-8e-li8">
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -259,10 +259,13 @@
                                                         </constraints>
                                                     </imageView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Am5-xw-BBl" customClass="DesignAbleSlider" customModule="MobileVirusDefender" customModuleProvider="target">
-                                                        <rect key="frame" x="63.5" y="28.5" width="265" height="17.5"/>
+                                                        <rect key="frame" x="63.5" y="22" width="265" height="31"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="SliderThumb"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="EffectVolumeChanged:" destination="y6l-TN-ytG" eventType="valueChanged" id="opx-v1-tFd"/>
+                                                        </connections>
                                                     </slider>
                                                 </subviews>
                                                 <constraints>
@@ -299,10 +302,13 @@
                                                         </constraints>
                                                     </imageView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyc-4e-Goz" customClass="DesignAbleSlider" customModule="MobileVirusDefender" customModuleProvider="target">
-                                                        <rect key="frame" x="63.5" y="28.5" width="265" height="17.5"/>
+                                                        <rect key="frame" x="63.5" y="21.5" width="265" height="31"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="SliderThumb"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="MusicVolumeChanged:" destination="y6l-TN-ytG" eventType="valueChanged" id="DDV-HE-xtS"/>
+                                                        </connections>
                                                     </slider>
                                                 </subviews>
                                                 <constraints>
@@ -374,6 +380,10 @@
                             <constraint firstItem="qeq-bw-FZK" firstAttribute="top" secondItem="Lvu-dC-tVK" secondAttribute="top" id="rfG-IE-DJG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="EffectSlider" destination="Am5-xw-BBl" id="21A-Xf-aFi"/>
+                        <outlet property="MusicSlider" destination="gyc-4e-Goz" id="gzH-np-fbT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lff-q1-df7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1048,14 +1058,14 @@
     </scenes>
     <designables>
         <designable name="Am5-xw-BBl">
-            <size key="intrinsicContentSize" width="-1" height="16.5"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
         <designable name="gyc-4e-Goz">
-            <size key="intrinsicContentSize" width="-1" height="16.5"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="8md-TN-hmQ"/>
+        <segue reference="KqG-bA-Yug"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BackButton" width="80" height="71"/>
