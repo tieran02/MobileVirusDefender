@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		900746CF256B01C2000FA19C /* FiniteStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900746CE256B01C2000FA19C /* FiniteStateMachine.swift */; };
 		900746D4256B04D1000FA19C /* FollowPlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900746D3256B04D1000FA19C /* FollowPlayerState.swift */; };
+		9015277D257565F900A8B29E /* MuzzleFlashParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9015277B257565F900A8B29E /* MuzzleFlashParticle.sks */; };
+		9015277E257565F900A8B29E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9015277C257565F900A8B29E /* Assets.xcassets */; };
 		902E46EC256D0E8500414A8F /* ProgressBarSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E46EB256D0E8500414A8F /* ProgressBarSprite.swift */; };
 		903126B5254AC510006ECB27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903126B4254AC510006ECB27 /* AppDelegate.swift */; };
 		903126B7254AC510006ECB27 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 903126B6254AC510006ECB27 /* GameScene.sks */; };
@@ -80,6 +82,8 @@
 /* Begin PBXFileReference section */
 		900746CE256B01C2000FA19C /* FiniteStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiniteStateMachine.swift; sourceTree = "<group>"; };
 		900746D3256B04D1000FA19C /* FollowPlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPlayerState.swift; sourceTree = "<group>"; };
+		9015277B257565F900A8B29E /* MuzzleFlashParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MuzzleFlashParticle.sks; sourceTree = "<group>"; };
+		9015277C257565F900A8B29E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		902E46EB256D0E8500414A8F /* ProgressBarSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarSprite.swift; sourceTree = "<group>"; };
 		903126B1254AC510006ECB27 /* MobileVirusDefender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileVirusDefender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		903126B4254AC510006ECB27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -305,6 +309,8 @@
 			children = (
 				90BDDBF72573D51F003BD8E0 /* PlayerAnimations.sks */,
 				90BDDBFF2573EC32003BD8E0 /* ZombieAnimations.sks */,
+				9015277B257565F900A8B29E /* MuzzleFlashParticle.sks */,
+				9015277C257565F900A8B29E /* Assets.xcassets */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -428,6 +434,8 @@
 				903126C0254AC510006ECB27 /* Main.storyboard in Resources */,
 				90577D3D2575549F003502E8 /* background.wav in Resources */,
 				90B87451256D73A1004B3711 /* LeverPuzzleScene.sks in Resources */,
+				9015277D257565F900A8B29E /* MuzzleFlashParticle.sks in Resources */,
+				9015277E257565F900A8B29E /* Assets.xcassets in Resources */,
 				9095151D256FDF0B004F2308 /* TestTubePuzzleScene.sks in Resources */,
 				903126B7254AC510006ECB27 /* GameScene.sks in Resources */,
 				90CADB4025502C95002315F8 /* JoystickUI.xib in Resources */,

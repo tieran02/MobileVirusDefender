@@ -208,13 +208,13 @@ class BaseEntity : SKSpriteNode, Cloneable
     {
         if let action = AnimationStateDictionary[state]
         {
-            self.removeAllActions()
+            self.removeAction(forKey: "animation")
             if(shouldReverseAnimation)
             {
-                self.run(action.reversed())
+                self.run(action.reversed(), withKey: "animation")
             }
             else{
-                self.run(action)
+                self.run(action, withKey: "animation")
             }
             currentAnimationState = state
             reverseAnimation = shouldReverseAnimation

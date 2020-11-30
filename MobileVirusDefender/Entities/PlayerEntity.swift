@@ -15,6 +15,8 @@ class PlayerEntity : BaseEntity
     let pushbackThreshold : Double = 0.5
     var pushbackTimer : Float = 0.0
     
+    let projectileSpawnPoint = CGPoint(x: 128, y: 0)
+    
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
         super.init(texture: SKTexture(imageNamed: "Idle - Rifle_000"), maxHealth: 100, position: position)
@@ -49,10 +51,28 @@ class PlayerEntity : BaseEntity
             return
         }
         
+        var spawnPoint = projectileSpawnPoint;
+        if xScale < 0
+        {
+            spawnPoint = CGPoint(x: -spawnPoint.x, y: spawnPoint.y)
+        }
+        
+        if let particles = SKEmitterNode(fileNamed: "MuzzleFlashParticle.sks") {
+            particles.position = projectileSpawnPoint
+            addChild(particles)
+            
+            let removeAfter = SKAction.sequence([SKAction.wait(forDuration: 1),SKAction.run {
+                particles.removeFromParent()
+            }])
+            
+            run(removeAfter)
+        }
+        
+        
         let Projectile = scene.ProjectilePool.Retrieve()
         let category = PhysicsMask.PlayerProjectile.rawValue
         let mask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Enemy, PhysicsMask.Turret, PhysicsMask.Walls]).rawValue
-        Projectile?.Fire(position: self.position,direction: direction,tileSize: 256,scene: scene,Category: category,Mask: mask)
+        Projectile?.Fire(position: self.position + spawnPoint,direction: direction,tileSize: 256,scene: scene,Category: category,Mask: mask)
         print("Firing")
     }
     
