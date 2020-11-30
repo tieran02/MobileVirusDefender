@@ -12,6 +12,6 @@ class MainMenuViewController : UIViewController
 {
     override func viewDidLoad()
     {
-        GlobalSoundManager.PlayMusicSound(filename: "background",ofType: "wav")
+        GlobalSoundManager.PlayMusicSound(filename: "background",ofType: "wav", loopCount: -1)
     }
 }

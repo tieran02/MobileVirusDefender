@@ -51,7 +51,7 @@ class GlobalSoundManager : NSObject, AVAudioPlayerDelegate
         }
     }
     
-    static func PlayMusicSound(filename : String, ofType : String)
+    static func PlayMusicSound(filename : String, ofType : String, loopCount : Int)
     {
         if CurrentMusic[filename] != nil
         {
@@ -67,6 +67,7 @@ class GlobalSoundManager : NSObject, AVAudioPlayerDelegate
 
             player.prepareToPlay()
             player.volume = currentMusicVolume
+            player.numberOfLoops = loopCount
             player.play()
             
         } catch let error as NSError {
