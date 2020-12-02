@@ -57,24 +57,7 @@ class WirePuzzleScene: SKScene, IPuzzle
         }
         
     }
-    
-    func getConnectionFromTouchPosition(point : CGPoint) -> SKSpriteNode?
-    {
-        let touchedNodes = self.nodes(at: point)
         
-        for node in touchedNodes
-        {
-            if let spriteNode = node as? SKSpriteNode
-            {
-                if let connection = ConnectionPoints.first(where: {$0 == spriteNode})
-                {
-                    return connection
-                }
-            }
-        }
-        return nil
-    }
-    
     var startConnection : SKSpriteNode?
     var endConnection : SKSpriteNode?
     @objc func handlePanFrom(_ recognizer: UIPanGestureRecognizer)
@@ -84,7 +67,11 @@ class WirePuzzleScene: SKScene, IPuzzle
             var touchLocation = recognizer.location(in: recognizer.view)
             touchLocation = self.convertPoint(fromView: touchLocation)
 
-            startConnection = getConnectionFromTouchPosition(point: touchLocation)
+            let connection = getClosestConnection(touchPoint: touchLocation, range: 96)
+            if connection != nil && !lineConnected(connectionNode: connection!)
+            {
+                startConnection = connection
+            }
         }
         
         if(startConnection == nil)
@@ -105,7 +92,7 @@ class WirePuzzleScene: SKScene, IPuzzle
             var touchLocation = recognizer.location(in: recognizer.view)
             touchLocation = self.convertPoint(fromView: touchLocation)
 
-            endConnection = getConnectionFromTouchPosition(point: touchLocation)
+            endConnection = getClosestConnection(touchPoint: touchLocation, range: 96)
             if(endConnection == nil)
             {
                 tempLine.removeFromParent()
@@ -133,6 +120,8 @@ class WirePuzzleScene: SKScene, IPuzzle
             }
             
             tempLine.removeFromParent()
+            startConnection = nil
+            endConnection = nil
         }
         
         if(endConnection == nil || startConnection == endConnection)
@@ -149,6 +138,28 @@ class WirePuzzleScene: SKScene, IPuzzle
         path.addLine(to: to)
         tempLine = SKShapeNode(path: path)
         self.addChild(tempLine)
+    }
+    
+    func getClosestConnection(touchPoint : CGPoint, range: CGFloat) -> SKSpriteNode?
+    {
+        for connection in ConnectionPoints
+        {
+            let distanceFromTouch = touchPoint.distanceTo(connection.position)
+            if distanceFromTouch <= range
+            {
+                return connection
+            }
+        }
+        return nil
+    }
+    
+    func lineConnected(connectionNode : SKSpriteNode) -> Bool
+    {
+        if let color = connectionNode.userData?.value(forKey: "color") as? String
+        {
+            return lineDictionary[color] != nil
+        }
+        return false
     }
     
     func setCompleteDelegate(completeDelegate:((Bool) -> Void)?)

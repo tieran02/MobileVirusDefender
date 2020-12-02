@@ -282,6 +282,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             turret!.position = Player.position
             turret!.Reset()
             addChild(turret!)
+            
+            viewController?.TurretButton.isEnabled = false
+            let cooldownAction = SKAction.sequence([SKAction.wait(forDuration: 30),
+                                                SKAction.run {
+                self.viewController?.TurretButton.isEnabled = true
+            }])
+            run(cooldownAction)
         }
     }
     
