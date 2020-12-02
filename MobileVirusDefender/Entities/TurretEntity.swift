@@ -136,6 +136,11 @@ class TurretEntity : BaseEntity
     {
         if currentShots >= ShotsTillTimeout ?? 0, let gameScene = scene as? GameScene
         {
+            if(position.distanceTo(gameScene.Player.position) >= CGFloat(TileMapSettings.TileSize * 2))
+            {
+                return
+            }
+            
             //setup puzzle delegate
             gameScene.viewController?.loadPuzzleScene(sceneName: "WirePuzzleScene", completeDelegate: completePuzzle)
         }

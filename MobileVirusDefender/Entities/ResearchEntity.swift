@@ -75,6 +75,11 @@ class ResearchEntity : BaseEntity
     {
         if taskTimer >= taskCooldown, let gameScene = scene as? GameScene
         {
+            if(position.distanceTo(gameScene.Player.position) >= CGFloat(TileMapSettings.TileSize * 2))
+            {
+                return
+            }
+            
             switch Int.random(in: 0...1) {
             case 0:
                 gameScene.viewController?.loadPuzzleScene(sceneName: "TestTubePuzzleScene", completeDelegate: completePuzzle)

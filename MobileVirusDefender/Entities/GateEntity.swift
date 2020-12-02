@@ -74,6 +74,10 @@ class GateEntity : BaseEntity
     {
         if open, let gameScene = scene as? GameScene
         {
+            if(position.distanceTo(gameScene.Player.position) >= CGFloat(TileMapSettings.TileSize * 2))
+            {
+                return
+            }
             //setup puzzle delegate
             gameScene.viewController?.loadPuzzleScene(sceneName: "LeverPuzzleScene", completeDelegate: completePuzzle)
         }

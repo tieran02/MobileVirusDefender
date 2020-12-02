@@ -24,6 +24,15 @@ public extension CGPoint
         let y = self.y.ilerp(min: min.y, max: max.y)
         return CGPoint(x: x, y: y)
     }
+    
+    func length() -> CGFloat
+    {
+        return sqrt(x*x + y*y)
+    }
+    
+    func distanceTo(_ point: CGPoint) -> CGFloat {
+        return (self - point).length()
+    }
 }
 
 public extension CGVector
