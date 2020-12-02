@@ -128,6 +128,9 @@ class ResearchEntity : BaseEntity
     func completePuzzle(completed : Bool)
     {
         if completed{
+            let sound = SKAction.playSoundFileNamed("sci-fi_scan_target_01.wav", waitForCompletion: false)
+            run(sound)
+            
             Heal(amount: 0.05 * MaxHealth)
             setHealthUI()
         }

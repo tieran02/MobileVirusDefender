@@ -36,6 +36,10 @@
 		90495A862577EE9600DA36E0 /* Orc Attack Voice 4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 90495A852577EE9600DA36E0 /* Orc Attack Voice 4.mp3 */; };
 		90495A8B2577F99D00DA36E0 /* sci-fi_weapon_auto_turret_release_01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 90495A8A2577F99D00DA36E0 /* sci-fi_weapon_auto_turret_release_01.wav */; };
 		90495A902577FAED00DA36E0 /* sci-fi_weapon_pistol_shot_01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 90495A8F2577FAED00DA36E0 /* sci-fi_weapon_pistol_shot_01.wav */; };
+		90495A952578030900DA36E0 /* sci-fi_beep_computer_ui_01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 90495A942578030900DA36E0 /* sci-fi_beep_computer_ui_01.wav */; };
+		90495A9A2578033000DA36E0 /* hydraulic_strut_air_gas_shock_door_01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 90495A992578033000DA36E0 /* hydraulic_strut_air_gas_shock_door_01.wav */; };
+		90495A9F257803FD00DA36E0 /* sci-fi_scan_target_01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 90495A9E257803FD00DA36E0 /* sci-fi_scan_target_01.wav */; };
+		90495AA42578045A00DA36E0 /* sci-fi_shield_device_power_up_01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 90495AA32578045A00DA36E0 /* sci-fi_shield_device_power_up_01.wav */; };
 		90577D2D25751ADF003502E8 /* DesignAbleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90577D2C25751ADF003502E8 /* DesignAbleSlider.swift */; };
 		90577D3225754E3F003502E8 /* GlobalSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90577D3125754E3F003502E8 /* GlobalSoundManager.swift */; };
 		90577D37257553F0003502E8 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90577D36257553F0003502E8 /* MainMenuViewController.swift */; };
@@ -120,6 +124,10 @@
 		90495A852577EE9600DA36E0 /* Orc Attack Voice 4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Orc Attack Voice 4.mp3"; sourceTree = "<group>"; };
 		90495A8A2577F99D00DA36E0 /* sci-fi_weapon_auto_turret_release_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sci-fi_weapon_auto_turret_release_01.wav"; sourceTree = "<group>"; };
 		90495A8F2577FAED00DA36E0 /* sci-fi_weapon_pistol_shot_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sci-fi_weapon_pistol_shot_01.wav"; sourceTree = "<group>"; };
+		90495A942578030900DA36E0 /* sci-fi_beep_computer_ui_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sci-fi_beep_computer_ui_01.wav"; sourceTree = "<group>"; };
+		90495A992578033000DA36E0 /* hydraulic_strut_air_gas_shock_door_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hydraulic_strut_air_gas_shock_door_01.wav; sourceTree = "<group>"; };
+		90495A9E257803FD00DA36E0 /* sci-fi_scan_target_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sci-fi_scan_target_01.wav"; sourceTree = "<group>"; };
+		90495AA32578045A00DA36E0 /* sci-fi_shield_device_power_up_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sci-fi_shield_device_power_up_01.wav"; sourceTree = "<group>"; };
 		90577D2C25751ADF003502E8 /* DesignAbleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignAbleSlider.swift; sourceTree = "<group>"; };
 		90577D3125754E3F003502E8 /* GlobalSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSoundManager.swift; sourceTree = "<group>"; };
 		90577D36257553F0003502E8 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -272,6 +280,10 @@
 				90495A852577EE9600DA36E0 /* Orc Attack Voice 4.mp3 */,
 				90495A8A2577F99D00DA36E0 /* sci-fi_weapon_auto_turret_release_01.wav */,
 				90495A8F2577FAED00DA36E0 /* sci-fi_weapon_pistol_shot_01.wav */,
+				90495A942578030900DA36E0 /* sci-fi_beep_computer_ui_01.wav */,
+				90495A992578033000DA36E0 /* hydraulic_strut_air_gas_shock_door_01.wav */,
+				90495A9E257803FD00DA36E0 /* sci-fi_scan_target_01.wav */,
+				90495AA32578045A00DA36E0 /* sci-fi_shield_device_power_up_01.wav */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -448,6 +460,7 @@
 			files = (
 				903126C0254AC510006ECB27 /* Main.storyboard in Resources */,
 				90577D3D2575549F003502E8 /* background.wav in Resources */,
+				90495AA42578045A00DA36E0 /* sci-fi_shield_device_power_up_01.wav in Resources */,
 				90B87451256D73A1004B3711 /* LeverPuzzleScene.sks in Resources */,
 				9015277D257565F900A8B29E /* MuzzleFlashParticle.sks in Resources */,
 				9015277E257565F900A8B29E /* Assets.xcassets in Resources */,
@@ -458,13 +471,16 @@
 				903126B7254AC510006ECB27 /* GameScene.sks in Resources */,
 				90CADB4025502C95002315F8 /* JoystickUI.xib in Resources */,
 				90495A8B2577F99D00DA36E0 /* sci-fi_weapon_auto_turret_release_01.wav in Resources */,
+				90495A9A2578033000DA36E0 /* hydraulic_strut_air_gas_shock_door_01.wav in Resources */,
 				909868D22562E7A200F369A5 /* WirePuzzleScene.sks in Resources */,
 				90324813257256C3008A59B7 /* MicroscopePuzzleScene.sks in Resources */,
 				903126C2254AC511006ECB27 /* Assets.xcassets in Resources */,
+				90495A952578030900DA36E0 /* sci-fi_beep_computer_ui_01.wav in Resources */,
 				90BDDC002573EC32003BD8E0 /* ZombieAnimations.sks in Resources */,
 				90495A862577EE9600DA36E0 /* Orc Attack Voice 4.mp3 in Resources */,
 				903126C5254AC511006ECB27 /* LaunchScreen.storyboard in Resources */,
 				903126E9254AD94A006ECB27 /* GroundTileSet.sks in Resources */,
+				90495A9F257803FD00DA36E0 /* sci-fi_scan_target_01.wav in Resources */,
 				90BDDBF82573D51F003BD8E0 /* PlayerAnimations.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

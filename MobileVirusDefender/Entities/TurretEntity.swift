@@ -167,6 +167,8 @@ class TurretEntity : BaseEntity
     func completePuzzle(completed : Bool)
     {
         if completed{
+            let sound = SKAction.playSoundFileNamed("sci-fi_shield_device_power_up_01.wav", waitForCompletion: false)
+            run(sound)
             ShotsTillTimeout = nil
         }
     }

@@ -105,6 +105,8 @@ class GateEntity : BaseEntity
     {
         if(completed)
         {
+            let sound = SKAction.playSoundFileNamed("hydraulic_strut_air_gas_shock_door_01.wav", waitForCompletion: false)
+            run(sound)
             Open = false
         }
     }
