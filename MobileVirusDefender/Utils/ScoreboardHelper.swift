@@ -11,7 +11,10 @@ import Foundation
 class ScoreboardHelper
 {
     private static var currentPlayerName : String?
-
+    public static var CurrentPlayer : String = {
+        return currentPlayerName ?? ""
+    }()
+    
     static func SetPlayerName(name : String)
     {
         currentPlayerName = name
@@ -47,5 +50,14 @@ class ScoreboardHelper
             
             UserDefaults.standard.setValue(highscores, forKey: "highscores")
         }
+    }
+    
+    static func getScoresAsStrings() -> [String]
+    {
+        if let highscores = UserDefaults.standard.dictionary(forKey: "highscores")
+        {
+            return highscores.map{ "\($0): \($1)" }
+        }
+        return [String]()
     }
 }

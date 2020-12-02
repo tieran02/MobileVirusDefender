@@ -61,6 +61,7 @@
 		909868DF2562E8C100F369A5 /* WirePuzzleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909868DE2562E8C100F369A5 /* WirePuzzleScene.swift */; };
 		909868E42562EAD100F369A5 /* PathFinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909868E32562EAD100F369A5 /* PathFinding.swift */; };
 		909FAB2A257848E10054A03C /* PlayerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 909FAB28257848E10054A03C /* PlayerModel.xcdatamodeld */; };
+		909FAB372578545B0054A03C /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909FAB362578545B0054A03C /* ScoreboardViewController.swift */; };
 		90A5CF39256C30DB00E1622C /* MoveToFacility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A5CF38256C30DB00E1622C /* MoveToFacility.swift */; };
 		90A5CF3E256C3C7800E1622C /* AttackEntityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A5CF3D256C3C7800E1622C /* AttackEntityState.swift */; };
 		90B8743D256D3D99004B3711 /* ArrowSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B8743C256D3D99004B3711 /* ArrowSprite.swift */; };
@@ -153,6 +154,7 @@
 		909868DE2562E8C100F369A5 /* WirePuzzleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WirePuzzleScene.swift; sourceTree = "<group>"; };
 		909868E32562EAD100F369A5 /* PathFinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathFinding.swift; sourceTree = "<group>"; };
 		909FAB29257848E10054A03C /* PlayerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlayerModel.xcdatamodel; sourceTree = "<group>"; };
+		909FAB362578545B0054A03C /* ScoreboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
 		90A5CF38256C30DB00E1622C /* MoveToFacility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToFacility.swift; sourceTree = "<group>"; };
 		90A5CF3D256C3C7800E1622C /* AttackEntityState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackEntityState.swift; sourceTree = "<group>"; };
 		90B8743C256D3D99004B3711 /* ArrowSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowSprite.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				903126BC254AC510006ECB27 /* GameViewController.swift */,
 				90577D36257553F0003502E8 /* MainMenuViewController.swift */,
 				90495AAD2578338700DA36E0 /* NameViewController.swift */,
+				909FAB362578545B0054A03C /* ScoreboardViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				909868DF2562E8C100F369A5 /* WirePuzzleScene.swift in Sources */,
 				903126BD254AC510006ECB27 /* GameViewController.swift in Sources */,
 				90577D3225754E3F003502E8 /* GlobalSoundManager.swift in Sources */,
+				909FAB372578545B0054A03C /* ScoreboardViewController.swift in Sources */,
 				903126B5254AC510006ECB27 /* AppDelegate.swift in Sources */,
 				90495AAE2578338700DA36E0 /* NameViewController.swift in Sources */,
 				9032481825728C0D008A59B7 /* PlaceableTurret.swift in Sources */,
