@@ -321,7 +321,24 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T90-mx-eSP">
-                                                <rect key="frame" x="79.5" y="314.5" width="168" height="73.5"/>
+                                                <rect key="frame" x="0.0" y="314.5" width="327" height="73.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlL-MP-8br">
+                                                        <rect key="frame" x="65.5" y="22" width="196" height="30"/>
+                                                        <state key="normal" title="Clear saved data" backgroundImage="MediumBox">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="ClearDataPressed:" destination="y6l-TN-ytG" eventType="touchDown" id="Dfo-PT-QOe"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="VlL-MP-8br" firstAttribute="height" secondItem="T90-mx-eSP" secondAttribute="height" multiplier="0.408163" id="4kk-XR-n3E"/>
+                                                    <constraint firstItem="VlL-MP-8br" firstAttribute="centerY" secondItem="T90-mx-eSP" secondAttribute="centerY" id="JMy-o2-HQq"/>
+                                                    <constraint firstItem="VlL-MP-8br" firstAttribute="centerX" secondItem="T90-mx-eSP" secondAttribute="centerX" id="Vfz-SG-X1c"/>
+                                                    <constraint firstItem="VlL-MP-8br" firstAttribute="width" secondItem="T90-mx-eSP" secondAttribute="width" multiplier="0.6" id="hsL-fK-KdE"/>
+                                                </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuW-MW-XAd">
                                                 <rect key="frame" x="0.0" y="393" width="327" height="74"/>

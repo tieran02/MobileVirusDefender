@@ -18,6 +18,7 @@ class PlaceableTurret : BaseEntity
     
     let TimeLimit : Float = 120
     var currentTime : Float = 0
+    let gun = SKSpriteNode(imageNamed: "towergun00")
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
@@ -35,7 +36,13 @@ class PlaceableTurret : BaseEntity
     {
         super.setup()
         physicsBody = nil
-        zPosition = -1
+        zPosition = -2
+        
+        //add turrer gun
+        gun.removeFromParent()
+        gun.zPosition = 0
+        gun.size = self.size
+        addChild(gun)
     }
     
     override func Update(deltaTime: Float, scene: GameScene)
@@ -49,6 +56,13 @@ class PlaceableTurret : BaseEntity
                 {
                     //temp get direction to enemy
                     let direction = (CGVector(point: enemy.position) - CGVector(point: position)).normalized()
+                    
+                    //turn turret to direction
+                    gun.zRotation = direction.angle()
+                    if let action = SKAction(named: "TowerFire")
+                    {
+                        gun.run(action)
+                    }
                     
                     let category = PhysicsMask.TurretProjectile.rawValue
                     let mask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Enemy]).rawValue

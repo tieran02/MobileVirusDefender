@@ -31,6 +31,7 @@
 		903EDEEA25612CC900CCE478 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903EDEE925612CC900CCE478 /* Util.swift */; };
 		903EDEEF25613F2A00CCE478 /* EnemyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903EDEEE25613F2A00CCE478 /* EnemyEntity.swift */; };
 		904612B9256C1E52006B0172 /* ResearchEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904612B8256C1E52006B0172 /* ResearchEntity.swift */; };
+		90495A762577D9B900DA36E0 /* TowerAnimations.sks in Resources */ = {isa = PBXBuildFile; fileRef = 90495A752577D9B900DA36E0 /* TowerAnimations.sks */; };
 		90577D2D25751ADF003502E8 /* DesignAbleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90577D2C25751ADF003502E8 /* DesignAbleSlider.swift */; };
 		90577D3225754E3F003502E8 /* GlobalSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90577D3125754E3F003502E8 /* GlobalSoundManager.swift */; };
 		90577D37257553F0003502E8 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90577D36257553F0003502E8 /* MainMenuViewController.swift */; };
@@ -110,6 +111,7 @@
 		903EDEE925612CC900CCE478 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		903EDEEE25613F2A00CCE478 /* EnemyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyEntity.swift; sourceTree = "<group>"; };
 		904612B8256C1E52006B0172 /* ResearchEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchEntity.swift; sourceTree = "<group>"; };
+		90495A752577D9B900DA36E0 /* TowerAnimations.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TowerAnimations.sks; sourceTree = "<group>"; };
 		90577D2C25751ADF003502E8 /* DesignAbleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignAbleSlider.swift; sourceTree = "<group>"; };
 		90577D3125754E3F003502E8 /* GlobalSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSoundManager.swift; sourceTree = "<group>"; };
 		90577D36257553F0003502E8 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				90BDDBFF2573EC32003BD8E0 /* ZombieAnimations.sks */,
 				9015277B257565F900A8B29E /* MuzzleFlashParticle.sks */,
 				9015277C257565F900A8B29E /* Assets.xcassets */,
+				90495A752577D9B900DA36E0 /* TowerAnimations.sks */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				9015277D257565F900A8B29E /* MuzzleFlashParticle.sks in Resources */,
 				9015277E257565F900A8B29E /* Assets.xcassets in Resources */,
 				9095151D256FDF0B004F2308 /* TestTubePuzzleScene.sks in Resources */,
+				90495A762577D9B900DA36E0 /* TowerAnimations.sks in Resources */,
 				903126B7254AC510006ECB27 /* GameScene.sks in Resources */,
 				90CADB4025502C95002315F8 /* JoystickUI.xib in Resources */,
 				909868D22562E7A200F369A5 /* WirePuzzleScene.sks in Resources */,

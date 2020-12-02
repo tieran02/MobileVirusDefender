@@ -17,6 +17,7 @@ class TurretEntity : BaseEntity
     var currentShots : Int = 0
     
     let arrow = ArrowSprite()
+    let gun = SKSpriteNode(imageNamed: "towergun00")
     
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
@@ -40,6 +41,12 @@ class TurretEntity : BaseEntity
         
         //hide healthbar
         HealthBar.isHidden = true
+        
+        //add turrer gun
+        gun.removeFromParent()
+        gun.zPosition = 10
+        gun.size = self.size
+        addChild(gun)
     }
     
     override func Update(deltaTime: Float, scene: GameScene)
@@ -66,11 +73,19 @@ class TurretEntity : BaseEntity
                     //temp get direction to enemy
                     let direction = (CGVector(point: enemy.position) - CGVector(point: position)).normalized()
                     
+                    //turn turret to direction
+                    gun.zRotation = direction.angle()
+                    if let action = SKAction(named: "TowerFire")
+                    {
+                        gun.run(action)
+                    }
+                    
                     let category = PhysicsMask.TurretProjectile.rawValue
                     let mask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Enemy]).rawValue
                     Projectile.Fire(position: self.position,direction: direction,tileSize: 256,scene: scene, Category: category,Mask: mask)
                     lastFire = 0
                     currentShots+=1
+                    
                 }
             }
         }

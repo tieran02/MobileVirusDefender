@@ -22,6 +22,9 @@ class OptionsViewController : UIViewController
         GlobalSoundManager.SetEffectVolume(volume: sender.value)
     }
     
+    @IBAction func ClearDataPressed(_ sender: Any)
+    {
+    }
     
     override func viewDidLoad() {
         EffectSlider.value = GlobalSoundManager.EffectVolume
