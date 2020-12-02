@@ -34,13 +34,13 @@ class LeverPuzzleScene: SKScene, IPuzzle
         
         //get lever and activation point
         for child in children {
-            if let node = child.userData?.value(forKey: "lever")
+            if (child.userData?.value(forKey: "lever")) != nil
             {
                 lever = child
                 startingPoint = lever?.position
             }
             
-            if let node = child.userData?.value(forKey: "activationPoint")
+            if (child.userData?.value(forKey: "activationPoint")) != nil
             {
                 activationPoint = child
             }
@@ -62,8 +62,8 @@ class LeverPuzzleScene: SKScene, IPuzzle
         
         if recognizer.state == .changed && dragging
         {
-            let translation  = recognizer.translation(in: self.view)
-            lever?.position = CGPoint(x: lever!.position.x, y: touchLocation.y)
+            let clampedY = min(max(touchLocation.y, activationPoint!.position.y), startingPoint!.y)
+            lever?.position = CGPoint(x: lever!.position.x, y: clampedY)
         }
         
         if(recognizer.state == .ended)
