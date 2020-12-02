@@ -104,7 +104,7 @@ class BaseEntity : SKSpriteNode, Cloneable
         _currentHealth = max(CurrentHealth - amount,0)
         HealthBar.Progress = CGFloat(HealthPercentage())
         
-        if _currentHealth <= 0
+        if _currentHealth <= 0 && currentAnimationState != .Dying
         {
             Destroy()
         }

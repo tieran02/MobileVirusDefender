@@ -15,6 +15,9 @@ class EnemyEntity : BaseEntity
     let AttackDamage : Float = 5
     let AttackRange : CGFloat = CGFloat(TileMapSettings.TileSize)
     
+    let deathAudioNode = SKAudioNode(fileNamed: "Orc Death 3.mp3")
+    let attackAudioNode = SKAudioNode(fileNamed: "Orc Attack Voice 4.mp3")
+    
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
         super.init(texture: SKTexture(imageNamed: "Idle_000"), maxHealth: 100, position: position)
@@ -39,6 +42,14 @@ class EnemyEntity : BaseEntity
         super.AnimationStateDictionary[AnimationState.Running] = SKAction(named: "ZombieRun")
         super.AnimationStateDictionary[AnimationState.Attacking] = SKAction(named: "ZombieAttack")
         super.AnimationStateDictionary[AnimationState.Dying] = SKAction(named: "ZombieDying")
+        
+        
+        deathAudioNode.isPositional = true
+        deathAudioNode.autoplayLooped = false
+        addChild(deathAudioNode)
+        //attackAudioNode.isPositional = true
+        attackAudioNode.autoplayLooped = false
+        addChild(attackAudioNode)
     }
     
     override func Update(deltaTime: Float, scene: GameScene)
@@ -65,6 +76,9 @@ class EnemyEntity : BaseEntity
     func Attack(entity : BaseEntity)
     {
         runAnimationState(state: AnimationState.Attacking)
+        attackAudioNode.run(SKAction.sequence([SKAction.changeVolume(to: GlobalSoundManager.EffectVolume, duration: 0)
+                                               ,SKAction.play()]))
+        
         entity.Damage(amount: AttackDamage)
     }
     
@@ -84,6 +98,10 @@ class EnemyEntity : BaseEntity
         {
             gamescene.ResearchPoint += 1
         }
+        
+        //death sound
+        deathAudioNode.run(SKAction.sequence([SKAction.changeVolume(to: GlobalSoundManager.EffectVolume, duration: 0),
+                                              SKAction.play()]))
         
         super.Destroy()
         StateMachine?.Clear()

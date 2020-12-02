@@ -19,6 +19,8 @@ class TurretEntity : BaseEntity
     let arrow = ArrowSprite()
     let gun = SKSpriteNode(imageNamed: "towergun00")
     
+    let turretAudio = SKAudioNode(fileNamed: "sci-fi_weapon_auto_turret_release_01.wav")
+    
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
         super.init(texture: SKTexture(imageNamed: "Turret0"), maxHealth: 200, position: position)
@@ -47,6 +49,11 @@ class TurretEntity : BaseEntity
         gun.zPosition = 10
         gun.size = self.size
         addChild(gun)
+        
+        turretAudio.removeFromParent()
+        turretAudio.isPositional = true
+        turretAudio.autoplayLooped = false
+        addChild(turretAudio)
     }
     
     override func Update(deltaTime: Float, scene: GameScene)
@@ -79,6 +86,9 @@ class TurretEntity : BaseEntity
                     {
                         gun.run(action)
                     }
+                    
+                    turretAudio.run(SKAction.sequence([SKAction.changeVolume(to: GlobalSoundManager.EffectVolume, duration: 0),
+                                                       SKAction.play()]))
                     
                     let category = PhysicsMask.TurretProjectile.rawValue
                     let mask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Enemy]).rawValue

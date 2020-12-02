@@ -78,6 +78,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         physicsWorld.contactDelegate = self
         
+        
+        //set listner to player for positional sound
+        self.listener = sceneCamera
+        
         //setup accelerometer
         if(motionManager.isAccelerometerAvailable)
         {

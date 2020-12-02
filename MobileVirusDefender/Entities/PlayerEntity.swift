@@ -16,7 +16,6 @@ class PlayerEntity : BaseEntity
     var pushbackTimer : Float = 0.0
     
     let projectileSpawnPoint = CGPoint(x: 128, y: 0)
-    
     init(position: CGPoint = CGPoint(x: 0,y: 0))
     {
         super.init(texture: SKTexture(imageNamed: "Idle - Rifle_000"), maxHealth: 100, position: position)
@@ -68,6 +67,10 @@ class PlayerEntity : BaseEntity
             run(removeAfter)
         }
         
+        //play sound
+        let soundAction = SKAction.playSoundFileNamed("sci-fi_weapon_pistol_shot_01.wav", waitForCompletion: false)
+        run(SKAction.sequence([SKAction.changeVolume(to: GlobalSoundManager.EffectVolume, duration: 0),
+                                        soundAction]))
         
         let Projectile = scene.ProjectilePool.Retrieve()
         let category = PhysicsMask.PlayerProjectile.rawValue
