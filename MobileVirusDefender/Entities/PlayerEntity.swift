@@ -176,7 +176,16 @@ class PlayerEntity : BaseEntity
         }
         return closestEnemy
     }
-        
+      
+    override func Destroy()
+    {
+        if let gamescene = scene as? GameScene
+        {
+            gamescene.viewController?.Gameover(score: gamescene.ResearchPoint)
+        }
+        super.Destroy()
+    }
+    
     override func Clone() -> BaseEntity {
         return PlayerEntity(position: position)
     }

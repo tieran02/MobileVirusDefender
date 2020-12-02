@@ -22,10 +22,12 @@ class GameViewController: UIViewController {
     @IBAction func QuitButtonTouched(_ sender: Any) {
         closePuzzleView()
     }
+    @IBOutlet weak var TurretButton: UIButton!
     @IBAction func TurretButtonPressed(_ sender: Any)
     {
         self.currentGame?.PlaceTurretAtPlayerPosition()
     }
+    @IBOutlet weak var PauseButton: UIButton!
     @IBAction func PauseButtonPressed(_ sender: Any)
     {
         if(PauseView.isHidden){
@@ -42,6 +44,8 @@ class GameViewController: UIViewController {
     @IBAction func ExitButtonPressed(_ sender: Any) {
     }
     @IBOutlet weak var PauseView: UIView!
+    @IBOutlet weak var GameOverView: UIView!
+    @IBOutlet weak var ScoreLabel: UILabel!
     
     @IBOutlet weak var ResearchPointLabel: UILabel!
     
@@ -50,6 +54,7 @@ class GameViewController: UIViewController {
         
         PuzzleViewContainer.isHidden = true
         PauseView.isHidden = true
+        GameOverView.isHidden = true
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
@@ -167,6 +172,15 @@ class GameViewController: UIViewController {
                 puzzle.exit(completed: false)
             }
         }
+    }
+    
+    func Gameover(score : Int)
+    {
+        PauseButton.isEnabled = false
+        TurretButton.isEnabled = false
+        ScoreLabel.text = "Score: \(score)"
+        GameOverView.isHidden = false
+        currentGame?.Pause(pause: true)
     }
 
 }

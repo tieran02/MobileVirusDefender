@@ -95,6 +95,15 @@ class ResearchEntity : BaseEntity
         setHealthUI()
     }
     
+    override func Destroy()
+    {
+        if let gamescene = scene as? GameScene
+        {
+            gamescene.viewController?.Gameover(score: gamescene.ResearchPoint)
+        }
+        super.Destroy()
+    }
+    
     func setHealthUI()
     {
         if let gameScene = scene as? GameScene
