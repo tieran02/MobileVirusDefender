@@ -181,6 +181,9 @@ class GameViewController: UIViewController {
         ScoreLabel.text = "Score: \(score)"
         GameOverView.isHidden = false
         currentGame?.Pause(pause: true)
+        
+        //save highscore to core data
+        ScoreboardHelper.UpdateScore(score: Int32(score))
     }
 
 }
