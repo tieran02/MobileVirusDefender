@@ -32,6 +32,7 @@ class GlobalSoundManager : NSObject, AVAudioPlayerDelegate
     {
         if CurrentSounds[filename] != nil
         {
+            CurrentSounds[filename]?.play()
             return
         }
 
