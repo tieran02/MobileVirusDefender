@@ -25,9 +25,10 @@ struct PhysicsMask: OptionSet {
     static let Turret               = PhysicsMask(rawValue: 1 << 6)
     static let TurretProjectile     = PhysicsMask(rawValue: 1 << 7)
     static let Walls                = PhysicsMask(rawValue: 1 << 8)
+    static let Research             = PhysicsMask(rawValue: 1 << 9)
     
     static let All: PhysicsMask         = [.Envioment, .Player, .PlayerProjectile, .Enemy, .EnemyProjectile, .Turret, .TurretProjectile,.Walls]
-    static let PlayerMask: PhysicsMask  = [.Envioment, .Enemy, .EnemyProjectile, .Turret, .Walls]
+    static let PlayerMask: PhysicsMask  = [.Envioment, .Enemy, .EnemyProjectile, .Turret, .Walls, .Research]
     static let NonWalkable: PhysicsMask = [.Envioment, .Turret, .Walls]
 }
 

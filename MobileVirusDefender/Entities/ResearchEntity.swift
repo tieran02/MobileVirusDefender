@@ -43,7 +43,7 @@ class ResearchEntity : BaseEntity
         
         Destructable = true
         physicsBody?.isDynamic = false
-        physicsBody?.categoryBitMask = PhysicsMask.Turret.rawValue
+        physicsBody?.categoryBitMask = PhysicsMask.Research.rawValue
         
         //hide healthbar
         HealthBar.isHidden = true

@@ -40,7 +40,7 @@ class PlaceableTurret : BaseEntity
         
         //add turrer gun
         gun.removeFromParent()
-        gun.zPosition = 0
+        gun.zPosition = 1
         gun.size = self.size
         addChild(gun)
     }
@@ -59,9 +59,9 @@ class PlaceableTurret : BaseEntity
                     
                     //turn turret to direction
                     gun.zRotation = direction.angle()
-                    if let action = SKAction(named: "TowerFire")
+                    if !gun.hasActions(), let action = SKAction(named: "TowerFire")
                     {
-                        gun.run(action)
+                        gun.run(action, withKey: "towerFire")
                     }
                     
                     let category = PhysicsMask.TurretProjectile.rawValue
