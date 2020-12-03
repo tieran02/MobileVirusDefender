@@ -110,7 +110,7 @@ class FollowPlayerState : StateProtocol
         enemy.MoveTo(target: nodeWorldPoint)
         
         let distanceToTarget = CGVector(point: enemy.position).distanceTo(targetPosVector)
-        if(distanceToTarget <= 10)
+        if(distanceToTarget <= 32)
         {
             currentNode += 1
         }
