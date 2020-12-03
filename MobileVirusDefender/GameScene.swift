@@ -185,6 +185,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     {
         isPaused = pause
         lastUpdateTime = 0
+        
+        //save highscore to core data
+        ScoreboardHelper.UpdateScore(score: Int32(ResearchPoint))
     }
     
     func AddTileMapColliders()
@@ -289,11 +292,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         var cgRects = [CGRect]()
-        
-        if(rects.count > 1)
-        {
-            print("Test")
-        }
         
         for rect in rects {
             cgRects.append(CGRect(x: rect.value.0, y: rect.value.1, width: rect.value.2, height: rect.value.3))

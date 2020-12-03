@@ -18,7 +18,7 @@ class EntityPool<EntityType> where EntityType : BaseEntity
     
     init(entity : EntityType, Amount : Int)
     {
-        for i in 0 ..< Amount
+        for _ in 0 ..< Amount
         {
             let entity = entity.Clone(entityPool: true) as! EntityType
             entity.isHidden = true

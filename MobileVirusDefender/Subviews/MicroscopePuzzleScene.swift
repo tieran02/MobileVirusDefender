@@ -47,13 +47,13 @@ class MicroscopePuzzleScene : SKScene, IPuzzle
         virusAttitudePoint = getRandomOrientationPoint()
         
         for child in children {
-            if let node = child.userData?.value(forKey: "virus")
+            if (child.userData?.value(forKey: "virus")) != nil
             {
                 virus = child
                 virus?.position = self.attitudeToWorld(yaw: virusAttitudePoint.x, roll: virusAttitudePoint.y)
                 virus?.zPosition = 10
             }
-            if let node = child.userData?.value(forKey: "microscope")
+            if (child.userData?.value(forKey: "microscope")) != nil
             {
                 microscope = child
             }

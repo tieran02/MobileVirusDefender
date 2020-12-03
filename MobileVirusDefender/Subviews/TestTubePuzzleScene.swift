@@ -46,7 +46,7 @@ class TestTubePuzzleScene : SKScene, IPuzzle
         TubeCrop.maskNode = SKSpriteNode(texture: texture)
         //get tube and flask point
         for child in children {
-            if let node = child.userData?.value(forKey: "tube")
+            if (child.userData?.value(forKey: "tube")) != nil
             {
                 tube = child
                 tube?.addChild(TubeCrop)

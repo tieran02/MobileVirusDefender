@@ -155,11 +155,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    func exitToMenu()
-    {
-        //TODO
-    }
-    
+
     func closePuzzleView()
     {
         if let view = self.PuzzleView as! SKView?

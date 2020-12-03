@@ -50,12 +50,6 @@ class PlayerEntity : BaseEntity
             return
         }
         
-        var spawnPoint = projectileSpawnPoint;
-        if xScale < 0
-        {
-            spawnPoint = CGPoint(x: -spawnPoint.x, y: spawnPoint.y)
-        }
-        
         if let particles = SKEmitterNode(fileNamed: "MuzzleFlashParticle.sks") {
             particles.position = projectileSpawnPoint
             addChild(particles)
@@ -75,8 +69,7 @@ class PlayerEntity : BaseEntity
         let Projectile = scene.ProjectilePool.Retrieve()
         let category = PhysicsMask.PlayerProjectile.rawValue
         let mask = PhysicsMask([PhysicsMask.Envioment, PhysicsMask.Enemy, PhysicsMask.Turret, PhysicsMask.Walls]).rawValue
-        Projectile?.Fire(position: self.position + spawnPoint,direction: direction,tileSize: 256,scene: scene,Category: category,Mask: mask)
-        print("Firing")
+        Projectile?.Fire(position: self.position, direction: direction,tileSize: 256,scene: scene,Category: category,Mask: mask)
     }
     
     override func Update(deltaTime: Float, scene : GameScene)

@@ -190,7 +190,6 @@ class PathFinding
     
     func GetNode(worldPosition : CGPoint) -> Node?
     {
-        let tileSize = CGFloat(TileMapSettings.TileSize)
         let mapWidth2 = CGFloat(unitColumns * unitSize)  * 0.5
         let mapHeight2 = CGFloat(unitRows * unitSize) * 0.5
         
@@ -269,7 +268,6 @@ class PathFinding
                 let worldPosition = ToWorldPosition(node: tileNode)
                 
                 let size = CGFloat(unitSize / nodesPerUnit)
-                let rect = CGRect(x: worldPosition.x - (size*0.5), y: worldPosition.y - (size*0.5) , width: size, height: size)
                 
                 let shape = SKShapeNode.init(circleOfRadius: size*0.5)
                 let nodeX = worldPosition.x - CGFloat(column*nodesPerUnit)
