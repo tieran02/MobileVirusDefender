@@ -88,8 +88,11 @@ class EnemyEntity : BaseEntity
         runAnimationState(state: AnimationState.Idle)
     }
 
-    override func Clone() -> BaseEntity {
-        EnemyEntity(position: position)
+    override func Clone(entityPool : Bool) -> BaseEntity
+    {
+        let enemy = EnemyEntity(position: position)
+        enemy._isEntityPool = true
+        return enemy
     }
     
     override func Destroy()

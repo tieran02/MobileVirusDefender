@@ -71,7 +71,10 @@ class ProjectileEntity : BaseEntity
         currentAliveTime = 0
     }
     
-    override func Clone() -> BaseEntity {
-        return ProjectileEntity(lifeTime: LifeTime)
+    override func Clone(entityPool : Bool) -> BaseEntity
+    {
+        let projectile = ProjectileEntity(lifeTime: LifeTime)
+        projectile._isEntityPool = entityPool
+        return projectile
     }
 }

@@ -118,7 +118,7 @@ class PlaceableTurret : BaseEntity
         return closestEnemy
     }
     
-    override func Clone() -> BaseEntity {
+    override func Clone(entityPool : Bool) -> BaseEntity{
         return PlaceableTurret()
     }
 }

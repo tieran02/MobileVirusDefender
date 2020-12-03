@@ -10,11 +10,12 @@ import SpriteKit
 import CoreMotion
 
 protocol Cloneable {
-    func Clone() -> BaseEntity
+    func Clone(entityPool : Bool) -> BaseEntity
 }
 
 class BaseEntity : SKSpriteNode, Cloneable
 {
+    
     enum AnimationState
     {
         case Idle
@@ -42,6 +43,7 @@ class BaseEntity : SKSpriteNode, Cloneable
     var currentAnimationState : AnimationState = AnimationState.Idle
     var shouldReverseAnimation : Bool = false
     private var reverseAnimation : Bool = false
+    var _isEntityPool : Bool = false
     
     init(texture:SKTexture, maxHealth : Float, position: CGPoint = CGPoint(x: 0,y: 0))
     {
@@ -116,11 +118,21 @@ class BaseEntity : SKSpriteNode, Cloneable
         {
             currentAnimationState = .Dying
             run(SKAction.sequence([action, SKAction.run {
-                self.removeFromParent()
+                self.removeOrHide()
             }]))
         }
         else
         {
+            removeOrHide()
+        }
+    }
+    
+    func removeOrHide()
+    {
+        if _isEntityPool{
+            self.isHidden = true
+        }
+        else{
             self.removeFromParent()
         }
     }
@@ -231,9 +243,11 @@ class BaseEntity : SKSpriteNode, Cloneable
         
     }
     
-    func Clone() -> BaseEntity
+    func Clone(entityPool : Bool) -> BaseEntity
     {
-        return BaseEntity(texture: texture!,maxHealth: MaxHealth,position: position)
+        let entity = BaseEntity(texture: texture!,maxHealth: MaxHealth,position: position)
+        entity._isEntityPool = entityPool
+        return entity
     }
     
 }

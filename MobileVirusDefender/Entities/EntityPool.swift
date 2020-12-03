@@ -14,14 +14,14 @@ class EntityPool<EntityType> where EntityType : BaseEntity
     
     init(entity : EntityType, Amount : Int)
     {
-        pool =  (0 ..< Amount).map{_ in entity.Clone() as! EntityType}
+        pool =  (0 ..< Amount).map{_ in entity.Clone(entityPool: true) as! EntityType}
     }
     
     func Update(deltaTime : Float, scene : GameScene)
     {
         for entity in pool
         {
-            if(entity.parent != nil)
+            if(entity.isHidden != true)
             {
                 entity.Update(deltaTime: deltaTime, scene: scene)
             }

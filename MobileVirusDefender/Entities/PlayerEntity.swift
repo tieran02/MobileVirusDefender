@@ -188,8 +188,4 @@ class PlayerEntity : BaseEntity
         }
         super.Destroy()
     }
-    
-    override func Clone() -> BaseEntity {
-        return PlayerEntity(position: position)
-    }
 }
