@@ -96,7 +96,7 @@ class MoveToFacility : StateProtocol
             self.path = pathfinding.FindPath(start: start!, end: end!)
             currentTarget = facility.position
             currentNode = 0
-            pathfinding.DrawPath(path: path!, scene: scene)
+            //pathfinding.DrawPath(path: path!, scene: scene)
         }
         else{
             path = nil
@@ -123,7 +123,7 @@ class MoveToFacility : StateProtocol
         enemy.MoveTo(target: nodeWorldPoint)
         
         let distanceToTarget = CGVector(point: enemy.position).distanceTo(targetPosVector)
-        if(distanceToTarget <= 5)
+        if(distanceToTarget <= 10)
         {
             currentNode += 1
         }

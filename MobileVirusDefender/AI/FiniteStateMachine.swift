@@ -28,7 +28,7 @@ class FiniteStateMachine
     
     func PushState(state : StateProtocol, scene : GameScene)
     {
-        stateStack.append(state)
+        stateStack.insert(state, at: 0)
         currentState = state
         currentState?.OnPush(Enemy: Enemy, stateMachine: self, scene: scene)
     }
@@ -52,10 +52,8 @@ class FiniteStateMachine
     
     func Clear(scene : GameScene)
     {
-        for i in 0 ..< stateStack.count
-        {
-            PopState(scene: scene)
-        }
+        currentState = nil
+        stateStack.removeAll()
     }
     
     func Update(deltaTime : Float, scene : GameScene)
