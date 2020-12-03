@@ -56,11 +56,6 @@ class EnemyEntity : BaseEntity
     {
         super.Update(deltaTime: deltaTime, scene: scene)
         
-        if(StateMachine?.currentState == nil)
-        {
-            StateMachine?.PushState(state: MoveToFacility(), scene: scene)
-        }
-        
         if(Velocity.dx >= 0)
         {
             xScale = 1
@@ -100,6 +95,7 @@ class EnemyEntity : BaseEntity
         if let gamescene = scene as? GameScene
         {
             gamescene.ResearchPoint += 1
+            StateMachine?.Clear(scene: gamescene)
         }
         
         //death sound
@@ -107,7 +103,6 @@ class EnemyEntity : BaseEntity
                                               SKAction.play()]))
         
         super.Destroy()
-        StateMachine?.Clear()
     }
     
 }

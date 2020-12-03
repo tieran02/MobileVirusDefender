@@ -39,7 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var sceneCamera : SKCameraNode?
     var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:-9 * TileMapSettings.TileSize,y:-3 * TileMapSettings.TileSize))
-    var ProjectilePool = EntityPool<ProjectileEntity>(entity: ProjectileEntity(lifeTime: 5), Amount: 100)
+    var ProjectilePool = EntityPool<ProjectileEntity>(entity: ProjectileEntity(lifeTime: 5), Amount: 250)
+    let EnemyPool = EntityPool<EnemyEntity>(entity: EnemyEntity(), Amount: 50)
     var PlaceableTurretPool = EntityPool<PlaceableTurret>(entity: PlaceableTurret(), Amount: 10)
     var Spawners : [SpawnerEntity]?
     var Turrets : [TurretEntity]?
@@ -72,6 +73,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Spawners = children.compactMap{ $0 as? SpawnerEntity}
         Turrets = children.compactMap{ $0 as? TurretEntity}
         ResearchFacility = children.compactMap{ $0 as? ResearchEntity}.first
+        
+        //setup entity pools
+        ProjectilePool.addEntitiesToScene(scene: self)
+        EnemyPool.addEntitiesToScene(scene: self)
         
         pathfinding = PathFinding(scene: self, nodesPerUnit: 1, unitSize: 256, unitColumns: 64, unitRows: 64)
         //pathfinding?.DrawNodes(scene: self)
@@ -141,6 +146,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(sceneCamera != nil)
         {
             PlaceableTurretPool.Update(deltaTime: dt, scene: self)
+            EnemyPool.Update(deltaTime: dt, scene: self)
             Turrets?.forEach{ $0.Update(deltaTime: dt, scene: self)}
             Spawners?.forEach{ $0.Update(deltaTime: dt, scene: self)}
             ResearchFacility?.Update(deltaTime: dt, scene: self)

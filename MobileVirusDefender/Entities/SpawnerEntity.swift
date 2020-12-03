@@ -12,12 +12,10 @@ class SpawnerEntity : BaseEntity
 {
     var spawnTimer : Float = 0.0
     let SpawnFrequency : Float
-    let enemyPool : EntityPool<EnemyEntity>
     
     init(enemy : EnemyEntity, spawnFrequency : Float, position: CGPoint = CGPoint(x: 0,y: 0))
     {
         SpawnFrequency = spawnFrequency
-        enemyPool = EntityPool<EnemyEntity>(entity: EnemyEntity(), Amount: 10)
         super.init(texture: SKTexture(imageNamed: "Turret0"), maxHealth: 200, position: position)
         setup()
     }
@@ -25,7 +23,6 @@ class SpawnerEntity : BaseEntity
     required init?(coder aDecoder: NSCoder)
     {
         self.SpawnFrequency = aDecoder.decodeObject(forKey: "SpawnFrequency") as? Float ?? 5
-        self.enemyPool = aDecoder.decodeObject(forKey: "enemyPool") as? EntityPool<EnemyEntity> ?? EntityPool<EnemyEntity>(entity: EnemyEntity(), Amount: 10)
         super.init(coder: aDecoder)
         setup()
     }
@@ -43,16 +40,14 @@ class SpawnerEntity : BaseEntity
     
     override func Update(deltaTime: Float, scene: GameScene)
     {
-        //update all spawned enemies
-        enemyPool.Update(deltaTime: deltaTime, scene: scene)
-        
         if(spawnTimer > SpawnFrequency)
         {
-            if let enemy = enemyPool.Retrieve()
+            if let enemy = scene.EnemyPool.Retrieve()
             {
-                enemy.position = self.position
+                enemy.position = CGPoint(x: floor(self.position.x), y: floor(self.position.y))
                 enemy.Reset()
-                scene.addChild(enemy)
+                enemy.isHidden = false
+                enemy.StateMachine?.PushState(state: MoveToFacility(), scene: scene)
                 spawnTimer = 0
             }
         }

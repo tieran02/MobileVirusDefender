@@ -97,6 +97,11 @@ class PlaceableTurret : BaseEntity
         var closestDistance : CGFloat?
         for enemy in enemies
         {
+            if enemy.isHidden
+            {
+                continue
+            }
+            
             let dist = CGVector(point: position).distanceTo(CGVector(point: enemy.position))
             
             if(enemy.CurrentHealth <= 0 || dist > maxDistance)

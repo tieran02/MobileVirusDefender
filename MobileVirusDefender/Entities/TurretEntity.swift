@@ -111,6 +111,11 @@ class TurretEntity : BaseEntity
         var closestDistance : CGFloat?
         for enemy in enemies
         {
+            if enemy.isHidden
+            {
+                continue
+            }
+            
             let dist = CGVector(point: position).distanceTo(CGVector(point: enemy.position))
             
             if(dist > maxDistance || enemy.CurrentHealth <= 0)

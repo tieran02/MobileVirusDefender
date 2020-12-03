@@ -15,7 +15,8 @@ class MoveToFacility : StateProtocol
     
     var path : [Node]?
     var currentNode = 0
-    let pathfindingUpdatePeriod : Float = 0.25
+    var updatePathTime : Float = 0
+    let pathfindingUpdatePeriod : Float = 2.5
     var currentTarget : CGPoint?
     
     func OnPush(Enemy: EnemyEntity, stateMachine: FiniteStateMachine, scene: GameScene)
@@ -25,6 +26,8 @@ class MoveToFacility : StateProtocol
         Player = scene.Player
         currentNode = 0
         currentTarget = nil
+        updatePathTime = pathfindingUpdatePeriod
+        //FindPathToFacility(enemy: Enemy, facility: facility!, pathfinding: scene.pathfinding!)
     }
     
     func OnPop(Enemy: EnemyEntity, stateMachine: FiniteStateMachine, scene: GameScene)
@@ -67,15 +70,18 @@ class MoveToFacility : StateProtocol
             }
         }
         
-        if(path == nil)
+        updatePathTime += deltaTime
+        
+        if(updatePathTime >= pathfindingUpdatePeriod)
         {
-            FindPathToFacility(enemy: Enemy, facility: facility!, pathfinding: scene.pathfinding!)
+            FindPathToFacility(enemy: Enemy, facility: facility!, pathfinding: scene.pathfinding!, scene: scene)
+            updatePathTime = 0
         }
         
         MoveAlongPath(enemy: Enemy, pathfinding: scene.pathfinding!)
     }
     
-    func FindPathToFacility(enemy : EnemyEntity, facility: ResearchEntity, pathfinding : PathFinding)
+    func FindPathToFacility(enemy : EnemyEntity, facility: ResearchEntity, pathfinding : PathFinding, scene : GameScene)
     {
         if(path != nil && currentTarget == facility.position)
         {
@@ -90,7 +96,7 @@ class MoveToFacility : StateProtocol
             self.path = pathfinding.FindPath(start: start!, end: end!)
             currentTarget = facility.position
             currentNode = 0
-            //pathfinding.DrawPath(path: path!, scene: scene)
+            pathfinding.DrawPath(path: path!, scene: scene)
         }
         else{
             path = nil
@@ -117,7 +123,7 @@ class MoveToFacility : StateProtocol
         enemy.MoveTo(target: nodeWorldPoint)
         
         let distanceToTarget = CGVector(point: enemy.position).distanceTo(targetPosVector)
-        if(distanceToTarget <= 10)
+        if(distanceToTarget <= 5)
         {
             currentNode += 1
         }

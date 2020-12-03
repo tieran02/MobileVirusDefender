@@ -6,15 +6,46 @@
 //  Copyright © 2020 Tieran. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
 class EntityPool<EntityType> where EntityType : BaseEntity
 {
-    let pool : [EntityType]
+    var pool = [EntityType]()
+    
+    //Have a copy of the phyisics bodies, this is so we can remove the body and only add it when we retrieve the item
+    //This stops the objects colliding when hidden
+    var physicalBodies = [SKPhysicsBody?]()
     
     init(entity : EntityType, Amount : Int)
     {
-        pool =  (0 ..< Amount).map{_ in entity.Clone(entityPool: true) as! EntityType}
+        for i in 0 ..< Amount
+        {
+            let entity = entity.Clone(entityPool: true) as! EntityType
+            entity.isHidden = true
+            
+            if entity.physicsBody != nil
+            {
+                let copy = entity.physicsBody!.copy() as! SKPhysicsBody
+                physicalBodies.append(copy)
+                entity.physicsBody = nil
+            }
+            else
+            {
+                physicalBodies.append(nil)
+            }
+            
+            self.pool.append(entity)
+        }
+    }
+    
+    func addEntitiesToScene(scene : GameScene)
+    {
+        for entity in pool
+        {
+            if(entity.parent == nil){
+                scene.addChild(entity)
+            }
+        }
     }
     
     func Update(deltaTime : Float, scene : GameScene)
@@ -30,6 +61,15 @@ class EntityPool<EntityType> where EntityType : BaseEntity
     
     func Retrieve() -> EntityType?
     {
-        return pool.first(where: {$0.parent == nil})
+        for i in 0 ..< pool.count
+        {
+            if pool[i].isHidden
+            {
+                //add SKPhysicsBody back to the object
+                pool[i].physicsBody = physicalBodies[i]
+                return pool[i]
+            }
+        }
+        return nil
     }
 }

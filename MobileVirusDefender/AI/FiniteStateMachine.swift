@@ -18,7 +18,7 @@ protocol StateProtocol
 class FiniteStateMachine
 {
     let Enemy : EnemyEntity
-    var stateStack : [StateProtocol]?
+    var stateStack = [StateProtocol]()
     var currentState : StateProtocol?
     
     init(enemy : EnemyEntity)
@@ -28,28 +28,34 @@ class FiniteStateMachine
     
     func PushState(state : StateProtocol, scene : GameScene)
     {
-        stateStack?.append(state)
+        stateStack.append(state)
         currentState = state
         currentState?.OnPush(Enemy: Enemy, stateMachine: self, scene: scene)
     }
     
-    func PopState(scene : GameScene) -> StateProtocol?
+    func PopState(scene : GameScene)
     {
-        let state = stateStack?.removeFirst()
-        state?.OnPop(Enemy: Enemy, stateMachine: self, scene: scene)
+        if stateStack.count <= 1
+        {
+            return
+        }
+        
+        let state = stateStack.removeFirst()
+        state.OnPop(Enemy: Enemy, stateMachine: self, scene: scene)
         currentState = Peek()
-        return state
     }
     
     func Peek() -> StateProtocol?
     {
-        return stateStack?.first
+        return stateStack.first
     }
     
-    func Clear()
+    func Clear(scene : GameScene)
     {
-        currentState = nil
-        stateStack?.removeAll()
+        for i in 0 ..< stateStack.count
+        {
+            PopState(scene: scene)
+        }
     }
     
     func Update(deltaTime : Float, scene : GameScene)

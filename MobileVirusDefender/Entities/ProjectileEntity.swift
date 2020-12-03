@@ -45,7 +45,7 @@ class ProjectileEntity : BaseEntity
         
         //add to scene
         self.position = position;
-        scene.addChild(self)
+        self.isHidden = false
         
         self.MoveInDirection(direction: direction.normalized()	)
     }
@@ -55,9 +55,9 @@ class ProjectileEntity : BaseEntity
         super.Update(deltaTime: deltaTime, scene: scene)
         
         //remove from parrent after lifetime
-        if(self.parent != nil && currentAliveTime >= LifeTime)
+        if(self.isHidden == false && currentAliveTime >= LifeTime)
         {
-            self.removeFromParent()
+            self.removeOrHide()
             currentAliveTime = 0
         }
         currentAliveTime += deltaTime
@@ -67,7 +67,7 @@ class ProjectileEntity : BaseEntity
     {
         let entity = with.node as? BaseEntity
         entity?.Damage(amount: Damage)
-        self.removeFromParent()
+        self.removeOrHide()
         currentAliveTime = 0
     }
     

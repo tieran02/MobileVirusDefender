@@ -131,6 +131,7 @@ class BaseEntity : SKSpriteNode, Cloneable
     {
         if _isEntityPool{
             self.isHidden = true
+            self.physicsBody = nil
         }
         else{
             self.removeFromParent()

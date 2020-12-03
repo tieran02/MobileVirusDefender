@@ -253,6 +253,9 @@ class PathFinding
         pathNode.strokeColor = .blue
         pathNode.lineWidth = 30
         scene.addChild(pathNode)
+        
+        pathNode.run(SKAction.sequence([SKAction.wait(forDuration: 1),SKAction.removeFromParent()]))
+        
     }
     
     func DrawNodes(scene : SKScene)

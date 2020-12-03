@@ -152,6 +152,7 @@ class PlayerEntity : BaseEntity
         }
     }
     
+    //todo add to util as it is used alot
     func getClosestEnemy(scene : GameScene) -> EnemyEntity?
     {
         let enemies = scene.children.compactMap{ $0 as? EnemyEntity}
@@ -161,6 +162,11 @@ class PlayerEntity : BaseEntity
         var closestDistance : CGFloat?
         for enemy in enemies
         {
+            if enemy.isHidden
+            {
+                continue
+            }
+            
             let dist = CGVector(point: playerPos).distanceTo(CGVector(point: enemy.position))
             
             if closestEnemy == nil
