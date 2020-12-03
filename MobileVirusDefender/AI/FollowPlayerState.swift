@@ -15,7 +15,7 @@ class FollowPlayerState : StateProtocol
     var path : [Node]?
     var currentNode = 0
     var updatePathTime : Float = 0
-    let pathfindingUpdatePeriod : Float = 0.25
+    let pathfindingUpdatePeriod : Float = 1
     var currentTarget : CGPoint?
     
     func OnPush(Enemy: EnemyEntity, stateMachine: FiniteStateMachine, scene: GameScene)

@@ -61,7 +61,7 @@ class TurretEntity : BaseEntity
         
         if(ShotsTillTimeout == nil)
         {
-            ShotsTillTimeout = Int.random(in: 25...50)
+            ShotsTillTimeout = Int.random(in: 35...70)
             currentShots = 0
             showDirectionalArrow(scene: scene, visible: false)
         }

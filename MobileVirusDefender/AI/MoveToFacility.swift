@@ -15,7 +15,6 @@ class MoveToFacility : StateProtocol
     
     var path : [Node]?
     var currentNode = 0
-    var updatePathTime : Float = 0
     let pathfindingUpdatePeriod : Float = 0.25
     var currentTarget : CGPoint?
     
@@ -68,12 +67,9 @@ class MoveToFacility : StateProtocol
             }
         }
         
-        updatePathTime += deltaTime
-        
-        if(updatePathTime >= pathfindingUpdatePeriod)
+        if(path == nil)
         {
             FindPathToFacility(enemy: Enemy, facility: facility!, pathfinding: scene.pathfinding!)
-            updatePathTime = 0
         }
         
         MoveAlongPath(enemy: Enemy, pathfinding: scene.pathfinding!)
