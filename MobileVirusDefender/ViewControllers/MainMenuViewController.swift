@@ -10,6 +10,10 @@ import UIKit
 
 class MainMenuViewController : UIViewController
 {
+    @IBAction func ExitButtonPressed(_ sender: Any)
+    {
+        exit(0)
+    }
     override func viewDidLoad()
     {
         GlobalSoundManager.PlayMusicSound(filename: "background",ofType: "wav", loopCount: -1)
