@@ -90,6 +90,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //setup entity pools
         ProjectilePool.addEntitiesToScene(scene: self)
         EnemyPool.addEntitiesToScene(scene: self)
+        PlaceableTurretPool.addEntitiesToScene(scene: self)
         
         pathfinding = PathFinding(scene: self, nodesPerUnit: 1, unitSize: 256, unitColumns: 64, unitRows: 64)
         //pathfinding?.DrawNodes(scene: self)
@@ -309,7 +310,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         {
             turret!.position = Player.position
             turret!.Reset()
-            addChild(turret!)
+            turret!.isHidden = false
             
             viewController?.TurretButton.isEnabled = false
             let cooldownAction = SKAction.sequence([SKAction.wait(forDuration: 30),

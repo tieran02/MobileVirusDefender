@@ -16,7 +16,7 @@ class ResearchEntity : BaseEntity
     let WaitTime : Float = 10
     var pointTimer : Float = 0
     
-    let taskCooldown : Float = 60
+    let taskCooldown : Float = 30
     var taskTimer : Float = 0
     
     let arrow = ArrowSprite()

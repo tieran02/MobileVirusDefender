@@ -384,7 +384,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Am5-xw-BBl" customClass="DesignAbleSlider" customModule="MobileVirusDefender" customModuleProvider="target">
-                                                        <rect key="frame" x="63.5" y="28.5" width="265" height="17.5"/>
+                                                        <rect key="frame" x="63.5" y="22" width="265" height="31"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="SliderThumb"/>
                                                         </userDefinedRuntimeAttributes>
@@ -427,7 +427,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyc-4e-Goz" customClass="DesignAbleSlider" customModule="MobileVirusDefender" customModuleProvider="target">
-                                                        <rect key="frame" x="63.5" y="28.5" width="265" height="17.5"/>
+                                                        <rect key="frame" x="63.5" y="21.5" width="265" height="31"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="SliderThumb"/>
                                                         </userDefinedRuntimeAttributes>
@@ -1367,7 +1367,7 @@
             <size key="intrinsicContentSize" width="202" height="52"/>
         </designable>
         <designable name="Am5-xw-BBl">
-            <size key="intrinsicContentSize" width="-1" height="16.5"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
         <designable name="C2P-cv-Xpx">
             <size key="intrinsicContentSize" width="202" height="52"/>
@@ -1400,7 +1400,7 @@
             <size key="intrinsicContentSize" width="80" height="71"/>
         </designable>
         <designable name="gyc-4e-Goz">
-            <size key="intrinsicContentSize" width="-1" height="16.5"/>
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
         <designable name="iDo-q2-f8b">
             <size key="intrinsicContentSize" width="104" height="90"/>
