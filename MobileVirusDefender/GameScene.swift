@@ -34,9 +34,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     weak var viewController: GameViewController?
     private var lastUpdateTime: TimeInterval = 0
     
-    var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
-    
     var sceneCamera : SKCameraNode?
     var Player : PlayerEntity = PlayerEntity(position: CGPoint(x:-9 * TileMapSettings.TileSize,y:-3 * TileMapSettings.TileSize))
     var ProjectilePool = EntityPool<ProjectileEntity>(entity: ProjectileEntity(lifeTime: 5), Amount: 250)
@@ -45,7 +42,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var Spawners : [SpawnerEntity]?
     var Turrets : [TurretEntity]?
     var ResearchFacility : ResearchEntity?
-    
+    var CurrentWave : Int = 1
+    let ZombiesSpawnIncreseAmount : Int = 5
+    let TimeTillWaveIncrease : Float = 60
+    var waveTimer : Float = 0
     var pathfinding : PathFinding?
     
     private var researchPoints : Int = 0
@@ -59,6 +59,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             {
                 researchPointLabel.text = String(self.researchPoints)
             }
+        }
+    }
+    
+    var CurrentEnemyCount : Int
+    {
+        get{
+            return EnemyPool.VisibleCount()
+        }
+    }
+    var CurrentEnemyCap : Int
+    {
+        get{
+            return CurrentWave * ZombiesSpawnIncreseAmount
         }
     }
     
@@ -134,6 +147,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Calculate time since last update
         let dt = Float(currentTime - self.lastUpdateTime)
+        
+        //wave logic
+        if waveTimer >= TimeTillWaveIncrease
+        {
+            CurrentWave += 1
+            waveTimer = 0
+            viewController?.WaveLabel.text = "Wave \(CurrentWave)"
+        }
+        waveTimer += dt
  
         let leftDirection = viewController?.LeftJoystick.Direction
         let rightDirection = viewController?.RightJoystick.Direction

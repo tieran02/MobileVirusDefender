@@ -48,6 +48,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var ScoreLabel: UILabel!
     
     @IBOutlet weak var ResearchPointLabel: UILabel!
+    @IBOutlet weak var WaveLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,9 +65,6 @@ class GameViewController: UIViewController {
             if let sceneNode = scene.rootNode as! GameScene?
             {
                 currentGame = sceneNode
-                // Copy gameplay related content over to the scene
-                sceneNode.entities = scene.entities
-                sceneNode.graphs = scene.graphs
                 sceneNode.viewController = self
                 
                 // Set the scale mode to scale to fit the window

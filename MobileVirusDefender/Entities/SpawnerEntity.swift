@@ -40,7 +40,7 @@ class SpawnerEntity : BaseEntity
     
     override func Update(deltaTime: Float, scene: GameScene)
     {
-        if(spawnTimer > SpawnFrequency)
+        if(spawnTimer > SpawnFrequency && scene.CurrentEnemyCount < scene.CurrentEnemyCap)
         {
             if let enemy = scene.EnemyPool.Retrieve()
             {

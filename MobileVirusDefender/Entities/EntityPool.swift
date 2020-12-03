@@ -72,4 +72,9 @@ class EntityPool<EntityType> where EntityType : BaseEntity
         }
         return nil
     }
+    
+    func VisibleCount() -> Int
+    {
+        return pool.filter{ $0.isHidden == false}.count
+    }
 }

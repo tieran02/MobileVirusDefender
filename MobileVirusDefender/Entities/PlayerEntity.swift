@@ -56,7 +56,7 @@ class PlayerEntity : BaseEntity
             spawnPoint = CGPoint(x: -spawnPoint.x, y: spawnPoint.y)
         }
         
-        /*if let particles = SKEmitterNode(fileNamed: "MuzzleFlashParticle.sks") {
+        if let particles = SKEmitterNode(fileNamed: "MuzzleFlashParticle.sks") {
             particles.position = projectileSpawnPoint
             addChild(particles)
             
@@ -65,7 +65,7 @@ class PlayerEntity : BaseEntity
             }])
             
             run(removeAfter)
-        }*/
+        }
         
         //play sound
         let soundAction = SKAction.playSoundFileNamed("sci-fi_weapon_pistol_shot_01.wav", waitForCompletion: false)
